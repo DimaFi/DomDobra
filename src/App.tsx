@@ -1,51 +1,85 @@
 import { useEffect, useState } from "react"
 
 import logo from "@/imports/ChatGPT_Image_29____._2026__.__00_48_11.png"
+
 import heroArtwork from "@/imports/elements/background.png"
+
 import branchPosition1 from "@/imports/elements/ветка_вылет_1.png"
+
 import contactBranch from "@/imports/elements/ветка_снизу сайта.png"
+
 import staffHeaderArtwork from "@/imports/elements/верх у персонала.png"
+
 import staffBranchArtwork from "@/imports/elements/веточка в блоке у каждого персонала.png"
+
 import logoMark from "@/imports/elements/Логотип_only.png"
+
 import brandNameArtwork from "@/imports/elements/Название_only.png"
+
 import standardArtwork from "@/imports/elements/standart.png"
+
 import comfortArtwork from "@/imports/elements/comfort.png"
+
 import premiumArtwork from "@/imports/elements/premium.png"
+
 import phoneArtwork from "@/imports/elements/tel_em.png"
+
 import documentsArtwork from "@/imports/elements/doc_em.png"
+
 import homeArtwork from "@/imports/elements/home_em.png"
+
 import documentsTile from "@/imports/elements/docs.png"
+
 import reviewsTile from "@/imports/elements/emoji_heart_dialog.png"
+
 import questionsTile from "@/imports/elements/emoji_question.png"
+
 import staffPhoto from "@/imports/staff-demo-caregiver-male.png"
+
 import galleryPhoto1 from "@/imports/фотки/1.jpg"
+
 import galleryPhoto2 from "@/imports/фотки/2.jpg"
+
 import galleryPhoto3 from "@/imports/фотки/3.jpg"
+
 import galleryPhoto4 from "@/imports/фотки/4.jpg"
 
 const navigation = [
   { label: "Главная", href: "#главная" },
+
   { label: "О нас", href: "#о-нас" },
+
   { label: "Цены", href: "#цены" },
+
   { label: "Отзывы", href: "#отзывы" },
+
   { label: "Документы", href: "#документы" },
+
   { label: "Контакты", href: "#контакты" },
 ]
 
 const advantages = [
   {
     title: "Заботливый персонал 24/7",
+
     description: "Всегда рядом и готов помочь",
+
     icon: "heart",
   },
+
   {
     title: "Медицинский уход",
+
     description: "Внимание к самочувствию каждый день",
+
     icon: "health",
   },
+
   {
     title: "Уют и безопасность",
+
     description: "Комфортные условия для жизни",
+
     icon: "home",
   },
 ]
@@ -53,20 +87,31 @@ const advantages = [
 const settlementSteps = [
   {
     number: "01",
+
     title: "Заявка-консультация",
+
     description: "Ответим на вопросы и подберём подходящие условия.",
+
     artwork: phoneArtwork,
   },
+
   {
     number: "02",
+
     title: "Оформление и знакомство",
+
     description: "Познакомимся, проведём экскурсию и поможем с документами.",
+
     artwork: documentsArtwork,
   },
+
   {
     number: "03",
+
     title: "Комфортное заселение",
+
     description: "Поможем спокойно освоиться в новом уютном доме.",
+
     artwork: homeArtwork,
   },
 ]
@@ -74,21 +119,33 @@ const settlementSteps = [
 const prices = [
   {
     name: "Стандарт",
+
     description: "Уютная комната и базовый уход",
+
     price: "от XX XXX ₽",
+
     artwork: standardArtwork,
   },
+
   {
     name: "Комфорт",
+
     description: "Расширенный уход и дополнительные услуги",
+
     price: "от XX XXX ₽",
+
     artwork: comfortArtwork,
+
     featured: true,
   },
+
   {
     name: "Премиум",
+
     description: "Повышенный комфорт и больше личного внимания",
+
     price: "от XX XXX ₽",
+
     artwork: premiumArtwork,
   },
 ]
@@ -96,37 +153,56 @@ const prices = [
 const informationTiles = [
   {
     id: "документы",
+
     title: "Документы",
+
     description: "Официальная информация",
+
     link: "Смотреть",
+
     artwork: documentsTile,
   },
+
   {
     id: "отзывы",
+
     title: "Отзывы семей",
+
     description: "Истории тех, кто доверил нам заботу",
+
     link: "Читать",
+
     artwork: reviewsTile,
   },
+
   {
     id: "вопросы",
+
     title: "Частые вопросы",
+
     description: "Ответы о проживании и условиях",
+
     link: "Смотреть",
+
     artwork: questionsTile,
   },
 ]
 
 const staffMembers = [
   { name: "Иван Иванов", role: "Управляющий пансионатом" },
+
   { name: "Иван Иванов", role: "Специалист по уходу" },
+
   { name: "Иван Иванов", role: "Координатор заботы" },
 ]
 
 const galleryItems = [
   { title: "Уютная комната", src: galleryPhoto1 },
+
   { title: "Обеденная зона", src: galleryPhoto2 },
+
   { title: "Сад пансионата", src: galleryPhoto3 },
+
   { title: "Светлая библиотека", src: galleryPhoto4 },
 ]
 
@@ -142,29 +218,38 @@ function getGalleryPosition(itemIndex: number, activeIndex: number) {
   }
 
   if (offset === -2) return "is-far-left"
+
   if (offset === -1) return "is-left"
+
   if (offset === 0) return "is-active"
+
   if (offset === 1) return "is-right"
+
   if (offset === 2) return "is-far-right"
+
   return offset < 0 ? "is-hidden-left" : "is-hidden-right"
 }
 
 function useReveal() {
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>(".reveal")
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible")
+
             observer.unobserve(entry.target)
           }
         })
       },
+
       { threshold: 0.08, rootMargin: "0px 0px -40px" },
     )
 
     elements.forEach((element) => observer.observe(element))
+
     return () => observer.disconnect()
   }, [])
 }
@@ -217,7 +302,11 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+
   const [galleryIndex, setGalleryIndex] = useState(0)
+
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+
   useReveal()
 
   useEffect(() => {
@@ -225,11 +314,14 @@ export default function App() {
 
     if (!favicon) {
       favicon = document.createElement("link")
+
       favicon.rel = "icon"
+
       document.head.appendChild(favicon)
     }
 
     favicon.type = "image/png"
+
     favicon.href = logoMark
   }, [])
 
@@ -237,6 +329,42 @@ export default function App() {
     setGalleryIndex(
       (current) =>
         (current + direction + galleryItems.length) % galleryItems.length,
+    )
+  }
+
+  useEffect(() => {
+    if (lightboxIndex === null) return
+
+    const previousOverflow = document.body.style.overflow
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setLightboxIndex(null)
+      if (event.key === "ArrowLeft") {
+        setLightboxIndex(
+          (current) =>
+            ((current ?? 0) - 1 + galleryItems.length) % galleryItems.length,
+        )
+      }
+      if (event.key === "ArrowRight") {
+        setLightboxIndex(
+          (current) => ((current ?? 0) + 1) % galleryItems.length,
+        )
+      }
+    }
+
+    document.body.style.overflow = "hidden"
+    window.addEventListener("keydown", handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [lightboxIndex])
+
+  const moveLightbox = (direction: number) => {
+    setLightboxIndex(
+      (current) =>
+        ((current ?? 0) + direction + galleryItems.length) %
+        galleryItems.length,
     )
   }
 
@@ -490,13 +618,20 @@ export default function App() {
 
             <div className="gallery-stage" aria-live="polite">
               {galleryItems.map((item, index) => (
-                <article
+                <button
+                  type="button"
                   className={`gallery-slide ${getGalleryPosition(index, galleryIndex)}`}
+                  aria-label={`Открыть фотографию: ${item.title}`}
                   aria-hidden={index !== galleryIndex}
+                  disabled={index !== galleryIndex}
+                  onClick={() => setLightboxIndex(index)}
                   key={item.src}
                 >
                   <img src={item.src} alt={item.title} />
-                </article>
+                  <span className="gallery-zoom" aria-hidden="true">
+                    ⤢
+                  </span>
+                </button>
               ))}
             </div>
 
@@ -514,6 +649,55 @@ export default function App() {
             </div>
           </div>
         </section>
+
+        {lightboxIndex !== null && (
+          <div
+            className="gallery-lightbox"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Просмотр фотографии"
+            onMouseDown={() => setLightboxIndex(null)}
+          >
+            <button
+              className="lightbox-close"
+              type="button"
+              aria-label="Закрыть фотографию"
+              onClick={() => setLightboxIndex(null)}
+            >
+              ×
+            </button>
+            <button
+              className="lightbox-arrow lightbox-arrow-left"
+              type="button"
+              aria-label="Предыдущая фотография"
+              onMouseDown={(event) => event.stopPropagation()}
+              onClick={() => moveLightbox(-1)}
+            >
+              ←
+            </button>
+            <figure onMouseDown={(event) => event.stopPropagation()}>
+              <img
+                src={galleryItems[lightboxIndex].src}
+                alt={galleryItems[lightboxIndex].title}
+              />
+              <figcaption>
+                {galleryItems[lightboxIndex].title}
+                <span>
+                  {lightboxIndex + 1} / {galleryItems.length}
+                </span>
+              </figcaption>
+            </figure>
+            <button
+              className="lightbox-arrow lightbox-arrow-right"
+              type="button"
+              aria-label="Следующая фотография"
+              onMouseDown={(event) => event.stopPropagation()}
+              onClick={() => moveLightbox(1)}
+            >
+              →
+            </button>
+          </div>
+        )}
 
         <section className="section information-section">
           <div className="information-grid">
