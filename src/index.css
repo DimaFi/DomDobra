@@ -1773,6 +1773,9 @@ footer a {
   height: 430px;
   transform: translateX(-20%);
   object-fit: contain;
+  pointer-events: none;
+}
+
 .desktop-nav a.is-current {
   color: #173e31;
 }
@@ -2038,9 +2041,6 @@ footer a {
 .reviews-back:hover {
   border-color: #718064;
   background: rgba(113, 128, 100, 0.08);
-}
-
-  pointer-events: none;
 }
 
 .reveal {
