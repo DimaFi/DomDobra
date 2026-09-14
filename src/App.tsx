@@ -68,11 +68,11 @@ const advantages = [
   },
 
   {
-    title: "Медицинский уход",
+    title: "Насыщенная жизнь",
 
-    description: "Внимание к самочувствию каждый день",
+    description: "Общение, занятия и добрые события каждый день",
 
-    icon: "health",
+    icon: "activity",
   },
 
   {
@@ -197,56 +197,97 @@ const informationTiles = [
 const familyReviews = [
   {
     name: "Елена",
+
     relation: "дочь постояльца",
+
     date: "Август 2026",
+
     order: 6,
+
     rating: 5,
+
     text: "Спокойная атмосфера, внимательное отношение и регулярная связь с семьёй. Видно, что сотрудники знают привычки каждого человека.",
+
     traits: ["Внимательность", "Связь с семьёй"],
   },
+
   {
     name: "Александр",
+
     relation: "сын постоялицы",
+
     date: "Июль 2026",
+
     order: 5,
+
     rating: 5,
+
     text: "Особенно ценим доброжелательность команды и аккуратный уход. В комнатах уютно, а обо всех важных изменениях сообщают вовремя.",
+
     traits: ["Уход", "Домашний уют"],
   },
+
   {
     name: "Марина",
+
     relation: "внучка постояльца",
+
     date: "Июнь 2026",
+
     order: 4,
+
     rating: 5,
+
     text: "Дедушка быстро освоился и стал спокойнее. Нравится, что здесь есть понятный распорядок, общение и бережное внимание каждый день.",
+
     traits: ["Адаптация", "Общение"],
   },
+
   {
     name: "Ольга",
+
     relation: "дочь постоялицы",
+
     date: "Май 2026",
+
     order: 3,
+
     rating: 4,
+
     text: "Для нашей семьи важнее всего были безопасность и человеческое отношение. Здесь к просьбам прислушиваются и спокойно отвечают на вопросы.",
+
     traits: ["Безопасность", "Отзывчивость"],
   },
+
   {
     name: "Сергей",
+
     relation: "сын постояльца",
+
     date: "Апрель 2026",
+
     order: 2,
+
     rating: 5,
+
     text: "Порадовали чистота, питание и внимательный персонал. Можно быть на связи и понимать, как проходит день близкого человека.",
+
     traits: ["Чистота", "Питание"],
   },
+
   {
     name: "Наталья",
+
     relation: "племянница постоялицы",
+
     date: "Март 2026",
+
     order: 1,
+
     rating: 5,
+
     text: "Тёплое, спокойное место без ощущения больницы. Сотрудники помогают деликатно, а в общении чувствуется искренняя забота.",
+
     traits: ["Тёплая атмосфера", "Деликатность"],
   },
 ]
@@ -326,11 +367,13 @@ function ArrowIcon() {
 }
 
 function AdvantageIcon({ name }: { name: string }) {
-  if (name === "health") {
+  if (name === "activity") {
     return (
       <svg viewBox="0 0 64 64" aria-hidden="true">
-        <path d="M8 34h12l6-15 9 28 7-18 4 5h10" />
-        <path d="M50 13c-8-4-15 1-18 7-3-6-10-11-18-7-10 6-7 20 18 36 25-16 28-30 18-36Z" />
+        <circle cx="32" cy="22" r="8" />
+        <path d="M32 7v5M32 32v5M17 22h5M42 22h5M21 11l4 4M43 11l-4 4" />
+        <path d="M13 51c8-11 16-13 23-7 5-6 10-7 15-4" />
+        <path d="M19 51c6-3 12-3 18 0 5 2 10 1 14-2" />
       </svg>
     )
   }
@@ -416,14 +459,17 @@ export default function App() {
     if (lightboxIndex === null) return
 
     const previousOverflow = document.body.style.overflow
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setLightboxIndex(null)
+
       if (event.key === "ArrowLeft") {
         setLightboxIndex(
           (current) =>
             ((current ?? 0) - 1 + galleryItems.length) % galleryItems.length,
         )
       }
+
       if (event.key === "ArrowRight") {
         setLightboxIndex(
           (current) => ((current ?? 0) + 1) % galleryItems.length,
@@ -432,10 +478,12 @@ export default function App() {
     }
 
     document.body.style.overflow = "hidden"
+
     window.addEventListener("keydown", handleKeyDown)
 
     return () => {
       document.body.style.overflow = previousOverflow
+
       window.removeEventListener("keydown", handleKeyDown)
     }
   }, [lightboxIndex])
@@ -738,6 +786,19 @@ export default function App() {
                 </div>
               </article>
             ))}
+          </div>
+          <div className="about-summary reveal">
+            <p className="eyebrow">Почему выбирают нас</p>
+            <h2>Здесь близкому человеку по-настоящему спокойно</h2>
+            <p>
+              Мы создаём не просто комфортные условия, а тёплую и уважительную
+              среду, где замечают привычки человека, поддерживают его
+              самостоятельность и всегда остаются на связи с семьёй.
+            </p>
+            <div className="about-summary-traits">
+              Забота без формальностей <span>•</span> Внимательное отношение
+              <span>•</span> Домашняя атмосфера
+            </div>
           </div>
         </section>
 
