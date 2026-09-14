@@ -194,6 +194,33 @@ const informationTiles = [
   },
 ]
 
+const documentItems = [
+  {
+    title: "Лицензия",
+    description: "Документ, подтверждающий право на осуществление деятельности",
+    fileName: "license-placeholder.pdf",
+    src: "/documents/license-placeholder.pdf",
+  },
+  {
+    title: "Договор аренды",
+    description: "Документы на помещение пансионата",
+    fileName: "lease-agreement-placeholder.pdf",
+    src: "/documents/lease-agreement-placeholder.pdf",
+  },
+  {
+    title: "Прейскурант",
+    description: "Стоимость проживания и дополнительных услуг",
+    fileName: "price-list-placeholder.pdf",
+    src: "/documents/price-list-placeholder.pdf",
+  },
+  {
+    title: "Правила проживания",
+    description: "Общие условия и распорядок дома",
+    fileName: "house-rules-placeholder.pdf",
+    src: "/documents/house-rules-placeholder.pdf",
+  },
+]
+
 const familyReviews = [
   {
     name: "Елена",
@@ -415,6 +442,8 @@ export default function App() {
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
+  const [documentIndex, setDocumentIndex] = useState<number | null>(null)
+
   const isReviewsPage =
     window.location.pathname.replace(/\/+$/, "") === "/reviews"
 
@@ -494,6 +523,46 @@ export default function App() {
         ((current ?? 0) + direction + galleryItems.length) %
         galleryItems.length,
     )
+  }
+
+  useEffect(() => {
+    if (documentIndex === null) return
+
+    const previousOverflow = document.body.style.overflow
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setDocumentIndex(null)
+      if (event.key === "ArrowLeft") {
+        setDocumentIndex(
+          (current) =>
+            ((current ?? 0) - 1 + documentItems.length) % documentItems.length,
+        )
+      }
+      if (event.key === "ArrowRight") {
+        setDocumentIndex(
+          (current) => ((current ?? 0) + 1) % documentItems.length,
+        )
+      }
+    }
+
+    document.body.style.overflow = "hidden"
+    window.addEventListener("keydown", handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [documentIndex])
+
+  const moveDocument = (direction: number) => {
+    setDocumentIndex(
+      (current) =>
+        ((current ?? 0) + direction + documentItems.length) %
+        documentItems.length,
+    )
+  }
+
+  const openDocuments = () => {
+    setDocumentIndex(0)
   }
 
   if (isReviewsPage) {
@@ -1018,15 +1087,101 @@ export default function App() {
                 <div className="information-copy">
                   <h2>{item.title}</h2>
                   <p>{item.description}</p>
-                  <a href={item.href}>
-                    {item.link} <ArrowIcon />
-                  </a>
+                  {item.id === "документы" ? (
+                    <button type="button" onClick={openDocuments}>
+                      {item.link} <ArrowIcon />
+                    </button>
+                  ) : (
+                    <a href={item.href}>
+                      {item.link} <ArrowIcon />
+                    </a>
+                  )}
                 </div>
                 <img src={item.artwork} alt="" aria-hidden="true" />
               </article>
             ))}
           </div>
         </section>
+
+        {documentIndex !== null && (
+          <div
+            className="documents-modal"
+            role="presentation"
+            onMouseDown={() => setDocumentIndex(null)}
+          >
+            <section
+              className="documents-dialog"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="document-dialog-title"
+              onMouseDown={(event) => event.stopPropagation()}
+            >
+              <header className="documents-dialog-header">
+                <div>
+                  <p className="eyebrow">Документы</p>
+                  <h2 id="document-dialog-title">
+                    {documentItems[documentIndex].title}
+                  </h2>
+                  <p>{documentItems[documentIndex].description}</p>
+                </div>
+                <button
+                  className="documents-close"
+                  type="button"
+                  aria-label="Закрыть документы"
+                  onClick={() => setDocumentIndex(null)}
+                >
+                  ×
+                </button>
+              </header>
+
+              <div className="documents-toolbar">
+                <button
+                  type="button"
+                  aria-label="Предыдущий документ"
+                  onClick={() => moveDocument(-1)}
+                >
+                  <span aria-hidden="true">←</span>
+                  Предыдущий
+                </button>
+                <span className="documents-counter">
+                  {documentIndex + 1} / {documentItems.length}
+                </span>
+                <button
+                  type="button"
+                  aria-label="Следующий документ"
+                  onClick={() => moveDocument(1)}
+                >
+                  Следующий
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+
+              <div className="document-preview">
+                <iframe
+                  key={documentItems[documentIndex].src}
+                  src={
+                    documentItems[documentIndex].src +
+                    "#toolbar=1&navpanes=0&view=FitH"
+                  }
+                  title={
+                    "Просмотр документа: " + documentItems[documentIndex].title
+                  }
+                />
+              </div>
+
+              <footer className="documents-dialog-footer">
+                <span>PDF · демонстрационный документ</span>
+                <a
+                  href={documentItems[documentIndex].src}
+                  download={documentItems[documentIndex].fileName}
+                >
+                  Скачать PDF
+                  <span aria-hidden="true">↓</span>
+                </a>
+              </footer>
+            </section>
+          </div>
+        )}
 
         <section className="section contact-section" id="контакты">
           <div className="contact-panel reveal">
