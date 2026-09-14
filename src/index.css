@@ -172,10 +172,81 @@ footer img {
 }
 
 .header-cta {
-  justify-self: end;
   padding: 14px 14px 14px 28px;
   font-size: clamp(0.84rem, 0.76vw, 0.96rem);
   white-space: nowrap;
+}
+
+.header-contacts {
+  display: grid;
+  justify-self: end;
+  justify-items: end;
+  gap: 4px;
+}
+
+.header-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding-right: 8px;
+  color: #29483e;
+  font-size: clamp(0.7rem, 0.68vw, 0.82rem);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.header-phone > span {
+  color: #718064;
+  font-size: 0.76rem;
+}
+
+.header-contact-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.header-socials {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.header-socials a {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+  border: 1px solid #ddd3c3;
+  border-radius: 50%;
+  color: #496157;
+  background: rgba(255, 253, 248, 0.9);
+  transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.header-socials a:hover {
+  border-color: #718064;
+  color: #173e31;
+  transform: translateY(-1px);
+}
+
+.header-socials svg,
+.social-links svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.header-socials a[aria-label="Telegram"] svg,
+.header-socials a[aria-label="ВКонтакте"] svg,
+.social-links a:first-child svg,
+.social-links a:last-child svg {
+  fill: currentColor;
+  stroke: none;
 }
 
 .primary-button {
@@ -1567,6 +1638,9 @@ footer.documents-dialog-footer {
 
 .social-links a {
   padding: 8px 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   border: 1px solid #dcd4c8;
   border-radius: 999px;
   color: #3c5650;
@@ -1577,6 +1651,11 @@ footer.documents-dialog-footer {
 
 .contact-visual {
   position: relative;
+.social-links svg {
+  width: 14px;
+  height: 14px;
+}
+
   min-height: 365px;
   margin: 12px 10px 12px 0;
   overflow: hidden;
@@ -1997,6 +2076,14 @@ footer a {
     padding-left: 17px;
   }
 
+  .header-socials {
+    display: none;
+  }
+
+  .header-phone {
+    padding-right: 4px;
+  }
+
   .brand-mark {
     width: 64px;
     height: 64px;
@@ -2061,7 +2148,7 @@ footer a {
   }
 
   .desktop-nav,
-  .header-cta {
+  .header-contacts {
     display: none;
   }
 

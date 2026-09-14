@@ -184,9 +184,9 @@ const informationTiles = [
 
     title: "Частые вопросы",
 
-    description: "Ответы о проживании и условиях",
+    description: "Остались вопросы? Позвоните — мы спокойно всё объясним",
 
-    link: "Смотреть",
+    link: "Позвонить",
 
     href: "#контакты",
 
@@ -389,6 +389,31 @@ function ArrowIcon() {
   return (
     <svg viewBox="0 0 20 20" aria-hidden="true">
       <path d="M4 10h11M11 6l4 4-4 4" />
+    </svg>
+  )
+}
+
+function SocialIcon({ name }: { name: "telegram" | "max" | "vk" }) {
+  if (name === "telegram") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3.8 11.4 20.2 4.7l-3 14.6-5.1-4-2.8 2.8.5-4.7 7.1-6.2-8.8 5.2-4.3-1Z" />
+      </svg>
+    )
+  }
+
+  if (name === "vk") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4.3 7.3h3c.3 3.7 1.8 5.3 3 5.6V7.3h2.9v3.2c1.5-.2 3.1-1.7 3.6-3.2h2.9c-.4 1.9-2.1 3.5-3.3 4.2 1.2.6 3.2 2 4 4.5h-3.2c-.6-1.4-2-2.5-4-2.7V16h-.4c-5.8 0-8.1-4-8.5-8.7Z" />
+      </svg>
+    )
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 18.3V7.8c0-1.2 1-2.1 2.1-2.1h9.8c1.2 0 2.1.9 2.1 2.1v6.7c0 1.2-.9 2.1-2.1 2.1h-6.5L7 19.3v-2.7" />
+      <path d="m8.7 13.8 1.1-4.4 2.2 3 2.2-3 1.1 4.4" />
     </svg>
   )
 }
@@ -599,12 +624,31 @@ export default function App() {
             ))}
           </nav>
 
-          <a className="header-cta" href="/#контакты">
-            Заказать звонок
-            <span className="button-arrow">
-              <ArrowIcon />
-            </span>
-          </a>
+          <div className="header-contacts">
+            <a className="header-phone" href="tel:+74951234567">
+              <span aria-hidden="true">☎</span>
+              +7 (495) 123-45-67
+            </a>
+            <div className="header-contact-actions">
+              <div className="header-socials" aria-label="Социальные сети">
+                <a href="/#контакты" aria-label="Telegram">
+                  <SocialIcon name="telegram" />
+                </a>
+                <a href="/#контакты" aria-label="MAX">
+                  <SocialIcon name="max" />
+                </a>
+                <a href="/#контакты" aria-label="ВКонтакте">
+                  <SocialIcon name="vk" />
+                </a>
+              </div>
+              <a className="header-cta" href="tel:+74951234567">
+                Позвонить
+                <span className="button-arrow">
+                  <ArrowIcon />
+                </span>
+              </a>
+            </div>
+          </div>
 
           <button
             className="menu-toggle"
@@ -630,10 +674,10 @@ export default function App() {
               ))}
               <a
                 className="mobile-nav-cta"
-                href="/#контакты"
+                href="tel:+74951234567"
                 onClick={() => setMenuOpen(false)}
               >
-                Заказать звонок
+                Позвонить
               </a>
             </nav>
           )}
@@ -761,12 +805,31 @@ export default function App() {
           ))}
         </nav>
 
-        <a className="header-cta" href="#контакты">
-          Заказать звонок
-          <span className="button-arrow">
-            <ArrowIcon />
-          </span>
-        </a>
+        <div className="header-contacts">
+          <a className="header-phone" href="tel:+74951234567">
+            <span aria-hidden="true">☎</span>
+            +7 (495) 123-45-67
+          </a>
+          <div className="header-contact-actions">
+            <div className="header-socials" aria-label="Социальные сети">
+              <a href="#контакты" aria-label="Telegram">
+                <SocialIcon name="telegram" />
+              </a>
+              <a href="#контакты" aria-label="MAX">
+                <SocialIcon name="max" />
+              </a>
+              <a href="#контакты" aria-label="ВКонтакте">
+                <SocialIcon name="vk" />
+              </a>
+            </div>
+            <a className="header-cta" href="tel:+74951234567">
+              Позвонить
+              <span className="button-arrow">
+                <ArrowIcon />
+              </span>
+            </a>
+          </div>
+        </div>
 
         <button
           className="menu-toggle"
@@ -792,10 +855,10 @@ export default function App() {
             ))}
             <a
               className="mobile-nav-cta"
-              href="#контакты"
+              href="tel:+74951234567"
               onClick={() => setMenuOpen(false)}
             >
-              Заказать звонок
+              Позвонить
             </a>
           </nav>
         )}
@@ -816,8 +879,8 @@ export default function App() {
               <br />
               наполнен вниманием, теплом и уважением.
             </p>
-            <a className="primary-button" href="#контакты">
-              Заказать звонок
+            <a className="primary-button" href="tel:+74951234567">
+              Позвонить
               <span className="button-arrow">
                 <ArrowIcon />
               </span>
@@ -1211,9 +1274,15 @@ export default function App() {
                 </a>
               </div>
               <div className="social-links" aria-label="Социальные сети">
-                <a href="#контакты">Telegram</a>
-                <a href="#контакты">MAX</a>
-                <a href="#контакты">ВКонтакте</a>
+                <a href="#контакты">
+                  <SocialIcon name="telegram" /> Telegram
+                </a>
+                <a href="#контакты">
+                  <SocialIcon name="max" /> MAX
+                </a>
+                <a href="#контакты">
+                  <SocialIcon name="vk" /> ВКонтакте
+                </a>
               </div>
             </div>
 
@@ -1229,7 +1298,7 @@ export default function App() {
                 </span>
                 <span>
                   <strong>г. Москва, ул. Добра, д. 15</strong>
-                  <small>Закажите звонок — уточним удобное время</small>
+                  <small>Позвоните — уточним удобное время</small>
                 </span>
               </div>
             </div>
