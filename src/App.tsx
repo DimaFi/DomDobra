@@ -51,7 +51,7 @@ const navigation = [
 
   { label: "Цены", href: "#цены" },
 
-  { label: "Отзывы", href: "#отзывы" },
+  { label: "Отзывы", href: "/reviews" },
 
   { label: "Документы", href: "#документы" },
 
@@ -160,6 +160,8 @@ const informationTiles = [
 
     link: "Смотреть",
 
+    href: "#контакты",
+
     artwork: documentsTile,
   },
 
@@ -171,6 +173,8 @@ const informationTiles = [
     description: "Истории тех, кто доверил нам заботу",
 
     link: "Читать",
+
+    href: "/reviews",
 
     artwork: reviewsTile,
   },
@@ -184,7 +188,66 @@ const informationTiles = [
 
     link: "Смотреть",
 
+    href: "#контакты",
+
     artwork: questionsTile,
+  },
+]
+
+const familyReviews = [
+  {
+    name: "Елена",
+    relation: "дочь постояльца",
+    date: "Август 2026",
+    order: 6,
+    rating: 5,
+    text: "Спокойная атмосфера, внимательное отношение и регулярная связь с семьёй. Видно, что сотрудники знают привычки каждого человека.",
+    traits: ["Внимательность", "Связь с семьёй"],
+  },
+  {
+    name: "Александр",
+    relation: "сын постоялицы",
+    date: "Июль 2026",
+    order: 5,
+    rating: 5,
+    text: "Особенно ценим доброжелательность команды и аккуратный уход. В комнатах уютно, а обо всех важных изменениях сообщают вовремя.",
+    traits: ["Уход", "Домашний уют"],
+  },
+  {
+    name: "Марина",
+    relation: "внучка постояльца",
+    date: "Июнь 2026",
+    order: 4,
+    rating: 5,
+    text: "Дедушка быстро освоился и стал спокойнее. Нравится, что здесь есть понятный распорядок, общение и бережное внимание каждый день.",
+    traits: ["Адаптация", "Общение"],
+  },
+  {
+    name: "Ольга",
+    relation: "дочь постоялицы",
+    date: "Май 2026",
+    order: 3,
+    rating: 4,
+    text: "Для нашей семьи важнее всего были безопасность и человеческое отношение. Здесь к просьбам прислушиваются и спокойно отвечают на вопросы.",
+    traits: ["Безопасность", "Отзывчивость"],
+  },
+  {
+    name: "Сергей",
+    relation: "сын постояльца",
+    date: "Апрель 2026",
+    order: 2,
+    rating: 5,
+    text: "Порадовали чистота, питание и внимательный персонал. Можно быть на связи и понимать, как проходит день близкого человека.",
+    traits: ["Чистота", "Питание"],
+  },
+  {
+    name: "Наталья",
+    relation: "племянница постоялицы",
+    date: "Март 2026",
+    order: 1,
+    rating: 5,
+    text: "Тёплое, спокойное место без ощущения больницы. Сотрудники помогают деликатно, а в общении чувствуется искренняя забота.",
+    traits: ["Тёплая атмосфера", "Деликатность"],
   },
 ]
 
@@ -303,9 +366,22 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
 
+  const [reviewSort, setReviewSort] = useState("newest")
+
   const [galleryIndex, setGalleryIndex] = useState(0)
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+
+  const isReviewsPage =
+    window.location.pathname.replace(/\/+$/, "") === "/reviews"
+
+  const sortedReviews = [...familyReviews].sort((first, second) =>
+    reviewSort === "rating"
+      ? second.rating - first.rating || second.order - first.order
+      : reviewSort === "oldest"
+        ? first.order - second.order
+        : second.order - first.order,
+  )
 
   useReveal()
 
@@ -323,7 +399,11 @@ export default function App() {
     favicon.type = "image/png"
 
     favicon.href = logoMark
-  }, [])
+
+    document.title = isReviewsPage
+      ? "Отзывы семей — Позитив-Благоденствие"
+      : "Позитив-Благоденствие — дом для пожилых людей"
+  }, [isReviewsPage])
 
   const moveGallery = (direction: number) => {
     setGalleryIndex(
@@ -365,6 +445,173 @@ export default function App() {
       (current) =>
         ((current ?? 0) + direction + galleryItems.length) %
         galleryItems.length,
+    )
+  }
+
+  if (isReviewsPage) {
+    return (
+      <div className="site-shell reviews-page">
+        <header className="site-header">
+          <a
+            className="brand"
+            href="/#главная"
+            aria-label="Позитив-Благоденствие — на главную"
+          >
+            <img
+              className="brand-mark"
+              src={logoMark}
+              alt=""
+              aria-hidden="true"
+            />
+            <img
+              className="brand-name"
+              src={brandNameArtwork}
+              alt="Позитив-Благоденствие — дом для пожилых людей"
+            />
+          </a>
+
+          <nav className="desktop-nav" aria-label="Основная навигация">
+            {navigation.map((item) => (
+              <a
+                className={item.href === "/reviews" ? "is-current" : ""}
+                key={item.label}
+                href={item.href.startsWith("#") ? "/" + item.href : item.href}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          <a className="header-cta" href="/#контакты">
+            Заказать звонок
+            <span className="button-arrow">
+              <ArrowIcon />
+            </span>
+          </a>
+
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((current) => !current)}
+          >
+            <span />
+            <span />
+          </button>
+
+          {menuOpen && (
+            <nav className="mobile-nav" aria-label="Мобильная навигация">
+              {navigation.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href.startsWith("#") ? "/" + item.href : item.href}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <a
+                className="mobile-nav-cta"
+                href="/#контакты"
+                onClick={() => setMenuOpen(false)}
+              >
+                Заказать звонок
+              </a>
+            </nav>
+          )}
+        </header>
+
+        <main className="reviews-main">
+          <section className="reviews-hero reveal">
+            <p className="eyebrow">Отзывы семей</p>
+            <h1>Слова тех, кто доверил нам заботу</h1>
+            <p>
+              Общие впечатления семей о внимании, комфорте и спокойной жизни
+              близких в нашем доме.
+            </p>
+            <div
+              className="reviews-summary"
+              aria-label="Средняя оценка 4,9 из 5"
+            >
+              <strong>4,9</strong>
+              <span className="review-stars" aria-hidden="true">
+                ★★★★★
+              </span>
+              <small>средняя оценка семей</small>
+            </div>
+          </section>
+
+          <section
+            className="reviews-content"
+            aria-labelledby="reviews-list-title"
+          >
+            <div className="reviews-toolbar reveal">
+              <div>
+                <p className="eyebrow">Истории семей</p>
+                <h2 id="reviews-list-title">Все отзывы</h2>
+                <span>6 отзывов</span>
+              </div>
+              <label className="review-sort">
+                <span>Сортировка</span>
+                <select
+                  value={reviewSort}
+                  onChange={(event) => setReviewSort(event.target.value)}
+                >
+                  <option value="newest">Сначала новые</option>
+                  <option value="oldest">Сначала старые</option>
+                  <option value="rating">По оценке</option>
+                </select>
+              </label>
+            </div>
+
+            <div className="reviews-grid">
+              {sortedReviews.map((review, index) => (
+                <article
+                  className={
+                    "review-card reveal reveal-delay-" + ((index % 3) + 1)
+                  }
+                  key={review.name + "-" + review.date}
+                >
+                  <div className="review-card-top">
+                    <div className="review-avatar" aria-hidden="true">
+                      {review.name.slice(0, 1)}
+                    </div>
+                    <div>
+                      <h3>{review.name}</h3>
+                      <p>{review.relation}</p>
+                    </div>
+                    <time>{review.date}</time>
+                  </div>
+                  <div
+                    className="review-stars"
+                    aria-label={"Оценка: " + review.rating + " из 5"}
+                  >
+                    {"★".repeat(review.rating)}
+                    <span>{"★".repeat(5 - review.rating)}</span>
+                  </div>
+                  <blockquote>«{review.text}»</blockquote>
+                  <div className="review-traits">
+                    {review.traits.map((trait) => (
+                      <span key={trait}>{trait}</span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <a className="reviews-back" href="/#главная">
+            <span aria-hidden="true">←</span> Вернуться на главную
+          </a>
+        </main>
+
+        <footer>
+          <img src={logo} alt="Позитив-Благоденствие" />
+          <p>© 2026 Дом для пожилых людей «Позитив-Благоденствие»</p>
+          <a href="/#главная">Политика конфиденциальности</a>
+        </footer>
+      </div>
     )
   }
 
@@ -710,7 +957,7 @@ export default function App() {
                 <div className="information-copy">
                   <h2>{item.title}</h2>
                   <p>{item.description}</p>
-                  <a href="#контакты">
+                  <a href={item.href}>
                     {item.link} <ArrowIcon />
                   </a>
                 </div>
