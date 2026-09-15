@@ -1,59 +1,57 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
-import logo from "@/imports/ChatGPT_Image_29____._2026__.__00_48_11.png"
+import logo from "@/assets/brand-logo-full.png"
 
-import heroArtwork from "@/imports/elements/background.png"
+import heroArtwork from "@/assets/illustrations/hero-artwork.png"
 
-import branchPosition1 from "@/imports/elements/ветка_вылет_1.png"
+import branchPosition1 from "@/assets/illustrations/branch-sprig-01.png"
 
-import contactBranch from "@/imports/elements/ветка_снизу сайта.png"
+import contactBranch from "@/assets/illustrations/footer-branch.png"
 
-import staffHeaderArtwork from "@/imports/elements/верх у персонала.png"
+import staffHeaderArtwork from "@/assets/illustrations/staff-section-header.png"
 
-import staffBranchArtwork from "@/imports/elements/веточка в блоке у каждого персонала.png"
+import staffBranchArtwork from "@/assets/illustrations/staff-card-branch.png"
 
-import logoMark from "@/imports/elements/Логотип_only.png"
+import logoMark from "@/assets/illustrations/brand-logo-mark.png"
 
-import brandNameArtwork from "@/imports/elements/Название_only.png"
+import brandNameArtwork from "@/assets/illustrations/brand-name.png"
 
-import standardArtwork from "@/imports/elements/standart.png"
+import standardArtwork from "@/assets/illustrations/plan-standard.png"
 
-import comfortArtwork from "@/imports/elements/comfort.png"
+import comfortArtwork from "@/assets/illustrations/plan-comfort.png"
 
-import premiumArtwork from "@/imports/elements/premium.png"
+import premiumArtwork from "@/assets/illustrations/plan-premium.png"
 
-import phoneArtwork from "@/imports/elements/tel_em.png"
+import phoneArtwork from "@/assets/illustrations/settlement-phone.png"
 
-import documentsArtwork from "@/imports/elements/doc_em.png"
+import documentsArtwork from "@/assets/illustrations/settlement-documents.png"
 
-import homeArtwork from "@/imports/elements/home_em.png"
+import homeArtwork from "@/assets/illustrations/settlement-home.png"
 
-import documentsTile from "@/imports/elements/docs.png"
+import documentsTile from "@/assets/illustrations/info-documents.png"
 
-import reviewsTile from "@/imports/elements/emoji_heart_dialog.png"
+import reviewsTile from "@/assets/illustrations/info-reviews.png"
 
-import questionsTile from "@/imports/elements/emoji_question.png"
+import questionsTile from "@/assets/illustrations/info-questions.png"
 
-import staffPhoto from "@/imports/staff-demo-caregiver-male.png"
+import staffPhoto from "@/assets/staff-caregiver-male.png"
 
-import galleryPhoto1 from "@/imports/фотки/1.jpg"
+import galleryPhoto1 from "@/assets/gallery/gallery-room.jpg"
 
-import galleryPhoto2 from "@/imports/фотки/2.jpg"
+import galleryPhoto2 from "@/assets/gallery/gallery-dining-room.jpg"
 
-import galleryPhoto3 from "@/imports/фотки/3.jpg"
+import galleryPhoto3 from "@/assets/gallery/gallery-garden.jpg"
 
-import galleryPhoto4 from "@/imports/фотки/4.jpg"
+import galleryPhoto4 from "@/assets/gallery/gallery-library.jpg"
 
 const navigation = [
   { label: "Главная", href: "#главная" },
 
   { label: "О нас", href: "#о-нас" },
 
-  { label: "Цены", href: "#цены" },
+  { label: "Цены", href: "/prices" },
 
   { label: "Отзывы", href: "/reviews" },
-
-  { label: "Документы", href: "#документы" },
 
   { label: "Контакты", href: "#контакты" },
 ]
@@ -98,9 +96,9 @@ const settlementSteps = [
   {
     number: "02",
 
-    title: "Оформление и знакомство",
+    title: "Знакомство",
 
-    description: "Познакомимся, проведём экскурсию и поможем с документами.",
+    description: "Проведём экскурсию и поможем с документами.",
 
     artwork: documentsArtwork,
   },
@@ -150,6 +148,12 @@ const prices = [
   },
 ]
 
+const priceList = prices.map((item) => ({
+  ...item,
+  period: "в месяц",
+  note: "Точную стоимость и подходящие условия уточните во время консультации.",
+}))
+
 const informationTiles = [
   {
     id: "документы",
@@ -198,26 +202,26 @@ const documentItems = [
   {
     title: "Лицензия",
     description: "Документ, подтверждающий право на осуществление деятельности",
-    fileName: "license-placeholder.pdf",
-    src: "/documents/license-placeholder.pdf",
+    fileName: "license.pdf",
+    src: "/documents/license.pdf",
   },
   {
     title: "Договор аренды",
     description: "Документы на помещение пансионата",
-    fileName: "lease-agreement-placeholder.pdf",
-    src: "/documents/lease-agreement-placeholder.pdf",
+    fileName: "lease-agreement.pdf",
+    src: "/documents/lease-agreement.pdf",
   },
   {
     title: "Прейскурант",
     description: "Стоимость проживания и дополнительных услуг",
-    fileName: "price-list-placeholder.pdf",
-    src: "/documents/price-list-placeholder.pdf",
+    fileName: "price-list.pdf",
+    src: "/documents/price-list.pdf",
   },
   {
     title: "Правила проживания",
     description: "Общие условия и распорядок дома",
-    fileName: "house-rules-placeholder.pdf",
-    src: "/documents/house-rules-placeholder.pdf",
+    fileName: "house-rules.pdf",
+    src: "/documents/house-rules.pdf",
   },
 ]
 
@@ -394,28 +398,7 @@ function ArrowIcon() {
 }
 
 function SocialIcon({ name }: { name: "telegram" | "max" | "vk" }) {
-  if (name === "telegram") {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M3.8 11.4 20.2 4.7l-3 14.6-5.1-4-2.8 2.8.5-4.7 7.1-6.2-8.8 5.2-4.3-1Z" />
-      </svg>
-    )
-  }
-
-  if (name === "vk") {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4.3 7.3h3c.3 3.7 1.8 5.3 3 5.6V7.3h2.9v3.2c1.5-.2 3.1-1.7 3.6-3.2h2.9c-.4 1.9-2.1 3.5-3.3 4.2 1.2.6 3.2 2 4 4.5h-3.2c-.6-1.4-2-2.5-4-2.7V16h-.4c-5.8 0-8.1-4-8.5-8.7Z" />
-      </svg>
-    )
-  }
-
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M5 18.3V7.8c0-1.2 1-2.1 2.1-2.1h9.8c1.2 0 2.1.9 2.1 2.1v6.7c0 1.2-.9 2.1-2.1 2.1h-6.5L7 19.3v-2.7" />
-      <path d="m8.7 13.8 1.1-4.4 2.2 3 2.2-3 1.1 4.4" />
-    </svg>
-  )
+  return <img className="social-logo" src={`/social/${name}.png`} alt="" />
 }
 
 function AdvantageIcon({ name }: { name: string }) {
@@ -458,6 +441,185 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
   )
 }
 
+function SiteHeader({ page }: { page: "home" | "reviews" | "prices" }) {
+  const isInnerPage = page !== "home"
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  return (
+    <header className="site-header">
+      <div className="header-left">
+        <a
+          className="brand"
+          href={isInnerPage ? "/#главная" : "#главная"}
+          aria-label="Позитив-Благоденствие — на главную"
+        >
+          <img className="brand-mark" src={logoMark} alt="" aria-hidden="true" />
+          <img className="brand-name" src={brandNameArtwork} alt="Позитив-Благоденствие — дом для пожилых людей" />
+          <img className="brand-mobile-logo" src={logo} alt="" aria-hidden="true" />
+        </a>
+      </div>
+
+      <nav className="desktop-nav" aria-label="Основная навигация">
+        {navigation.map((item) => (
+          <a
+            className={item.href === `/${page}` ? "is-current" : ""}
+            key={item.label}
+            href={isInnerPage && item.href.startsWith("#") ? "/" + item.href : item.href}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <div className="header-contacts">
+        <a className="header-phone" href="tel:+74951234567">
+          <span aria-hidden="true">☎</span>
+          +7 (495) 123-45-67
+        </a>
+        <div className="header-socials" aria-label="Социальные сети">
+          <a href="/#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
+          <a href="/#контакты" aria-label="MAX"><SocialIcon name="max" /></a>
+          <a href="/#контакты" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
+        </div>
+        <a className="header-cta" href="tel:+74951234567">
+          Позвонить <span className="button-arrow"><ArrowIcon /></span>
+        </a>
+      </div>
+
+      <button
+        className="menu-toggle"
+        type="button"
+        aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((current) => !current)}
+      >
+        <span /><span />
+      </button>
+
+      {menuOpen && (
+        <nav className="mobile-nav" aria-label="Мобильная навигация">
+          {navigation.map((item) => (
+            <a
+              key={item.label}
+              href={isInnerPage && item.href.startsWith("#") ? "/" + item.href : item.href}
+              onClick={() => setMenuOpen(false)}
+            >
+              {item.label}
+            </a>
+          ))}
+          <a className="mobile-nav-phone" href="tel:+74951234567">
+            <span aria-hidden="true">☎</span> +7 (495) 123-45-67
+          </a>
+          <div className="mobile-nav-socials" aria-label="Социальные сети">
+            <a href="/#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
+            <a href="/#контакты" aria-label="MAX"><SocialIcon name="max" /></a>
+            <a href="/#контакты" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
+          </div>
+          <a className="mobile-nav-cta" href="tel:+74951234567" onClick={() => setMenuOpen(false)}>Позвонить</a>
+        </nav>
+      )}
+    </header>
+  )
+}
+
+function PrivacyPage() {
+  return (
+    <div className="site-shell privacy-page">
+      <SiteHeader page="prices" />
+      <main className="privacy-main">
+        <section className="privacy-hero reveal">
+          <p className="eyebrow">Правовая информация</p>
+          <h1>Политика в отношении обработки персональных данных</h1>
+          <p>
+            Редакция от <strong>[дата публикации]</strong>. Документ описывает,
+            как сайт «Позитив-Благоденствие» обрабатывает информацию посетителей.
+          </p>
+        </section>
+
+        <aside className="privacy-notice reveal" aria-label="Требуется заполнение реквизитов">
+          <strong>Перед публикацией заполните реквизиты.</strong>
+          <span>Дата редакции, домен, ИНН, ОГРН, адреса и контакт для обращений пока отмечены в тексте квадратными скобками.</span>
+        </aside>
+
+        <article className="privacy-document">
+          <section className="privacy-section reveal">
+            <h2>1. Общие положения и сведения об операторе</h2>
+            <p>Настоящая Политика определяет порядок обработки и защиты информации при использовании сайта <mark>[домен сайта]</mark> (далее — Сайт). Владельцем Сайта и оператором персональных данных является Общество с ограниченной ответственностью «Позитив-Благоденствие» (далее — Оператор).</p>
+            <p>Политика разработана с учётом Конституции Российской Федерации, Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных» и иных применимых нормативных правовых актов Российской Федерации.</p>
+            <dl className="privacy-details">
+              <div><dt>Полное наименование</dt><dd>Общество с ограниченной ответственностью «Позитив-Благоденствие»</dd></div>
+              <div><dt>Сокращённое наименование</dt><dd>ООО «Позитив-Благоденствие»</dd></div>
+              <div><dt>ИНН / ОГРН / КПП</dt><dd><mark>[внести реквизиты]</mark></dd></div>
+              <div><dt>Юридический и фактический адреса</dt><dd><mark>[внести адреса]</mark></dd></div>
+              <div><dt>Контакт для обращений</dt><dd><mark>[e-mail и телефон]</mark></dd></div>
+            </dl>
+          </section>
+
+          <section className="privacy-section reveal">
+            <h2>2. Назначение сайта и отсутствие форм сбора данных</h2>
+            <p>Сайт носит информационный характер: он знакомит посетителей с деятельностью ООО «Позитив-Благоденствие», условиями проживания, услугами, сотрудниками, фотографиями, отзывами, документами и контактами.</p>
+            <p>На Сайте отсутствуют регистрация, личные кабинеты, онлайн-заказы, онлайн-оплата, формы обратной связи, заявки, подписки и поля для ввода имени, телефона, e-mail, документов, сведений о здоровье или иных персональных данных. Посетитель обращается в организацию самостоятельно по указанным телефонам либо через выбранный им сторонний мессенджер.</p>
+          </section>
+
+          <section className="privacy-section reveal">
+            <h2>3. Техническая информация при посещении сайта</h2>
+            <p>Интернет-сервер, хостинг-провайдер и техническая инфраструктура могут автоматически получать сведения, необходимые для установления соединения, безопасности и корректной работы Сайта.</p>
+            <ul><li>IP-адрес, дата и время обращения, адрес запрашиваемой страницы;</li><li>тип и версия браузера, устройство и операционная система;</li><li>сведения о технических ошибках и иную информацию, автоматически передаваемую браузером.</li></ul>
+            <p>Такая информация используется только для работоспособности, безопасности, выявления ошибок и предотвращения злоупотреблений. Она не используется для принятия решений, порождающих юридические последствия для посетителя.</p>
+          </section>
+
+          <section className="privacy-section reveal">
+            <h2>4. Правовые основания и цели обработки</h2>
+            <p>Обработка осуществляется при наличии оснований, предусмотренных законодательством Российской Федерации: в том числе для исполнения обязанностей Оператора, защиты законных интересов, обеспечения безопасности и работоспособности Сайта, а также на основании согласия — когда оно требуется законом.</p>
+          </section>
+
+          <section className="privacy-section reveal">
+            <h2>5. Сведения о сотрудниках и отзывы</h2>
+            <p>На Сайте могут размещаться сведения о сотрудниках: имя, должность, профессиональная информация и фотография. Такие сведения публикуются только при наличии законного основания. Если данные разрешены для распространения неопределённому кругу лиц, Оператор соблюдает требования статьи 10.1 Федерального закона № 152-ФЗ.</p>
+            <p>Отзывы размещаются в обезличенном виде. Оператор стремится не публиковать в них фамилии, контакты, фотографии, диагнозы, сведения о здоровье и другие данные, позволяющие определить человека. Публикация отзыва с идентифицирующими данными возможна только при наличии соответствующего основания.</p>
+          </section>
+
+          <section className="privacy-section reveal">
+            <h2>6. Cookie и сторонние ресурсы</h2>
+            <p>Сайт может использовать технические cookie, необходимые для корректного отображения, сохранения технических настроек и безопасности. На дату этой редакции на Сайте не подключены рекламные cookie, рекламные пиксели и системы поведенческого профилирования.</p>
+            <p>На Сайте размещены ссылки на Telegram, MAX и ВКонтакте, а также встроенная интерактивная карта OpenStreetMap. При переходе по ссылке или отображении встроенного элемента соответствующий сторонний сервис может обрабатывать техническую информацию в соответствии со своими правилами. Оператор не определяет порядок обработки данных такими сервисами.</p>
+            <p>Посетитель может ограничить cookie в настройках браузера; это может повлиять на работу отдельных функций сайта. При подключении аналитики, рекламных технологий или других сервисов этот раздел будет обновлён до начала их использования.</p>
+          </section>
+
+          <section className="privacy-section reveal">
+            <h2>7. Специальные категории и биометрические данные</h2>
+            <p>Сайт не предназначен для сбора сведений о здоровье, диагнозах, инвалидности, лечении или другой медицинской информации. Обсуждение индивидуальной ситуации и условий ухода происходит при самостоятельном обращении посетителя по телефону или через выбранный канал связи.</p>
+            <p>Сайт не выполняет автоматическую идентификацию посетителей по лицу, голосу или иным биометрическим характеристикам. Обычные фотографии на Сайте не используются для биометрической идентификации.</p>
+          </section>
+
+          <section className="privacy-section reveal">
+            <h2>8. Передача, хранение и защита информации</h2>
+            <p>Оператор не продаёт персональные данные и не предоставляет их третьим лицам в рекламных целях. Техническая информация может обрабатываться хостинг-провайдером и другими организациями, обеспечивающими работу инфраструктуры, только в объёме, необходимом для оказания технических услуг. Передача государственным органам возможна в случаях, установленных законом.</p>
+            <p>Техническая информация хранится в течение срока, необходимого для работы и безопасности Сайта, либо срока, установленного законодательством. Оператор принимает правовые, организационные и технические меры защиты от неправомерного доступа, изменения, копирования, распространения, блокирования и уничтожения информации.</p>
+          </section>
+
+          <section className="privacy-section reveal">
+            <h2>9. Права субъектов персональных данных</h2>
+            <p>В случаях, предусмотренных законодательством, субъект персональных данных вправе получать сведения об обработке данных, требовать уточнения, блокирования, уничтожения или прекращения обработки, отзывать согласие и защищать свои права и законные интересы иными способами.</p>
+            <p>Для обращения по вопросам обработки персональных данных используйте: <mark>[e-mail для обращений]</mark>, <mark>[почтовый адрес]</mark>, <mark>[телефон]</mark>.</p>
+          </section>
+
+          <section className="privacy-section reveal">
+            <h2>10. Изменение политики</h2>
+            <p>Оператор вправе изменять Политику при изменении законодательства, функциональности Сайта, технических решений или порядка обработки информации. Новая редакция вступает в силу с момента публикации на Сайте, если в ней не указан иной срок.</p>
+            <p>Актуальная редакция доступна по адресу <strong>/privacy</strong>. Продолжение использования Сайта означает ознакомление пользователя с настоящей Политикой. Политика не заменяет договоры, правила проживания и иные документы ООО «Позитив-Благоденствие».</p>
+          </section>
+        </article>
+      </main>
+      <footer>
+        <img src={logo} alt="Позитив-Благоденствие" />
+        <p>© 2026 Дом для пожилых людей «Позитив-Благоденствие»</p>
+        <a href="/privacy">Политика конфиденциальности</a>
+      </footer>
+    </div>
+  )
+}
+
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -465,12 +627,18 @@ export default function App() {
 
   const [galleryIndex, setGalleryIndex] = useState(0)
 
+  const galleryPointer = useRef<{ x: number; y: number; moved: boolean } | null>(null)
+
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
   const [documentIndex, setDocumentIndex] = useState<number | null>(null)
 
   const isReviewsPage =
     window.location.pathname.replace(/\/+$/, "") === "/reviews"
+  const isPricesPage =
+    window.location.pathname.replace(/\/+$/, "") === "/prices"
+  const isPrivacyPage =
+    window.location.pathname.replace(/\/+$/, "") === "/privacy"
 
   const sortedReviews = [...familyReviews].sort((first, second) =>
     reviewSort === "rating"
@@ -483,24 +651,14 @@ export default function App() {
   useReveal()
 
   useEffect(() => {
-    let favicon = document.querySelector<HTMLLinkElement>('link[rel="icon"]')
-
-    if (!favicon) {
-      favicon = document.createElement("link")
-
-      favicon.rel = "icon"
-
-      document.head.appendChild(favicon)
-    }
-
-    favicon.type = "image/png"
-
-    favicon.href = logoMark
-
-    document.title = isReviewsPage
-      ? "Отзывы семей — Позитив-Благоденствие"
-      : "Позитив-Благоденствие — дом для пожилых людей"
-  }, [isReviewsPage])
+    document.title = isPrivacyPage
+      ? "Политика конфиденциальности — Позитив-Благоденствие"
+      : isReviewsPage
+        ? "Отзывы семей — Позитив-Благоденствие"
+        : isPricesPage
+        ? "Цены — Позитив-Благоденствие"
+        : "Позитив-Благоденствие — дом для пожилых людей"
+  }, [isPricesPage, isPrivacyPage, isReviewsPage])
 
   const moveGallery = (direction: number) => {
     setGalleryIndex(
@@ -590,6 +748,8 @@ export default function App() {
     setDocumentIndex(0)
   }
 
+  if (isPrivacyPage) return <PrivacyPage />
+
   if (isReviewsPage) {
     return (
       <div className="site-shell reviews-page">
@@ -610,6 +770,7 @@ export default function App() {
               src={brandNameArtwork}
               alt="Позитив-Благоденствие — дом для пожилых людей"
             />
+            <img className="brand-mobile-logo" src={logo} alt="" aria-hidden="true" />
           </a>
 
           <nav className="desktop-nav" aria-label="Основная навигация">
@@ -672,6 +833,14 @@ export default function App() {
                   {item.label}
                 </a>
               ))}
+              <a className="mobile-nav-phone" href="tel:+74951234567">
+                <span aria-hidden="true">☎</span> +7 (495) 123-45-67
+              </a>
+              <div className="mobile-nav-socials" aria-label="Социальные сети">
+                <a href="/#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
+                <a href="/#контакты" aria-label="MAX"><SocialIcon name="max" /></a>
+                <a href="/#контакты" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
+              </div>
               <a
                 className="mobile-nav-cta"
                 href="tel:+74951234567"
@@ -770,7 +939,100 @@ export default function App() {
         <footer>
           <img src={logo} alt="Позитив-Благоденствие" />
           <p>© 2026 Дом для пожилых людей «Позитив-Благоденствие»</p>
-          <a href="/#главная">Политика конфиденциальности</a>
+          <a href="/privacy">Политика конфиденциальности</a>
+        </footer>
+      </div>
+    )
+  }
+
+  const handleGalleryPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return
+
+    galleryPointer.current = { x: event.clientX, y: event.clientY, moved: false }
+    event.currentTarget.setPointerCapture(event.pointerId)
+  }
+
+  const handleGalleryPointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    const start = galleryPointer.current
+    if (!start) return
+
+    const horizontalDistance = event.clientX - start.x
+    const verticalDistance = event.clientY - start.y
+
+    if (
+      Math.abs(horizontalDistance) > 42 &&
+      Math.abs(horizontalDistance) > Math.abs(verticalDistance)
+    ) {
+      galleryPointer.current = { ...start, moved: true }
+      moveGallery(horizontalDistance < 0 ? 1 : -1)
+      window.setTimeout(() => {
+        galleryPointer.current = null
+      }, 0)
+      return
+    }
+
+    galleryPointer.current = null
+  }
+
+  if (isPricesPage) {
+    return (
+      <div className="site-shell prices-page">
+        <SiteHeader page="prices" />
+        <main className="prices-main">
+          <section className="prices-hero reveal">
+            <p className="eyebrow">Стоимость проживания</p>
+            <h1>Полный прейскурант</h1>
+            <p>
+              Выберите подходящий формат проживания. Мы подробно расскажем об
+              условиях и поможем подобрать спокойное, комфортное решение.
+            </p>
+          </section>
+
+          <section className="price-list-section" aria-labelledby="price-list-title">
+            <div className="prices-intro reveal">
+              <div>
+                <p className="eyebrow">Тарифы</p>
+                <h2 id="price-list-title">Проживание и уход</h2>
+              </div>
+              <p>Стоимость указана за один месяц проживания.</p>
+            </div>
+            <div className="price-list">
+              {priceList.map((item, index) => (
+                <article className={`price-list-card reveal reveal-delay-${index + 1}`} key={item.name}>
+                  <img src={item.artwork} alt="" aria-hidden="true" />
+                  <div className="price-list-copy">
+                    <span className="price-list-number">0{index + 1}</span>
+                    <h3>{item.name}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                  <div className="price-list-rate">
+                    <strong>{item.price}</strong>
+                    <span>{item.period}</span>
+                  </div>
+                  <p className="price-list-note">{item.note}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="prices-help reveal">
+            <div>
+              <p className="eyebrow">Нужна консультация?</p>
+              <h2>Поможем выбрать подходящие условия</h2>
+            </div>
+            <a className="primary-button" href="tel:+74951234567">
+              Позвонить <span className="button-arrow"><ArrowIcon /></span>
+            </a>
+          </section>
+
+          <a className="reviews-back" href="/#цены">
+            <span aria-hidden="true">←</span> Вернуться на главную
+          </a>
+        </main>
+        <footer>
+          <img src={logo} alt="Позитив-Благоденствие" />
+          <p>© 2026 Дом для пожилых людей «Позитив-Благоденствие»</p>
+          <a href="/privacy">Политика конфиденциальности</a>
         </footer>
       </div>
     )
@@ -795,6 +1057,7 @@ export default function App() {
             src={brandNameArtwork}
             alt="Позитив-Благоденствие — дом для пожилых людей"
           />
+          <img className="brand-mobile-logo" src={logo} alt="" aria-hidden="true" />
         </a>
 
         <nav className="desktop-nav" aria-label="Основная навигация">
@@ -853,6 +1116,14 @@ export default function App() {
                 {item.label}
               </a>
             ))}
+            <a className="mobile-nav-phone" href="tel:+74951234567">
+              <span aria-hidden="true">☎</span> +7 (495) 123-45-67
+            </a>
+            <div className="mobile-nav-socials" aria-label="Социальные сети">
+              <a href="#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
+              <a href="#контакты" aria-label="MAX"><SocialIcon name="max" /></a>
+              <a href="#контакты" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
+            </div>
             <a
               className="mobile-nav-cta"
               href="tel:+74951234567"
@@ -976,7 +1247,7 @@ export default function App() {
                     {item.price}
                     <small> /мес</small>
                   </strong>
-                  <a href="#контакты">
+                  <a href="/prices">
                     Подробнее <ArrowIcon />
                   </a>
                 </div>
@@ -984,7 +1255,7 @@ export default function App() {
               </article>
             ))}
           </div>
-          <a className="text-link reveal" href="#контакты">
+          <a className="text-link reveal" href="/prices">
             Смотреть полный прейскурант <ArrowIcon />
           </a>
         </section>
@@ -1056,7 +1327,13 @@ export default function App() {
               </button>
             </div>
 
-            <div className="gallery-stage" aria-live="polite">
+            <div
+              className="gallery-stage"
+              aria-live="polite"
+              onPointerDown={handleGalleryPointerDown}
+              onPointerUp={handleGalleryPointerUp}
+              onPointerCancel={() => { galleryPointer.current = null }}
+            >
               {galleryItems.map((item, index) => (
                 <button
                   type="button"
@@ -1064,7 +1341,9 @@ export default function App() {
                   aria-label={`Открыть фотографию: ${item.title}`}
                   aria-hidden={index !== galleryIndex}
                   disabled={index !== galleryIndex}
-                  onClick={() => setLightboxIndex(index)}
+                  onClick={() => {
+                    if (!galleryPointer.current?.moved) setLightboxIndex(index)
+                  }}
                   key={item.src}
                 >
                   <img src={item.src} alt={item.title} />
@@ -1274,13 +1553,13 @@ export default function App() {
                 </a>
               </div>
               <div className="social-links" aria-label="Социальные сети">
-                <a href="#контакты">
+                <a href="#контакты" aria-label="Telegram">
                   <SocialIcon name="telegram" /> Telegram
                 </a>
-                <a href="#контакты">
+                <a href="#контакты" aria-label="MAX">
                   <SocialIcon name="max" /> MAX
                 </a>
-                <a href="#контакты">
+                <a href="#контакты" aria-label="ВКонтакте">
                   <SocialIcon name="vk" /> ВКонтакте
                 </a>
               </div>
@@ -1309,7 +1588,7 @@ export default function App() {
       <footer>
         <img src={logo} alt="Позитив-Благоденствие" />
         <p>© 2026 Дом для пожилых людей «Позитив-Благоденствие»</p>
-        <a href="#главная">Политика конфиденциальности</a>
+        <a href="/privacy">Политика конфиденциальности</a>
       </footer>
     </div>
   )
