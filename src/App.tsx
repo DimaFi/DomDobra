@@ -444,9 +444,26 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 function SiteHeader({ page }: { page: "home" | "reviews" | "prices" }) {
   const isInnerPage = page !== "home"
   const [menuOpen, setMenuOpen] = useState(false)
+  const headerRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    if (!menuOpen) return
+
+    const closeWhenOutside = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) setMenuOpen(false)
+    }
+    const closeWhenScrolling = () => setMenuOpen(false)
+
+    document.addEventListener("pointerdown", closeWhenOutside, true)
+    window.addEventListener("scroll", closeWhenScrolling, { passive: true })
+    return () => {
+      document.removeEventListener("pointerdown", closeWhenOutside, true)
+      window.removeEventListener("scroll", closeWhenScrolling)
+    }
+  }, [menuOpen])
 
   return (
-    <header className="site-header">
+    <header className="site-header" ref={headerRef}>
       <div className="header-left">
         <a
           className="brand"
@@ -622,6 +639,7 @@ function PrivacyPage() {
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const headerRef = useRef<HTMLElement>(null)
 
   const [reviewSort, setReviewSort] = useState("newest")
 
@@ -632,6 +650,22 @@ export default function App() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
   const [documentIndex, setDocumentIndex] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (!menuOpen) return
+
+    const closeWhenOutside = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) setMenuOpen(false)
+    }
+    const closeWhenScrolling = () => setMenuOpen(false)
+
+    document.addEventListener("pointerdown", closeWhenOutside, true)
+    window.addEventListener("scroll", closeWhenScrolling, { passive: true })
+    return () => {
+      document.removeEventListener("pointerdown", closeWhenOutside, true)
+      window.removeEventListener("scroll", closeWhenScrolling)
+    }
+  }, [menuOpen])
 
   const isReviewsPage =
     window.location.pathname.replace(/\/+$/, "") === "/reviews"
@@ -753,7 +787,7 @@ export default function App() {
   if (isReviewsPage) {
     return (
       <div className="site-shell reviews-page">
-        <header className="site-header">
+        <header className="site-header" ref={headerRef}>
           <a
             className="brand"
             href="/#главная"
@@ -1040,7 +1074,7 @@ export default function App() {
 
   return (
     <div className="site-shell">
-      <header className="site-header">
+      <header className="site-header" ref={headerRef}>
         <a
           className="brand"
           href="#главная"

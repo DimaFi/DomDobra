@@ -2717,7 +2717,7 @@ footer a {
   }
 
   .hero-description br {
-    display: none;
+    display: block;
   }
 
   .primary-button {
@@ -3246,8 +3246,9 @@ footer a {
 
   .mobile-nav-socials {
     display: flex;
+    justify-content: center;
     gap: 9px;
-    padding: 2px 8px 8px;
+    padding: 6px 8px 10px;
   }
 
   .mobile-nav-socials a {
@@ -3307,8 +3308,8 @@ footer a {
 
 @media (max-width: 640px) {
   .brand {
-    width: 205px;
-    height: 64px;
+    width: 220px;
+    height: 69px;
   }
 
   .hero {
@@ -3347,7 +3348,7 @@ footer a {
     position: relative;
     inset: auto;
     height: min(96vw, 380px);
-    margin-top: -460px;
+    margin-top: -80px;
     overflow: hidden;
   }
 
