@@ -1112,6 +1112,21 @@ footer img {
   .menu-toggle{margin-left:0}
 }
 
+@media (max-width:980px){
+  .brand{gap:6px;background:none}
+  .brand-mark{display:block;width:62px;height:62px}
+  .brand-name{display:block;width:178px;height:58px}
+  .brand-mobile-logo{display:none}
+}
+@media (max-width:640px){
+  .brand-mark{width:53px;height:53px}
+  .brand-name{width:150px;height:50px}
+}
+@media (min-width:390px) and (max-width:559px){
+  .brand-mark{width:42px;height:42px}
+  .brand-name{width:112px;height:42px}
+}
+
 .gallery-controls button {
   display: grid;
   width: 86px;
