@@ -1286,34 +1286,19 @@ export default function App() {
 
         <section className="section prices-section" id="цены">
           <SectionHeading>Стоимость проживания</SectionHeading>
-          <div className="price-grid">
-            {prices.map((item, index) => (
-              <article
-                className={`price-card reveal reveal-delay-${index + 1} ${
-                  item.featured ? "featured" : ""
-                }`}
-                key={item.name}
-              >
-                {item.featured && (
-                  <span className="popular-label">Популярно</span>
-                )}
-                <div className="price-copy">
-                  <h3>{item.name}</h3>
-                  <p>{item.description}</p>
-                  <strong>
-                    {item.price}
-                    <small> /мес</small>
-                  </strong>
-                  <a href="/prices">
-                    Подробнее <ArrowIcon />
-                  </a>
-                </div>
-                <img src={item.artwork} alt={`Тариф ${item.name}`} />
-              </article>
-            ))}
-          </div>
+          <article className="pricing-overview reveal">
+            <div className="pricing-overview-copy">
+              <p className="eyebrow">Проживание и забота</p>
+              <h3>Всё необходимое для спокойной жизни</h3>
+              <p>Уютная комната, ежедневный уход, питание и внимание персонала включены в стоимость.</p>
+              <strong className="pricing-range">от 1 490 до 2 490 <small>₽/мес</small></strong>
+              <span className="pricing-note">Уточняйте актуальные цены по телефону</span>
+              <a className="text-link" href="/prices">Смотреть полный прейскурант <ArrowIcon /></a>
+            </div>
+            <img src={comfortArtwork} alt="Уютная комната и забота" />
+          </article>
           <a className="text-link reveal" href="/prices">
-            Смотреть полный прейскурант <ArrowIcon />
+            Подробнее о размещении <ArrowIcon />
           </a>
         </section>
 
