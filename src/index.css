@@ -86,7 +86,7 @@ button {
   right: clamp(12px, 1.25vw, 26px);
   left: clamp(12px, 1.25vw, 26px);
   display: grid;
-  grid-template-columns: minmax(290px, 1fr) auto minmax(290px, 1fr);
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   min-height: clamp(88px, 5.4vw, 112px);
   max-width: 1880px;
@@ -154,6 +154,7 @@ footer img {
 .desktop-nav {
   display: flex;
   align-items: center;
+  justify-self: end;
   gap: clamp(24px, 2.15vw, 44px);
 }
 
