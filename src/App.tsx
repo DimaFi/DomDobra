@@ -882,9 +882,9 @@ export default function App() {
               </a>
               <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
               <div className="mobile-nav-socials" aria-label="Социальные сети">
-                <a href="/#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
-                <a href="/#контакты" aria-label="MAX"><SocialIcon name="max" /></a>
-                <a href="/#контакты" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
+                <a href="https://t.me/" target="_blank" rel="noreferrer" aria-label="Telegram"><SocialIcon name="telegram" /></a>
+                <a href="https://max.ru/" target="_blank" rel="noreferrer" aria-label="MAX"><SocialIcon name="max" /></a>
+                <a href="https://vk.com/" target="_blank" rel="noreferrer" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
               </div>
               <a
                 className="mobile-nav-cta"
@@ -1255,9 +1255,9 @@ export default function App() {
               <span>Ежедневно: с 9:00 до 20:00</span>
               <a className="about-contact-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">Адрес: г. Москва, ул. Добра, д. 15</a>
               <div className="about-contact-socials" aria-label="Социальные сети">
-                <a href="/#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
-                <a href="/#контакты" aria-label="MAX"><SocialIcon name="max" /></a>
-                <a href="/#контакты" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
+                <a href="https://t.me/" target="_blank" rel="noreferrer" aria-label="Telegram"><SocialIcon name="telegram" /></a>
+                <a href="https://max.ru/" target="_blank" rel="noreferrer" aria-label="MAX"><SocialIcon name="max" /></a>
+                <a href="https://vk.com/" target="_blank" rel="noreferrer" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
               </div>
             </div>
           </div>
