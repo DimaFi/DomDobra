@@ -441,6 +441,24 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
   )
 }
 
+function MobileActionBar() {
+  const [mapPromptOpen, setMapPromptOpen] = useState(false)
+  const mapUrl = "https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015"
+  return <>
+    <nav className="mobile-action-bar" aria-label="Быстрые действия">
+      <a href="tel:+74951234567">Позвонить</a>
+      <a href="/#контакты">Контакты</a>
+      <button type="button" onClick={() => setMapPromptOpen(true)}>На карте</button>
+    </nav>
+    {mapPromptOpen && <div className="map-prompt" role="presentation" onMouseDown={() => setMapPromptOpen(false)}>
+      <section role="dialog" aria-modal="true" aria-label="Открыть карту" onMouseDown={(event) => event.stopPropagation()}>
+        <p className="eyebrow">Маршрут</p><h2>Открыть карту?</h2><p>Откроем адрес дома в приложении или браузере.</p>
+        <div><button type="button" onClick={() => setMapPromptOpen(false)}>Отмена</button><a href={mapUrl} target="_blank" rel="noreferrer">Открыть карту</a></div>
+      </section>
+    </div>}
+  </>
+}
+
 function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" }) {
   const isInnerPage = page !== "home"
   const [menuOpen, setMenuOpen] = useState(false)
@@ -536,7 +554,7 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" 
           <a className="mobile-nav-cta" href="tel:+74951234567" onClick={() => setMenuOpen(false)}>Позвонить</a>
         </nav>
       )}
-      <a className="floating-call" href="tel:+74951234567" aria-label="Позвонить">☎</a>
+      <MobileActionBar />
     </header>
   )
 }
@@ -896,7 +914,7 @@ export default function App() {
               </a>
             </nav>
           )}
-          <a className="floating-call" href="tel:+74951234567" aria-label="Позвонить">☎</a>
+          <MobileActionBar />
         </header>
 
         <main className="reviews-main">
@@ -1181,7 +1199,7 @@ export default function App() {
             </a>
           </nav>
         )}
-        <a className="floating-call" href="tel:+74951234567" aria-label="Позвонить">☎</a>
+        <MobileActionBar />
       </header>
 
       <main>
