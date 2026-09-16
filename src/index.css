@@ -1102,6 +1102,26 @@ footer img {
   .menu-toggle{margin-left:0}
 }
 
+/* Desktop header: the navigation occupies the actual free space between the
+   logo and contact group.  The optional items step away before either group
+   can touch the navigation. */
+@media (min-width:981px){
+  .site-header{grid-template-columns:auto minmax(0,1fr) auto}
+  .desktop-nav{justify-self:center;justify-content:center;min-width:0}
+}
+
+@media (min-width:981px) and (max-width:1320px){
+  .header-socials{display:none!important}
+}
+
+@media (min-width:981px) and (max-width:1150px){
+  .header-cta{display:none!important}
+}
+
+@media (min-width:981px) and (max-width:1050px){
+  .header-address{display:none!important}
+}
+
 @media (min-width:390px) and (max-width:559px){
   .site-header{grid-template-columns:auto 1fr auto;padding:8px 10px}
   .brand{width:164px;height:52px}
