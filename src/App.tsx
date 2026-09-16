@@ -1261,7 +1261,7 @@ export default function App() {
             <img className="about-summary-art" src={standardArtwork} alt="" aria-hidden="true" />
             <img className="about-summary-branch" src={aboutSummaryBranch} alt="" aria-hidden="true" />
             <p className="eyebrow">Почему выбирают нас</p>
-            <h2><span className="summary-title-first">Здесь близкому человеку</span> <span className="keep-together">по‑настоящему&nbsp;спокойно</span></h2>
+            <h2><span className="summary-title-first">Здесь близкому человеку</span> <span className="keep-together">по‑настоящему<span className="summary-desktop-break"><br /></span> спокойно</span></h2>
             <p>
               Мы создаём не просто комфортные условия, а тёплую и уважительную
               среду, где замечают привычки человека, поддерживают его
