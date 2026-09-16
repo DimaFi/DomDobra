@@ -1241,6 +1241,11 @@ export default function App() {
               <a href="tel:+74951234567">+7 (495) 123-45-67</a>
               <span>Ежедневно с 9:00 до 20:00</span>
               <span>г. Москва, ул. Добра, д. 15</span>
+              <div className="about-contact-socials" aria-label="Социальные сети">
+                <a href="/#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
+                <a href="/#контакты" aria-label="MAX"><SocialIcon name="max" /></a>
+                <a href="/#контакты" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
+              </div>
             </div>
           </div>
         </section>

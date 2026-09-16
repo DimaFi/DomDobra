@@ -1643,6 +1643,9 @@ footer.documents-dialog-footer {
 
 .about-contact-mini strong { color: #26463b; font-size: 0.95rem; }
 .about-contact-mini a { color: #245c78; font-weight: 600; text-decoration: none; }
+.about-contact-socials { display:flex; gap:8px; margin-top:4px; }
+.about-contact-socials a { display:grid; place-items:center; width:28px; height:28px; border:1px solid #ddd3c3; border-radius:50%; background:#fffdf8; }
+.about-contact-socials .social-logo { width:17px; height:17px; border-radius:5px; }
 
 .documents-close::before {
   content: "×";
