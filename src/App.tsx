@@ -685,6 +685,15 @@ export default function App() {
   useReveal()
 
   useEffect(() => {
+    if (isReviewsPage || isPricesPage || isPrivacyPage || !window.location.hash) return
+    const targetId = decodeURIComponent(window.location.hash.slice(1))
+    const timer = window.setTimeout(() => {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" })
+    }, 80)
+    return () => window.clearTimeout(timer)
+  }, [isReviewsPage, isPricesPage, isPrivacyPage])
+
+  useEffect(() => {
     document.title = isPrivacyPage
       ? "Политика конфиденциальности — Позитив-Благоденствие"
       : isReviewsPage
