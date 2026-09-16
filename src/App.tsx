@@ -536,6 +536,7 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" 
           <a className="mobile-nav-cta" href="tel:+74951234567" onClick={() => setMenuOpen(false)}>Позвонить</a>
         </nav>
       )}
+      <a className="floating-call" href="tel:+74951234567" aria-label="Позвонить">☎</a>
     </header>
   )
 }
@@ -895,6 +896,7 @@ export default function App() {
               </a>
             </nav>
           )}
+          <a className="floating-call" href="tel:+74951234567" aria-label="Позвонить">☎</a>
         </header>
 
         <main className="reviews-main">
@@ -1179,6 +1181,7 @@ export default function App() {
             </a>
           </nav>
         )}
+        <a className="floating-call" href="tel:+74951234567" aria-label="Позвонить">☎</a>
       </header>
 
       <main>
