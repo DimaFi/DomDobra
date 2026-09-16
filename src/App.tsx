@@ -1237,6 +1237,7 @@ export default function App() {
             ))}
           </div>
           <div className="about-summary reveal">
+            <img className="about-summary-art" src={standardArtwork} alt="" aria-hidden="true" />
             <p className="eyebrow">Почему выбирают нас</p>
             <h2>Здесь близкому человеку по-настоящему спокойно</h2>
             <p>
