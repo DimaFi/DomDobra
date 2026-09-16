@@ -1080,12 +1080,12 @@ footer img {
 }
 .about-summary > :not(.about-summary-art):not(.about-summary-branch){position:relative;z-index:2}
 .about-summary-art{position:absolute;z-index:1;right:12px;bottom:12px;width:335px;max-height:300px;object-fit:contain;object-position:right bottom;opacity:1;pointer-events:none}
-.about-summary-branch{position:absolute;z-index:1;left:29%;bottom:-72px;width:400px;max-height:390px;object-fit:contain;object-position:left bottom;opacity:1;pointer-events:none}
+.about-summary-branch{position:absolute;z-index:1;left:35%;bottom:-72px;width:400px;max-height:390px;object-fit:contain;object-position:left bottom;opacity:1;pointer-events:none}
 @media (max-width:820px){.about-summary-art,.about-summary-branch{display:none}}
 @media (min-width:821px) and (max-width:1180px){
   .about-summary-traits{display:none}
   .about-summary-art{right:12px;bottom:12px;width:260px;max-height:240px}
-  .about-summary-branch{left:30%;bottom:-54px;width:285px;max-height:280px}
+  .about-summary-branch{left:34%;bottom:-54px;width:285px;max-height:280px}
 }
 @media (max-width:480px){.about-summary-traits{display:none!important}}
 
