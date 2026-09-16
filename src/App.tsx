@@ -493,6 +493,7 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" 
           <span aria-hidden="true">☎</span>
           +7 (495) 123-45-67
         </a>
+        <a className="header-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
         <div className="header-socials" aria-label="Социальные сети">
           <a href="/#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
           <a href="/#контакты" aria-label="MAX"><SocialIcon name="max" /></a>
@@ -833,6 +834,7 @@ export default function App() {
               <span aria-hidden="true">☎</span>
               +7 (495) 123-45-67
             </a>
+            <a className="header-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
             <div className="header-contact-actions">
               <div className="header-socials" aria-label="Социальные сети">
                 <a href="/#контакты" aria-label="Telegram">
@@ -1116,6 +1118,7 @@ export default function App() {
             <span aria-hidden="true">☎</span>
             +7 (495) 123-45-67
           </a>
+          <a className="header-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
           <div className="header-contact-actions">
             <div className="header-socials" aria-label="Социальные сети">
               <a href="#контакты" aria-label="Telegram">
