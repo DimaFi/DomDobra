@@ -1681,8 +1681,7 @@ footer.documents-dialog-footer {
   font-size: 1.55rem;
   line-height: 1;
   font-weight: 400;
-  line-height: 1;
-  transform: translateY(-1px);
+  transform: none;
 }
 
 .gallery-stage:active {
