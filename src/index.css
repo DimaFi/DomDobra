@@ -693,7 +693,7 @@ footer img {
 .pricing-range small{font-size:.9rem;font-weight:500}.pricing-note{display:block;margin-bottom:20px;color:#8a877c;font-size:.82rem}
 .pricing-overview-copy .text-link{display:inline-flex;justify-content:flex-start;align-items:center;margin-left:-4px;padding:13px 22px;border-radius:999px;background:#6f8665;color:#fffdf8;font-weight:600;box-shadow:0 8px 18px rgba(61,82,57,.16)}
 .pricing-mobile-link{display:none}
-@media (max-width:760px){.pricing-overview-copy .text-link{display:none}.pricing-mobile-link{display:inline-flex;align-items:center;gap:8px;margin:18px auto 0;padding:13px 22px;border-radius:999px;background:#6f8665;color:#fffdf8;font-weight:600;box-shadow:0 8px 18px rgba(61,82,57,.16)}}
+@media (max-width:760px){.pricing-overview-copy .text-link{display:none}.pricing-mobile-link{display:inline-flex;width:max-content;max-width:calc(100% - 32px);align-items:center;gap:8px;margin:18px auto 0;padding:13px 22px;border-radius:999px;background:#6f8665;color:#fffdf8;font-weight:600;white-space:nowrap;box-shadow:0 8px 18px rgba(61,82,57,.16)}.pricing-mobile-link svg{width:18px;height:18px;flex:0 0 18px}}
 @media (max-width:640px){.pricing-overview-copy{padding:30px 24px 168px}.pricing-overview h3{font-size:2rem;line-height:1.08}.pricing-overview-copy>p:not(.eyebrow){font-size:.86rem;line-height:1.45;max-width:90%}.pricing-overview img{width:52%;right:-2%}.pricing-mobile-link{font-size:.82rem;padding:12px 18px}}
 
 .settlement-card {
