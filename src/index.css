@@ -1672,6 +1672,7 @@ footer.documents-dialog-footer {
 @media (min-width:981px){.about-contact-socials{display:none}.about-contact-mini{width:100%;max-width:500px}.about-contact-mini{grid-template-columns:auto 1fr;column-gap:10px}.about-contact-mini strong{grid-column:1/-1}.about-contact-mini span{grid-column:1/-1}}
 @media (max-width:760px){.header-address{display:none}}
 @media (max-width:640px){.about-contact-socials{justify-content:flex-end}.about-contact-mini{font-size:.84rem}}
+@media (max-width:480px){.about-summary-traits{display:none}.about-summary{padding-bottom:28px}.about-contact-mini{margin-top:16px}}
 
 .documents-close::before {
   content: "×";
