@@ -184,15 +184,15 @@ const informationTiles = [
   },
 
   {
-    id: "вопросы",
+    id: "контакты-быстро",
 
-    title: "Частые вопросы",
+    title: "Контакты",
 
     description: "Остались вопросы? Позвоните — мы спокойно всё объясним",
 
     link: "Позвонить",
 
-    href: "#контакты",
+    href: "tel:+74951234567",
 
     artwork: questionsTile,
   },
