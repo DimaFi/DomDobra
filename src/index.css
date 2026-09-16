@@ -241,12 +241,10 @@ footer img {
 
 .header-phone { order: 2; }
 .header-cta { order: 3; }
+.header-contact-block{order:2;display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:max-content}
 
 .header-address {
-  order: 2;
-  align-self: flex-end;
-  margin-left: -178px;
-  margin-bottom: -25px;
+  order: 0;
   color: #718064;
   font-size: 0.72rem;
   line-height: 1.1;
