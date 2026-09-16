@@ -1688,6 +1688,7 @@ footer.documents-dialog-footer {
   object-fit: contain;
   object-position: center;
 }
+.information-card:nth-child(1) > img{right:0;width:51%;height:92%}
 
 .about-contact-mini {
   display: grid;
@@ -3572,8 +3573,9 @@ footer a {
   }
 
   .information-card:nth-child(1) > img {
-    width: 42%;
-    height: 77%;
+    right: 0;
+    width: 52%;
+    height: 90%;
   }
 
   .information-card:nth-child(2) > img {
