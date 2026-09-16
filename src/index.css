@@ -1099,6 +1099,17 @@ footer img {
   .menu-toggle{margin-left:0}
 }
 
+@media (min-width:390px) and (max-width:559px){
+  .site-header{grid-template-columns:auto 1fr auto;padding:8px 10px}
+  .brand{width:164px;height:52px}
+  .header-contacts{display:flex;justify-self:center;margin:0}
+  .header-contact-block{display:flex}
+  .header-address,.header-socials,.header-cta{display:none!important}
+  .header-phone{gap:4px;font-size:.68rem;white-space:nowrap}
+  .header-phone>span{font-size:.78rem}
+  .menu-toggle{margin-left:0}
+}
+
 .gallery-controls button {
   display: grid;
   width: 86px;
