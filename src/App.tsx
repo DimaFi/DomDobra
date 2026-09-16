@@ -1297,6 +1297,7 @@ export default function App() {
             </div>
             <img src={comfortArtwork} alt="Уютная комната и забота" />
           </article>
+          <a className="pricing-mobile-link" href="/prices">Смотреть полный прейскурант <ArrowIcon /></a>
         </section>
 
         <section className="section staff-section" id="персонал">
