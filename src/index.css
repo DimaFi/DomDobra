@@ -1122,6 +1122,26 @@ footer img {
   .header-address{display:none!important}
 }
 
+/* Use the same two high-resolution source assets as desktop on every compact
+   header.  The combined legacy image becomes soft after it is scaled down. */
+@media (max-width:980px){
+  .brand{width:auto;height:auto;gap:6px;background:none}
+  .brand-mark{display:block;width:59px;height:59px}
+  .brand-name{display:block;width:210px;height:58px}
+  .brand-mobile-logo{display:none}
+}
+
+@media (max-width:640px){
+  .brand-mark{width:53px;height:53px}
+  .brand-name{width:150px;height:50px}
+}
+
+@media (min-width:390px) and (max-width:559px){
+  .brand{gap:4px}
+  .brand-mark{width:42px;height:42px}
+  .brand-name{width:112px;height:42px}
+}
+
 @media (min-width:390px) and (max-width:559px){
   .site-header{grid-template-columns:auto 1fr auto;padding:8px 10px}
   .brand{width:164px;height:52px}
