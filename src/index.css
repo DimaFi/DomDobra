@@ -632,6 +632,7 @@ footer img {
 .about-map.contact-visual {
   display: grid;
   grid-template-columns: minmax(280px, 0.7fr) minmax(420px, 1.3fr);
+  gap: 18px;
   width: 100%;
   height: clamp(330px, 27vw, 440px);
   min-height: 0;
@@ -644,13 +645,14 @@ footer img {
   box-shadow: var(--shadow-soft);
 }
 
-.about-map-copy { position: relative; display: flex; flex-direction: column; justify-content: center; min-width: 0; padding: clamp(22px, 3vw, 48px); overflow: hidden; }
+.about-map.contact-visual::after { display: none; }
+.about-map-copy { position: relative; display: flex; flex-direction: column; justify-content: center; min-width: 0; padding: clamp(22px, 3vw, 48px); overflow: hidden; border-radius: 17px; background: #fffdf8; }
 .about-map-copy .eyebrow { margin: 0 0 12px; color: #7b8061; font-size: .63rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
 .about-map-copy h2 { position: relative; z-index: 1; margin: 0; color: #173e31; font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(2.25rem, 3.2vw, 3.6rem); font-weight: 500; line-height: .98; }
 .about-map-copy > p:not(.eyebrow) { position: relative; z-index: 1; max-width: 320px; margin: 16px 0 22px; color: #66736d; font-size: .92rem; line-height: 1.65; }
 .about-map-copy > a { position: relative; z-index: 1; width: fit-content; color: #245c78; font-size: .85rem; font-weight: 600; text-decoration: none; }
 .about-map-copy > a span { margin-left: 8px; }
-.about-map-branch { position: absolute; right: -58px; bottom: -78px; width: 245px; opacity: .64; pointer-events: none; }
+.about-map-branch { position: absolute; z-index: 2; right: -54px; bottom: -24px; width: 270px; opacity: 1; pointer-events: none; }
 .about-map-visual { position: relative; min-width: 0; overflow: hidden; border-radius: 17px; background: #e9e3d7; }
 .about-map-visual::after { position: absolute; inset: 0; content: ""; background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(36,63,52,.1)); pointer-events: none; }
 .about-map-visual iframe { display: block; width: 100%; height: 100%; border: 0; filter: sepia(.14) saturate(.66) brightness(1.06) contrast(.92); }
@@ -661,6 +663,17 @@ footer img {
   .about-map-copy { display: none; }
   .about-map-visual { height: 100%; }
   .about-map .address-card { right: 14px; bottom: 14px; left: 14px; }
+}
+
+@media (min-width:821px) and (max-width:1180px){
+  .about-summary h2{min-width:360px;font-size:clamp(1.7rem,3.15vw,2.25rem)}
+  .summary-title-first{white-space:nowrap}
+}
+
+@media (min-width:1181px){
+  .about-summary h2{min-width:560px}
+  .summary-title-first{white-space:nowrap}
+  .hero h1.hero-title{max-width:850px;font-size:clamp(3.1rem,4vw,4.2rem)}
 }
 
 .section {
