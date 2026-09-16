@@ -1208,11 +1208,9 @@ export default function App() {
         <section className="hero" id="главная">
           <div className="hero-copy reveal">
             <p className="eyebrow">Дом для пожилых людей</p>
-            <h1>
-              Забота, рядом
-              <br />с которой становится
-              <br />
-              спокойнее
+            <h1 className="hero-title">
+              <span>Забота, рядом с которой</span>
+              <span>становится спокойнее</span>
             </h1>
             <p className="hero-description">
               Дом для пожилых людей, где каждый день
@@ -1263,7 +1261,7 @@ export default function App() {
             <img className="about-summary-art" src={standardArtwork} alt="" aria-hidden="true" />
             <img className="about-summary-branch" src={aboutSummaryBranch} alt="" aria-hidden="true" />
             <p className="eyebrow">Почему выбирают нас</p>
-            <h2>Здесь близкому человеку по-настоящему спокойно</h2>
+            <h2>Здесь близкому человеку <span className="keep-together">по‑настоящему&nbsp;спокойно</span></h2>
             <p>
               Мы создаём не просто комфортные условия, а тёплую и уважительную
               среду, где замечают привычки человека, поддерживают его
@@ -1286,17 +1284,26 @@ export default function App() {
             </div>
           </div>
           <div className="about-map contact-visual reveal" aria-label="Карта расположения дома">
-            <iframe
-              title="Карта расположения дома рядом с разделом о нас"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=37.579%2C55.733%2C37.656%2C55.775&amp;layer=mapnik&amp;marker=55.7558%2C37.6176"
-              loading="lazy"
-            />
-            <div className="address-card">
-              <span className="address-pin" aria-hidden="true">⌖</span>
-              <span>
-                <strong>г. Москва, ул. Добра, д. 15</strong>
-                <small>Позвоните — уточним удобное время</small>
-              </span>
+            <div className="about-map-copy">
+              <img className="about-map-branch" src={contactBranch} alt="" aria-hidden="true" />
+              <p className="eyebrow">Как нас найти</p>
+              <h2>Мы рядом</h2>
+              <p>Приезжайте познакомиться с домом, обсудить уход и задать все важные вопросы.</p>
+              <a href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">Открыть маршрут <span aria-hidden="true">→</span></a>
+            </div>
+            <div className="about-map-visual">
+              <iframe
+                title="Карта расположения дома рядом с разделом о нас"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=37.579%2C55.733%2C37.656%2C55.775&amp;layer=mapnik&amp;marker=55.7558%2C37.6176"
+                loading="lazy"
+              />
+              <div className="address-card">
+                <span className="address-pin" aria-hidden="true">⌖</span>
+                <span>
+                  <strong>г. Москва, ул. Добра, д. 15</strong>
+                  <small>Позвоните — уточним удобное время</small>
+                </span>
+              </div>
             </div>
           </div>
         </section>

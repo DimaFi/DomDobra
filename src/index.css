@@ -418,6 +418,14 @@ footer img {
   letter-spacing: -0.035em;
 }
 
+.hero h1.hero-title { max-width: 740px; font-size: clamp(2.45rem, 3.4vw, 3.35rem); font-weight: 500; }
+.hero-title span { display: block; white-space: nowrap; }
+.keep-together { white-space: nowrap; }
+
+@media (max-width:640px){
+  .hero h1.hero-title { font-size: clamp(1.95rem, 8.2vw, 2.25rem); line-height: 1.02; }
+}
+
 .hero-description {
   margin: 29px 0 30px;
   color: #4e6059;
@@ -621,18 +629,39 @@ footer img {
   color: #b3a984;
 }
 
-.about-map {
+.about-map.contact-visual {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.7fr) minmax(420px, 1.3fr);
   width: 100%;
-  height: clamp(360px, 33vw, 560px);
+  height: clamp(330px, 27vw, 440px);
   min-height: 0;
-  margin: 22px 0 0;
+  margin: 34px 0 0;
+  padding: 18px;
+  overflow: hidden;
   border: 1px solid rgba(220, 210, 194, 0.82);
   border-radius: 24px;
+  background: rgba(255, 253, 248, 0.94);
   box-shadow: var(--shadow-soft);
 }
 
-.about-map > iframe { min-height: 0; }
-.about-map .address-card { right: 28px; bottom: 28px; left: 28px; }
+.about-map-copy { position: relative; display: flex; flex-direction: column; justify-content: center; min-width: 0; padding: clamp(22px, 3vw, 48px); overflow: hidden; }
+.about-map-copy .eyebrow { margin: 0 0 12px; color: #7b8061; font-size: .63rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+.about-map-copy h2 { position: relative; z-index: 1; margin: 0; color: #173e31; font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(2.25rem, 3.2vw, 3.6rem); font-weight: 500; line-height: .98; }
+.about-map-copy > p:not(.eyebrow) { position: relative; z-index: 1; max-width: 320px; margin: 16px 0 22px; color: #66736d; font-size: .92rem; line-height: 1.65; }
+.about-map-copy > a { position: relative; z-index: 1; width: fit-content; color: #245c78; font-size: .85rem; font-weight: 600; text-decoration: none; }
+.about-map-copy > a span { margin-left: 8px; }
+.about-map-branch { position: absolute; right: -58px; bottom: -78px; width: 245px; opacity: .64; pointer-events: none; }
+.about-map-visual { position: relative; min-width: 0; overflow: hidden; border-radius: 17px; background: #e9e3d7; }
+.about-map-visual::after { position: absolute; inset: 0; content: ""; background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(36,63,52,.1)); pointer-events: none; }
+.about-map-visual iframe { display: block; width: 100%; height: 100%; border: 0; filter: sepia(.14) saturate(.66) brightness(1.06) contrast(.92); }
+.about-map .address-card { right: 22px; bottom: 22px; left: 22px; }
+
+@media (max-width:820px){
+  .about-map.contact-visual { display: block; height: 300px; margin-top: 38px; padding: 8px; }
+  .about-map-copy { display: none; }
+  .about-map-visual { height: 100%; }
+  .about-map .address-card { right: 14px; bottom: 14px; left: 14px; }
+}
 
 .section {
   padding-bottom: clamp(110px, 12vw, 180px);
