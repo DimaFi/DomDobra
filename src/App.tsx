@@ -6,6 +6,7 @@ import logo from "@/assets/brand-logo-full.png"
 import heroArtwork from "@/assets/illustrations/hero-artwork.png"
 
 import branchPosition1 from "@/assets/illustrations/branch-sprig-01.png"
+import aboutSummaryBranch from "@/assets/illustrations/about-summary-branch.png"
 
 import contactBranch from "@/assets/illustrations/footer-branch.png"
 
@@ -1260,7 +1261,7 @@ export default function App() {
           </div>
           <div className="about-summary reveal">
             <img className="about-summary-art" src={standardArtwork} alt="" aria-hidden="true" />
-            <img className="about-summary-branch" src={branchPosition1} alt="" aria-hidden="true" />
+            <img className="about-summary-branch" src={aboutSummaryBranch} alt="" aria-hidden="true" />
             <p className="eyebrow">Почему выбирают нас</p>
             <h2>Здесь близкому человеку по-настоящему спокойно</h2>
             <p>
