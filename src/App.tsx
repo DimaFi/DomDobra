@@ -1297,9 +1297,6 @@ export default function App() {
             </div>
             <img src={comfortArtwork} alt="Уютная комната и забота" />
           </article>
-          <a className="text-link reveal" href="/prices">
-            Подробнее о размещении <ArrowIcon />
-          </a>
         </section>
 
         <section className="section staff-section" id="персонал">
