@@ -1631,6 +1631,19 @@ footer.documents-dialog-footer {
   object-position: center;
 }
 
+.about-contact-mini {
+  display: grid;
+  gap: 4px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid #e4dacb;
+  color: #718064;
+  font-size: 0.86rem;
+}
+
+.about-contact-mini strong { color: #26463b; font-size: 0.95rem; }
+.about-contact-mini a { color: #245c78; font-weight: 600; text-decoration: none; }
+
 .documents-close::before {
   content: "×";
   font-family: Arial, sans-serif;

@@ -441,7 +441,7 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
   )
 }
 
-function SiteHeader({ page }: { page: "home" | "reviews" | "prices" }) {
+function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" }) {
   const isInnerPage = page !== "home"
   const [menuOpen, setMenuOpen] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
@@ -542,7 +542,7 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" }) {
 function PrivacyPage() {
   return (
     <div className="site-shell privacy-page">
-      <SiteHeader page="prices" />
+      <SiteHeader page="privacy" />
       <main className="privacy-main">
         <section className="privacy-hero reveal">
           <p className="eyebrow">Правовая информация</p>
@@ -1235,6 +1235,12 @@ export default function App() {
             <div className="about-summary-traits">
               Забота без формальностей <span>•</span> Внимательное отношение
               <span>•</span> Домашняя атмосфера
+            </div>
+            <div className="about-contact-mini">
+              <strong>Свяжитесь с нами</strong>
+              <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+              <span>Ежедневно с 9:00 до 20:00</span>
+              <span>г. Москва, ул. Добра, д. 15</span>
             </div>
           </div>
         </section>
