@@ -150,7 +150,7 @@ const prices = [
 
 const priceList = prices.map((item) => ({
   ...item,
-  period: "в месяц",
+  period: "в день",
   note: "Точную стоимость и подходящие условия уточните во время консультации.",
 }))
 
@@ -1039,7 +1039,7 @@ export default function App() {
                 <p className="eyebrow">Тарифы</p>
                 <h2 id="price-list-title">Проживание и уход</h2>
               </div>
-              <p>Стоимость указана за один месяц проживания.</p>
+              <p>Стоимость указана за один день проживания.</p>
             </div>
             <div className="price-list">
               {priceList.map((item, index) => (
@@ -1291,7 +1291,7 @@ export default function App() {
               <p className="eyebrow">Проживание и забота</p>
               <h3>Всё необходимое для спокойной жизни</h3>
               <p>Уютная комната, ежедневный уход, питание и внимание персонала включены в стоимость.</p>
-              <strong className="pricing-range">от 1 490 до 2 490 <small>₽/мес</small></strong>
+              <strong className="pricing-range">от 1 490 до 2 490 <small>₽/день</small></strong>
               <span className="pricing-note">Уточняйте актуальные цены по телефону</span>
               <a className="text-link" href="/prices">Смотреть полный прейскурант <ArrowIcon /></a>
             </div>
