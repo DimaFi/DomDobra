@@ -527,6 +527,7 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" 
           <a className="mobile-nav-phone" href="tel:+74951234567">
             <span aria-hidden="true">☎</span> +7 (495) 123-45-67
           </a>
+          <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
           <div className="mobile-nav-socials" aria-label="Социальные сети">
             <a href="/#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
             <a href="/#контакты" aria-label="MAX"><SocialIcon name="max" /></a>
@@ -879,6 +880,7 @@ export default function App() {
               <a className="mobile-nav-phone" href="tel:+74951234567">
                 <span aria-hidden="true">☎</span> +7 (495) 123-45-67
               </a>
+              <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
               <div className="mobile-nav-socials" aria-label="Социальные сети">
                 <a href="/#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
                 <a href="/#контакты" aria-label="MAX"><SocialIcon name="max" /></a>
@@ -1162,6 +1164,7 @@ export default function App() {
             <a className="mobile-nav-phone" href="tel:+74951234567">
               <span aria-hidden="true">☎</span> +7 (495) 123-45-67
             </a>
+            <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
             <div className="mobile-nav-socials" aria-label="Социальные сети">
               <a href="#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
               <a href="#контакты" aria-label="MAX"><SocialIcon name="max" /></a>

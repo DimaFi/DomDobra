@@ -1670,7 +1670,7 @@ footer.documents-dialog-footer {
 .about-contact-socials .social-logo { width:17px; height:17px; border-radius:5px; }
 .about-contact-address { color:#718064 !important; font-weight:400 !important; }
 @media (min-width:981px){.about-contact-socials{display:none}.about-contact-mini{width:100%;max-width:500px}.about-contact-mini{grid-template-columns:auto 1fr;column-gap:10px}.about-contact-mini strong{grid-column:1/-1}.about-contact-mini span{grid-column:1/-1}}
-@media (max-width:1180px){.header-address{display:none}}
+@media (max-width:760px){.header-address{display:none}}
 @media (max-width:640px){.about-contact-socials{justify-content:flex-end}.about-contact-mini{font-size:.84rem}}
 
 .documents-close::before {
@@ -2448,7 +2448,6 @@ footer a {
 }
 
 @media (max-width: 980px) {
-  .header-address { display: none; }
   .site-header {
     min-height: 80px;
   }
@@ -3282,12 +3281,15 @@ footer a {
     padding: 13px 10px;
     border-top: 1px solid #e6ddcf;
     color: #26463b;
-    font-size: 0.94rem;
+    justify-content: center;
+    font-size: 1.08rem;
     font-weight: 600;
     text-decoration: none;
   }
 
   .mobile-nav-phone > span { color: #718064; }
+  .mobile-nav-address{display:block;margin:0 8px 6px;text-align:center;color:#718064;font-size:.9rem;text-decoration:none}
+  .mobile-nav>a:not(.mobile-nav-phone):not(.mobile-nav-address){font-size:1.08rem;text-align:center}
 
   .mobile-nav-socials {
     display: flex;
