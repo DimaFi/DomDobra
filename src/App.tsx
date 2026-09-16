@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import { createPortal } from "react-dom"
 
 import logo from "@/assets/brand-logo-full.png"
 
@@ -444,7 +445,7 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 function MobileActionBar() {
   const [mapPromptOpen, setMapPromptOpen] = useState(false)
   const mapUrl = "https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015"
-  return <>
+  return createPortal(<>
     <nav className="mobile-action-bar" aria-label="Быстрые действия">
       <a href="tel:+74951234567">Позвонить</a>
       <a href="/#контакты">Контакты</a>
@@ -456,7 +457,7 @@ function MobileActionBar() {
         <div><button type="button" onClick={() => setMapPromptOpen(false)}>Отмена</button><a href={mapUrl} target="_blank" rel="noreferrer">Открыть карту</a></div>
       </section>
     </div>}
-  </>
+  </>, document.body)
 }
 
 function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" }) {
