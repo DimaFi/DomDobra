@@ -1077,8 +1077,9 @@ footer img {
   gap: 24px;
   margin: 18px 0 20px;
 }
-.about-summary-art{position:absolute;right:8px;bottom:0;width:330px;max-height:285px;object-fit:contain;object-position:right bottom;opacity:.92;pointer-events:none}
-@media (max-width:820px){.about-summary-art{display:none}}
+.about-summary-art{position:absolute;right:-14px;bottom:-18px;width:440px;max-height:380px;object-fit:contain;object-position:right bottom;opacity:.94;pointer-events:none}
+.about-summary-branch{position:absolute;left:34%;bottom:-48px;width:340px;max-height:300px;object-fit:contain;object-position:left bottom;opacity:.76;transform:rotate(-16deg);transform-origin:bottom left;pointer-events:none}
+@media (max-width:820px){.about-summary-art,.about-summary-branch{display:none}}
 @media (max-width:480px){.about-summary-traits{display:none!important}}
 
 @media (max-width:480px){
