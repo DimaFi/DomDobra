@@ -1285,6 +1285,20 @@ export default function App() {
               </div>
             </div>
           </div>
+          <div className="about-map contact-visual reveal" aria-label="Карта расположения дома">
+            <iframe
+              title="Карта расположения дома рядом с разделом о нас"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=37.579%2C55.733%2C37.656%2C55.775&amp;layer=mapnik&amp;marker=55.7558%2C37.6176"
+              loading="lazy"
+            />
+            <div className="address-card">
+              <span className="address-pin" aria-hidden="true">⌖</span>
+              <span>
+                <strong>г. Москва, ул. Добра, д. 15</strong>
+                <small>Позвоните — уточним удобное время</small>
+              </span>
+            </div>
+          </div>
         </section>
 
         <section className="section settlement-section">
