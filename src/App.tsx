@@ -1288,7 +1288,7 @@ export default function App() {
           <SectionHeading>Стоимость проживания</SectionHeading>
           <article className="pricing-overview reveal">
             <div className="pricing-overview-copy">
-              <p className="eyebrow">Проживание и забота</p>
+              <p className="eyebrow">Проживание</p>
               <h3>Всё необходимое для спокойной жизни</h3>
               <p>Уютная комната, ежедневный уход, питание и внимание персонала включены в стоимость.</p>
               <strong className="pricing-range">от 1 490 до 2 490 <small>₽/день</small></strong>

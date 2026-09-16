@@ -693,7 +693,8 @@ footer img {
 .pricing-overview img{position:absolute;right:0;bottom:0;width:min(42%,480px);max-height:100%;object-fit:contain;object-position:right bottom}
 .pricing-range{display:block;margin:24px 0 5px;color:#123f34;font-size:clamp(1.6rem,2.4vw,2.2rem)}
 .pricing-range small{font-size:.9rem;font-weight:500}.pricing-note{display:block;margin-bottom:20px;color:#8a877c;font-size:.82rem}
-@media (max-width:640px){.pricing-overview-copy{padding:30px 24px 190px}.pricing-overview img{width:58%}}
+.pricing-overview-copy .text-link{display:inline-flex;justify-content:flex-start;margin-left:-4px}
+@media (max-width:640px){.pricing-overview-copy{padding:30px 24px 168px}.pricing-overview h3{font-size:2rem;line-height:1.08}.pricing-overview-copy>p:not(.eyebrow){font-size:.86rem;line-height:1.45;max-width:90%}.pricing-overview img{width:46%;right:-2%}.pricing-overview-copy .text-link{margin-left:-6px;font-size:.82rem;white-space:nowrap}}
 
 .settlement-card {
   position: relative;
