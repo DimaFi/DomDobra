@@ -1285,7 +1285,6 @@ export default function App() {
           </div>
           <div className="about-map contact-visual reveal" aria-label="Карта расположения дома">
             <div className="about-map-copy">
-              <img className="about-map-branch" src={contactBranch} alt="" aria-hidden="true" />
               <p className="eyebrow">Как нас найти</p>
               <h2>Мы рядом</h2>
               <p>Приезжайте познакомиться с домом, обсудить уход и задать все важные вопросы.</p>
@@ -1305,6 +1304,7 @@ export default function App() {
                 </span>
               </div>
             </div>
+            <img className="about-map-branch" src={contactBranch} alt="" aria-hidden="true" />
           </div>
         </section>
 
