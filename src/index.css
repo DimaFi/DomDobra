@@ -228,7 +228,11 @@ footer img {
   width: 1rem;
   height: 1rem;
   object-fit: contain;
-  transform: translateY(-1px) scale(1.05);
+}
+
+.header-phone .phone-icon {
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .header-contact-actions {
@@ -1923,6 +1927,11 @@ footer.documents-dialog-footer {
 .contact-list a[href^="mailto:"] .contact-icon img {
   width: 1.38rem;
   height: 1.38rem;
+}
+
+.contact-list a[href^="tel:"] .contact-icon img {
+  width: 1.55rem;
+  height: 1.55rem;
 }
 
 .contact-list strong,
