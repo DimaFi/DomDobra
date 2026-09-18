@@ -560,7 +560,7 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" 
             <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" /> +7 (495) 123-45-67
           </a>
           <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
-          <div className="mobile-nav-socials" aria-label="Социальные сети">
+          <div className="about-contact-socials" aria-label="Социальные сети">
             <a href="/#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
             <a href="/#контакты" aria-label="MAX"><SocialIcon name="max" /></a>
             <a href="/#контакты" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
@@ -914,7 +914,7 @@ export default function App() {
                 <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" /> +7 (495) 123-45-67
               </a>
               <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
-              <div className="mobile-nav-socials" aria-label="Социальные сети">
+              <div className="about-contact-socials" aria-label="Социальные сети">
                 <a href="https://t.me/" target="_blank" rel="noreferrer" aria-label="Telegram"><SocialIcon name="telegram" /></a>
                 <a href="https://max.ru/" target="_blank" rel="noreferrer" aria-label="MAX"><SocialIcon name="max" /></a>
                 <a href="https://vk.com/" target="_blank" rel="noreferrer" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
@@ -1199,7 +1199,7 @@ export default function App() {
               <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" /> +7 (495) 123-45-67
             </a>
             <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
-            <div className="mobile-nav-socials" aria-label="Социальные сети">
+            <div className="about-contact-socials" aria-label="Социальные сети">
               <a href="#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
               <a href="#контакты" aria-label="MAX"><SocialIcon name="max" /></a>
               <a href="#контакты" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
