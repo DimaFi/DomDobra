@@ -1909,13 +1909,20 @@ footer.documents-dialog-footer {
   border-radius: 50%;
   color: #fff;
   background: #173e31;
+  line-height: 0;
 }
 
 .contact-icon img {
-  width: 1.05rem;
-  height: 1.05rem;
+  display: block;
+  width: 1.2rem;
+  height: 1.2rem;
   object-fit: contain;
   filter: invert(1);
+}
+
+.contact-list a[href^="mailto:"] .contact-icon img {
+  width: 1.38rem;
+  height: 1.38rem;
 }
 
 .contact-list strong,
@@ -3473,20 +3480,22 @@ footer a {
 
   .mobile-nav-socials {
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 9px;
-    padding: 6px 8px 10px;
+    gap: 12px;
+    padding: 8px 8px 12px;
   }
 
   .mobile-nav-socials a {
     display: grid;
-    width: 42px;
-    height: 42px;
+    width: 52px;
+    height: 52px;
     place-items: center;
     border: 1px solid #ddd3c3;
-    border-radius: 50%;
+    border-radius: 14px;
     color: #496157;
     background: #fffdf8;
+    line-height: 0;
   }
 
   .mobile-nav-socials svg {
@@ -3500,10 +3509,11 @@ footer a {
   }
 
   .mobile-nav-socials .social-logo {
-    width: 29px;
-    height: 29px;
+    display: block;
+    width: 34px;
+    height: 34px;
     border-radius: 7px;
-    transform: scale(1.08);
+    transform: none;
   }
 
   .mobile-nav-socials a[aria-label="Telegram"] svg,
@@ -3920,6 +3930,7 @@ footer a {
 
 .mobile-action-bar,.map-prompt{display:none}
 @media (max-width:980px){
+  .site-shell{padding-bottom:104px}
   .mobile-action-bar{position:fixed;z-index:50;right:16px;bottom:16px;left:16px;display:grid;grid-template-columns:repeat(3,1fr);padding:7px;border:1px solid #e3dacd;border-radius:999px;background:rgba(255,253,248,.96);box-shadow:0 12px 30px rgba(47,79,67,.22);backdrop-filter:blur(12px)}
   .mobile-action-bar a,.mobile-action-bar button{display:grid;min-height:46px;place-items:center;border:0;border-radius:999px;background:transparent;color:#26463b;font:inherit;font-size:.78rem;font-weight:600;text-decoration:none;cursor:pointer}
   .mobile-action-bar a:focus,.mobile-action-bar button:focus{outline:none}.mobile-action-bar a:focus-visible,.mobile-action-bar button:focus-visible{outline:2px solid #35594d;outline-offset:2px}
