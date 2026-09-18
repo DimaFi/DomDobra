@@ -3522,7 +3522,11 @@ footer a {
     width: 34px;
     height: 34px;
     border-radius: 7px;
-    transform: none;
+    transform: translateY(-2px);
+  }
+
+  .mobile-nav-socials a[aria-label="MAX"] .social-logo {
+    transform: translateY(-2px) scale(1.25);
   }
 
   .mobile-nav-socials a[aria-label="Telegram"] svg,
