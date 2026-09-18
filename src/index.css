@@ -228,6 +228,7 @@ footer img {
   width: 1rem;
   height: 1rem;
   object-fit: contain;
+  transform: translateY(-1px) scale(1.05);
 }
 
 .header-contact-actions {
@@ -1814,7 +1815,6 @@ footer.documents-dialog-footer {
   object-fit: contain;
   object-position: center;
 }
-.information-card:nth-child(1) > img{right:0;width:51%;height:92%}
 
 .about-contact-mini {
   display: grid;
@@ -3732,12 +3732,6 @@ footer a {
     width: 39%;
     height: 73%;
     object-position: center;
-  }
-
-  .information-card:nth-child(1) > img {
-    right: 0;
-    width: 52%;
-    height: 90%;
   }
 
   .information-card:nth-child(2) > img {

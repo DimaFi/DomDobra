@@ -342,6 +342,10 @@ const staffMembers = [
 ]
 
 const galleryItems = [
+  { title: "Здание пансионата", src: buildingPhoto },
+
+  { title: "Стойка администратора", src: receptionPhoto, objectPosition: "center top" },
+
   { title: "Комната с телевизором", src: roomTvCornerPhoto },
 
   { title: "Книжная полка", src: bookshelfPhoto },
@@ -349,10 +353,6 @@ const galleryItems = [
   { title: "Двухместная комната", src: twinRoomPhoto },
 
   { title: "Одноместная комната", src: singleRoomPhoto },
-
-  { title: "Стойка администратора", src: receptionPhoto },
-
-  { title: "Здание пансионата", src: buildingPhoto },
 ]
 
 function getGalleryPosition(itemIndex: number, activeIndex: number) {
@@ -1444,7 +1444,11 @@ export default function App() {
                   }}
                   key={item.src}
                 >
-                  <img src={item.src} alt={item.title} />
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    style={item.objectPosition ? { objectPosition: item.objectPosition } : undefined}
+                  />
                   <span className="gallery-zoom" aria-hidden="true">
                     ⤢
                   </span>
