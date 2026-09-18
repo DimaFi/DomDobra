@@ -5,6 +5,10 @@ import logo from "@/assets/brand-logo-full.png"
 
 import heroArtwork from "@/assets/illustrations/hero-artwork.png"
 
+import phoneIcon from "@/assets/icons/phone.png"
+
+import mailIcon from "@/assets/icons/mail.png"
+
 import branchPosition1 from "@/assets/illustrations/branch-sprig-01.png"
 import aboutSummaryBranch from "@/assets/illustrations/about-summary-branch.png"
 
@@ -510,7 +514,7 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" 
 
       <div className="header-contacts">
         <div className="header-contact-block"><a className="header-phone" href="tel:+74951234567">
-          <span aria-hidden="true">☎</span>
+          <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" />
           +7 (495) 123-45-67
         </a><a className="header-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a></div>
         <div className="header-socials" aria-label="Социальные сети">
@@ -545,7 +549,7 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" 
             </a>
           ))}
           <a className="mobile-nav-phone" href="tel:+74951234567">
-            <span aria-hidden="true">☎</span> +7 (495) 123-45-67
+            <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" /> +7 (495) 123-45-67
           </a>
           <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
           <div className="mobile-nav-socials" aria-label="Социальные сети">
@@ -852,7 +856,7 @@ export default function App() {
 
           <div className="header-contacts">
             <div className="header-contact-block"><a className="header-phone" href="tel:+74951234567">
-              <span aria-hidden="true">☎</span>
+              <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" />
               +7 (495) 123-45-67
             </a><a className="header-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a></div>
             <div className="header-contact-actions">
@@ -899,7 +903,7 @@ export default function App() {
                 </a>
               ))}
               <a className="mobile-nav-phone" href="tel:+74951234567">
-                <span aria-hidden="true">☎</span> +7 (495) 123-45-67
+                <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" /> +7 (495) 123-45-67
               </a>
               <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
               <div className="mobile-nav-socials" aria-label="Социальные сети">
@@ -1137,7 +1141,7 @@ export default function App() {
 
         <div className="header-contacts">
           <div className="header-contact-block"><a className="header-phone" href="tel:+74951234567">
-            <span aria-hidden="true">☎</span>
+            <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" />
             +7 (495) 123-45-67
           </a><a className="header-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a></div>
           <div className="header-contact-actions">
@@ -1184,7 +1188,7 @@ export default function App() {
               </a>
             ))}
             <a className="mobile-nav-phone" href="tel:+74951234567">
-              <span aria-hidden="true">☎</span> +7 (495) 123-45-67
+              <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" /> +7 (495) 123-45-67
             </a>
             <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
             <div className="mobile-nav-socials" aria-label="Социальные сети">
@@ -1624,14 +1628,14 @@ export default function App() {
               <h2>Мы всегда на связи</h2>
               <div className="contact-list">
                 <a href="tel:+74951234567">
-                  <span className="contact-icon">☎</span>
+                  <span className="contact-icon"><img src={phoneIcon} alt="" aria-hidden="true" /></span>
                   <span>
                     <strong>+7 (495) 123-45-67</strong>
                     <small>Ежедневно с 9:00 до 20:00</small>
                   </span>
                 </a>
                 <a href="mailto:info@positiv-blago.ru">
-                  <span className="contact-icon">✉</span>
+                  <span className="contact-icon"><img src={mailIcon} alt="" aria-hidden="true" /></span>
                   <span>
                     <strong>info@positiv-blago.ru</strong>
                     <small>Ответим в течение дня</small>
