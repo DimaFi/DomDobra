@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 
-import logo from "@/assets/brand-logo-full.png"
+import logo from "@/assets/logo-site-optimized.webp"
 
-import heroArtwork from "@/assets/illustrations/hero-artwork.png"
+import heroArtwork from "@/assets/illustrations/main-hero-optimized.webp"
 
 import phoneIcon from "@/assets/icons/phone.png"
 
 import mailIcon from "@/assets/icons/mail.png"
 
-import branchPosition1 from "@/assets/illustrations/branch-sprig-01.png"
-import aboutSummaryBranch from "@/assets/illustrations/about-summary-branch.png"
+import branchPosition1 from "@/assets/illustrations/branch-sprig-01-optimized.webp"
+import aboutSummaryBranch from "@/assets/illustrations/about-summary-branch-optimized.webp"
 
 import contactBranch from "@/assets/illustrations/footer-branch.png"
 
@@ -18,15 +18,13 @@ import staffHeaderArtwork from "@/assets/illustrations/staff-section-header.png"
 
 import staffBranchArtwork from "@/assets/illustrations/staff-card-branch.png"
 
-import logoMark from "@/assets/illustrations/brand-logo-mark.png"
-
-import brandNameArtwork from "@/assets/illustrations/brand-name.png"
+import brandNameArtwork from "@/assets/illustrations/logo-text-95.webp"
 
 import standardArtwork from "@/assets/illustrations/plan-standard.png"
 
-import comfortArtwork from "@/assets/illustrations/plan-comfort.png"
+import comfortArtwork from "@/assets/illustrations/plan-comfort-optimized.webp"
 
-import premiumArtwork from "@/assets/illustrations/plan-premium.png"
+import premiumArtwork from "@/assets/illustrations/plan-premium-optimized.webp"
 
 import phoneArtwork from "@/assets/illustrations/settlement-phone.png"
 
@@ -34,13 +32,14 @@ import documentsArtwork from "@/assets/illustrations/settlement-documents.png"
 
 import homeArtwork from "@/assets/illustrations/settlement-home.png"
 
-import documentsTile from "@/assets/illustrations/info-documents.png"
+import documentsTile from "@/assets/illustrations/info-documents-optimized.webp"
 
 import reviewsTile from "@/assets/illustrations/info-reviews.png"
 
 import questionsTile from "@/assets/illustrations/info-questions.png"
 
 import staffPhoto from "@/assets/staff-caregiver-male.png"
+import tamaraBizyaevaPhoto from "@/assets/staff-bizyaeva-tamara-landscape.png"
 
 import roomTvCornerPhoto from "@/assets/gallery/room-tv-corner.webp"
 
@@ -52,7 +51,17 @@ import singleRoomPhoto from "@/assets/gallery/room-single-bed.webp"
 
 import receptionPhoto from "@/assets/gallery/reception.webp"
 
-import buildingPhoto from "@/assets/gallery/building.webp"
+import mainGalleryPhoto from "@/assets/gallery/dom-prestarelyh-main.webp"
+
+const primaryPhone = "8 (8512) 48-19-18"
+const primaryPhoneHref = "tel:+78512481918"
+const secondaryPhone = "8 (927) 501-25-91"
+const secondaryPhoneHref = "tel:+79275012591"
+const messengerPhone = "+7 (917) 081-13-27"
+const telegramUrl = "https://t.me/+79170811327"
+const maxUrl = "https://max.ru/+79170811327"
+const contactEmail = "nko.pozitiv@bk.ru"
+const organizationName = "АНО «Позитив»"
 
 const navigation = [
   { label: "Главная", href: "#главная" },
@@ -198,11 +207,11 @@ const informationTiles = [
 
     title: "Контакты",
 
-    description: "Остались вопросы? Позвоните — мы спокойно всё объясним",
+    description: "Позвоните — мы поможем определиться.",
 
     link: "Позвонить",
 
-    href: "tel:+74951234567",
+    href: primaryPhoneHref,
 
     artwork: questionsTile,
   },
@@ -334,7 +343,7 @@ const familyReviews = [
 ]
 
 const staffMembers = [
-  { name: "Иван Иванов", role: "Управляющий пансионатом" },
+  { name: "Бизяева Тамара Анатольевна", role: "Генеральный директор", photo: tamaraBizyaevaPhoto },
 
   { name: "Иван Иванов", role: "Специалист по уходу" },
 
@@ -342,17 +351,17 @@ const staffMembers = [
 ]
 
 const galleryItems = [
-  { title: "Здание пансионата", src: buildingPhoto },
+  { title: "Здание пансионата", src: mainGalleryPhoto },
 
   { title: "Стойка администратора", src: receptionPhoto, objectPosition: "center top" },
 
-  { title: "Комната с телевизором", src: roomTvCornerPhoto },
+  { title: "Комната", src: roomTvCornerPhoto },
 
-  { title: "Книжная полка", src: bookshelfPhoto },
+  { title: "Комната", src: bookshelfPhoto },
 
-  { title: "Двухместная комната", src: twinRoomPhoto },
+  { title: "Комната", src: twinRoomPhoto },
 
-  { title: "Одноместная комната", src: singleRoomPhoto },
+  { title: "Комната", src: singleRoomPhoto },
 ]
 
 function getGalleryPosition(itemIndex: number, activeIndex: number) {
@@ -415,6 +424,52 @@ function SocialIcon({ name }: { name: "telegram" | "max" | "vk" }) {
   return <img className="social-logo" src={`/social/${name}.png`} alt="" />
 }
 
+type SocialLinksProps = {
+  className: string
+  showLabels?: boolean
+}
+
+function SocialLinks({ className, showLabels = false }: SocialLinksProps) {
+  const networks = [
+    { name: "telegram" as const, label: "Telegram", href: telegramUrl, ariaLabel: `Telegram: ${messengerPhone}` },
+    { name: "max" as const, label: "MAX", href: maxUrl, ariaLabel: `MAX: ${messengerPhone}` },
+    { name: "vk" as const, label: "ВКонтакте", href: "https://vk.com/", ariaLabel: "ВКонтакте" },
+  ]
+
+  return (
+    <div className={`social-cluster ${className}`} aria-label="Социальные сети">
+      {networks.map((network) => (
+        <a key={network.name} href={network.href} target="_blank" rel="noreferrer" aria-label={network.ariaLabel}>
+          <SocialIcon name={network.name} />
+          {showLabels ? ` ${network.label}` : null}
+        </a>
+      ))}
+    </div>
+  )
+}
+
+function HeaderPhoneBlock() {
+  return <div className="header-contact-block">
+    <a className="header-phone" href={primaryPhoneHref}>
+      <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" />
+      {primaryPhone}
+    </a>
+    <a className="header-phone header-phone-secondary" href={secondaryPhoneHref}>
+      <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" />
+      {secondaryPhone}
+    </a>
+    <a className="header-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
+  </div>
+}
+
+function MobilePhoneLinks() {
+  return <div className="mobile-phone-links">
+    <a className="mobile-nav-phone" href={primaryPhoneHref}><img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" /> {primaryPhone}</a>
+    <a className="mobile-nav-phone" href={secondaryPhoneHref}><img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" /> {secondaryPhone}</a>
+    <a className="mobile-nav-email" href={`mailto:${contactEmail}`}><img className="mail-icon" src={mailIcon} alt="" aria-hidden="true" /> {contactEmail}</a>
+  </div>
+}
+
 function AdvantageIcon({ name }: { name: string }) {
   if (name === "activity") {
     return (
@@ -460,7 +515,7 @@ function MobileActionBar() {
   const mapUrl = "https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015"
   return createPortal(<>
     <nav className="mobile-action-bar" aria-label="Быстрые действия">
-      <a href="tel:+74951234567">Позвонить</a>
+      <a href={primaryPhoneHref}>Позвонить</a>
       <a href="/#контакты">Контакты</a>
       <button type="button" onClick={() => setMapPromptOpen(true)}>На карте</button>
     </nav>
@@ -500,10 +555,10 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" 
         <a
           className="brand"
           href={isInnerPage ? "/#главная" : "#главная"}
-          aria-label="Позитив-Благоденствие — на главную"
+          aria-label="АНО Позитив — на главную"
         >
-          <img className="brand-mark" src={logoMark} alt="" aria-hidden="true" />
-          <img className="brand-name" src={brandNameArtwork} alt="Позитив-Благоденствие — дом для пожилых людей" />
+          <img className="brand-mark" src={logo} alt="" aria-hidden="true" />
+          <img className="brand-name" src={brandNameArtwork} alt="Позитив-Благоденствие — дом для пожилых людей АНО Позитив" />
           <img className="brand-mobile-logo" src={logo} alt="" aria-hidden="true" />
         </a>
       </div>
@@ -521,22 +576,15 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" 
       </nav>
 
       <div className="header-contacts">
-        <div className="header-contact-block"><a className="header-phone" href="tel:+74951234567">
-          <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" />
-          +7 (495) 123-45-67
-        </a><a className="header-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a></div>
-        <div className="header-socials" aria-label="Социальные сети">
-          <a href="/#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
-          <a href="/#контакты" aria-label="MAX"><SocialIcon name="max" /></a>
-          <a href="/#контакты" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
-        </div>
-        <a className="header-cta" href="tel:+74951234567">
+        <HeaderPhoneBlock />
+        <SocialLinks className="header-socials" />
+        <a className="header-cta" href={primaryPhoneHref}>
           Позвонить <span className="button-arrow"><ArrowIcon /></span>
         </a>
       </div>
 
       <button
-        className="menu-toggle"
+        className={`menu-toggle${menuOpen ? " is-open" : ""}`}
         type="button"
         aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
         aria-expanded={menuOpen}
@@ -545,8 +593,7 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" 
         <span /><span />
       </button>
 
-      {menuOpen && (
-        <nav className="mobile-nav" aria-label="Мобильная навигация">
+      <nav className={`mobile-nav${menuOpen ? " is-open" : ""}`} aria-label="Мобильная навигация" aria-hidden={!menuOpen}>
           {navigation.map((item) => (
             <a
               key={item.label}
@@ -556,18 +603,11 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" 
               {item.label}
             </a>
           ))}
-          <a className="mobile-nav-phone" href="tel:+74951234567">
-            <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" /> +7 (495) 123-45-67
-          </a>
+          <MobilePhoneLinks />
           <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
-          <div className="about-contact-socials mobile-menu-socials" aria-label="Социальные сети">
-            <a href="/#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
-            <a href="/#контакты" aria-label="MAX"><SocialIcon name="max" /></a>
-            <a href="/#контакты" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
-          </div>
-          <a className="mobile-nav-cta" href="tel:+74951234567" onClick={() => setMenuOpen(false)}>Позвонить</a>
-        </nav>
-      )}
+          <SocialLinks className="about-contact-socials mobile-menu-socials" />
+          <a className="mobile-nav-cta" href={primaryPhoneHref} onClick={() => setMenuOpen(false)}>Позвонить</a>
+      </nav>
       <MobileActionBar />
     </header>
   )
@@ -582,33 +622,26 @@ function PrivacyPage() {
           <p className="eyebrow">Правовая информация</p>
           <h1>Политика в отношении обработки персональных данных</h1>
           <p>
-            Редакция от <strong>[дата публикации]</strong>. Документ описывает,
-            как сайт «Позитив-Благоденствие» обрабатывает информацию посетителей.
+            Редакция от <strong>20.09.2026</strong>. Документ описывает,
+            как сайт «АНО Позитив» обрабатывает информацию посетителей.
           </p>
         </section>
-
-        <aside className="privacy-notice reveal" aria-label="Требуется заполнение реквизитов">
-          <strong>Перед публикацией заполните реквизиты.</strong>
-          <span>Дата редакции, домен, ИНН, ОГРН, адреса и контакт для обращений пока отмечены в тексте квадратными скобками.</span>
-        </aside>
 
         <article className="privacy-document">
           <section className="privacy-section reveal">
             <h2>1. Общие положения и сведения об операторе</h2>
-            <p>Настоящая Политика определяет порядок обработки и защиты информации при использовании сайта <mark>[домен сайта]</mark> (далее — Сайт). Владельцем Сайта и оператором персональных данных является Общество с ограниченной ответственностью «Позитив-Благоденствие» (далее — Оператор).</p>
+            <p>Настоящая Политика определяет порядок обработки и защиты информации при использовании сайта <strong>domprestarelyh24.ru</strong> (далее — Сайт). Владельцем Сайта и оператором персональных данных является автономная некоммерческая организация «Позитив» (далее — Оператор).</p>
             <p>Политика разработана с учётом Конституции Российской Федерации, Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных» и иных применимых нормативных правовых актов Российской Федерации.</p>
             <dl className="privacy-details">
-              <div><dt>Полное наименование</dt><dd>Общество с ограниченной ответственностью «Позитив-Благоденствие»</dd></div>
-              <div><dt>Сокращённое наименование</dt><dd>ООО «Позитив-Благоденствие»</dd></div>
-              <div><dt>ИНН / ОГРН / КПП</dt><dd><mark>[внести реквизиты]</mark></dd></div>
-              <div><dt>Юридический и фактический адреса</dt><dd><mark>[внести адреса]</mark></dd></div>
-              <div><dt>Контакт для обращений</dt><dd><mark>[e-mail и телефон]</mark></dd></div>
+              <div><dt>Полное наименование</dt><dd>Автономная некоммерческая организация «Позитив»</dd></div>
+              <div><dt>Сокращённое наименование</dt><dd>АНО «Позитив»</dd></div>
+              <div><dt>Контакт для обращений</dt><dd>{contactEmail}, {primaryPhone}, {secondaryPhone}</dd></div>
             </dl>
           </section>
 
           <section className="privacy-section reveal">
             <h2>2. Назначение сайта и отсутствие форм сбора данных</h2>
-            <p>Сайт носит информационный характер: он знакомит посетителей с деятельностью ООО «Позитив-Благоденствие», условиями проживания, услугами, сотрудниками, фотографиями, отзывами, документами и контактами.</p>
+            <p>Сайт носит информационный характер: он знакомит посетителей с деятельностью АНО «Позитив», условиями проживания, услугами, сотрудниками, фотографиями, отзывами, документами и контактами.</p>
             <p>На Сайте отсутствуют регистрация, личные кабинеты, онлайн-заказы, онлайн-оплата, формы обратной связи, заявки, подписки и поля для ввода имени, телефона, e-mail, документов, сведений о здоровье или иных персональных данных. Посетитель обращается в организацию самостоятельно по указанным телефонам либо через выбранный им сторонний мессенджер.</p>
           </section>
 
@@ -652,19 +685,19 @@ function PrivacyPage() {
           <section className="privacy-section reveal">
             <h2>9. Права субъектов персональных данных</h2>
             <p>В случаях, предусмотренных законодательством, субъект персональных данных вправе получать сведения об обработке данных, требовать уточнения, блокирования, уничтожения или прекращения обработки, отзывать согласие и защищать свои права и законные интересы иными способами.</p>
-            <p>Для обращения по вопросам обработки персональных данных используйте: <mark>[e-mail для обращений]</mark>, <mark>[почтовый адрес]</mark>, <mark>[телефон]</mark>.</p>
+            <p>Для обращения по вопросам обработки персональных данных используйте: {contactEmail}, {primaryPhone}, {secondaryPhone}.</p>
           </section>
 
           <section className="privacy-section reveal">
             <h2>10. Изменение политики</h2>
             <p>Оператор вправе изменять Политику при изменении законодательства, функциональности Сайта, технических решений или порядка обработки информации. Новая редакция вступает в силу с момента публикации на Сайте, если в ней не указан иной срок.</p>
-            <p>Актуальная редакция доступна по адресу <strong>/privacy</strong>. Продолжение использования Сайта означает ознакомление пользователя с настоящей Политикой. Политика не заменяет договоры, правила проживания и иные документы ООО «Позитив-Благоденствие».</p>
+            <p>Актуальная редакция доступна по адресу <strong>domprestarelyh24.ru/privacy</strong>. Продолжение использования Сайта означает ознакомление пользователя с настоящей Политикой. Политика не заменяет договоры, правила проживания и иные документы АНО «Позитив».</p>
           </section>
         </article>
       </main>
       <footer>
-        <img src={logo} alt="Позитив-Благоденствие" />
-        <p>© 2026 Дом для пожилых людей «Позитив-Благоденствие»</p>
+        <img src={logo} alt="АНО Позитив" />
+        <p>© 2026 АНО «Позитив»</p>
         <a href="/privacy">Политика конфиденциальности</a>
       </footer>
     </div>
@@ -729,12 +762,12 @@ export default function App() {
 
   useEffect(() => {
     document.title = isPrivacyPage
-      ? "Политика конфиденциальности — Позитив-Благоденствие"
+      ? "Политика конфиденциальности — АНО Позитив"
       : isReviewsPage
-        ? "Отзывы семей — Позитив-Благоденствие"
+        ? "Отзывы семей — АНО Позитив"
         : isPricesPage
-        ? "Цены — Позитив-Благоденствие"
-        : "Позитив-Благоденствие — дом для пожилых людей"
+        ? "Цены — АНО Позитив"
+        : "АНО Позитив — дом для пожилых людей"
   }, [isPricesPage, isPrivacyPage, isReviewsPage])
 
   const moveGallery = (direction: number) => {
@@ -834,18 +867,18 @@ export default function App() {
           <a
             className="brand"
             href="/#главная"
-            aria-label="Позитив-Благоденствие — на главную"
+            aria-label="АНО Позитив — на главную"
           >
             <img
               className="brand-mark"
-              src={logoMark}
+              src={logo}
               alt=""
               aria-hidden="true"
             />
             <img
               className="brand-name"
               src={brandNameArtwork}
-              alt="Позитив-Благоденствие — дом для пожилых людей"
+              alt="Позитив-Благоденствие — дом для пожилых людей АНО Позитив"
             />
             <img className="brand-mobile-logo" src={logo} alt="" aria-hidden="true" />
           </a>
@@ -863,23 +896,10 @@ export default function App() {
           </nav>
 
           <div className="header-contacts">
-            <div className="header-contact-block"><a className="header-phone" href="tel:+74951234567">
-              <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" />
-              +7 (495) 123-45-67
-            </a><a className="header-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a></div>
+            <HeaderPhoneBlock />
             <div className="header-contact-actions">
-              <div className="header-socials" aria-label="Социальные сети">
-                <a href="/#контакты" aria-label="Telegram">
-                  <SocialIcon name="telegram" />
-                </a>
-                <a href="/#контакты" aria-label="MAX">
-                  <SocialIcon name="max" />
-                </a>
-                <a href="/#контакты" aria-label="ВКонтакте">
-                  <SocialIcon name="vk" />
-                </a>
-              </div>
-              <a className="header-cta" href="tel:+74951234567">
+              <SocialLinks className="header-socials" />
+              <a className="header-cta" href={primaryPhoneHref}>
                 Позвонить
                 <span className="button-arrow">
                   <ArrowIcon />
@@ -889,7 +909,7 @@ export default function App() {
           </div>
 
           <button
-            className="menu-toggle"
+            className={`menu-toggle${menuOpen ? " is-open" : ""}`}
             type="button"
             aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
             aria-expanded={menuOpen}
@@ -899,8 +919,7 @@ export default function App() {
             <span />
           </button>
 
-          {menuOpen && (
-            <nav className="mobile-nav" aria-label="Мобильная навигация">
+          <nav className={`mobile-nav${menuOpen ? " is-open" : ""}`} aria-label="Мобильная навигация" aria-hidden={!menuOpen}>
               {navigation.map((item) => (
                 <a
                   key={item.label}
@@ -910,24 +929,17 @@ export default function App() {
                   {item.label}
                 </a>
               ))}
-              <a className="mobile-nav-phone" href="tel:+74951234567">
-                <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" /> +7 (495) 123-45-67
-              </a>
+              <MobilePhoneLinks />
               <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
-              <div className="about-contact-socials mobile-menu-socials" aria-label="Социальные сети">
-                <a href="https://t.me/" target="_blank" rel="noreferrer" aria-label="Telegram"><SocialIcon name="telegram" /></a>
-                <a href="https://max.ru/" target="_blank" rel="noreferrer" aria-label="MAX"><SocialIcon name="max" /></a>
-                <a href="https://vk.com/" target="_blank" rel="noreferrer" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
-              </div>
+              <SocialLinks className="about-contact-socials mobile-menu-socials" />
               <a
                 className="mobile-nav-cta"
-                href="tel:+74951234567"
+                href={primaryPhoneHref}
                 onClick={() => setMenuOpen(false)}
               >
                 Позвонить
               </a>
-            </nav>
-          )}
+          </nav>
           <MobileActionBar />
         </header>
 
@@ -1016,8 +1028,8 @@ export default function App() {
         </main>
 
         <footer>
-          <img src={logo} alt="Позитив-Благоденствие" />
-          <p>© 2026 Дом для пожилых людей «Позитив-Благоденствие»</p>
+          <img src={logo} alt="АНО Позитив" />
+          <p>© 2026 АНО «Позитив»</p>
           <a href="/privacy">Политика конфиденциальности</a>
         </footer>
       </div>
@@ -1025,13 +1037,15 @@ export default function App() {
   }
 
   const handleGalleryPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "mouse" && event.button !== 0) return
+    // Mouse clicks open the active image; dragging is reserved for touch input.
+    if (event.pointerType === "mouse") return
 
     galleryPointer.current = { x: event.clientX, y: event.clientY, moved: false }
     event.currentTarget.setPointerCapture(event.pointerId)
   }
 
   const handleGalleryPointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse") return
     const start = galleryPointer.current
     if (!start) return
 
@@ -1099,7 +1113,7 @@ export default function App() {
               <p className="eyebrow">Нужна консультация?</p>
               <h2>Поможем выбрать подходящие условия</h2>
             </div>
-            <a className="primary-button" href="tel:+74951234567">
+            <a className="primary-button" href={primaryPhoneHref}>
               Позвонить <span className="button-arrow"><ArrowIcon /></span>
             </a>
           </section>
@@ -1109,8 +1123,8 @@ export default function App() {
           </a>
         </main>
         <footer>
-          <img src={logo} alt="Позитив-Благоденствие" />
-          <p>© 2026 Дом для пожилых людей «Позитив-Благоденствие»</p>
+          <img src={logo} alt="АНО Позитив" />
+          <p>© 2026 АНО «Позитив»</p>
           <a href="/privacy">Политика конфиденциальности</a>
         </footer>
       </div>
@@ -1123,18 +1137,18 @@ export default function App() {
         <a
           className="brand"
           href="#главная"
-          aria-label="Позитив-Благоденствие — на главную"
+          aria-label="АНО Позитив — на главную"
         >
           <img
             className="brand-mark"
-            src={logoMark}
+            src={logo}
             alt=""
             aria-hidden="true"
           />
           <img
             className="brand-name"
             src={brandNameArtwork}
-            alt="Позитив-Благоденствие — дом для пожилых людей"
+            alt="Позитив-Благоденствие — дом для пожилых людей АНО Позитив"
           />
           <img className="brand-mobile-logo" src={logo} alt="" aria-hidden="true" />
         </a>
@@ -1148,23 +1162,10 @@ export default function App() {
         </nav>
 
         <div className="header-contacts">
-          <div className="header-contact-block"><a className="header-phone" href="tel:+74951234567">
-            <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" />
-            +7 (495) 123-45-67
-          </a><a className="header-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a></div>
+          <HeaderPhoneBlock />
           <div className="header-contact-actions">
-            <div className="header-socials" aria-label="Социальные сети">
-              <a href="#контакты" aria-label="Telegram">
-                <SocialIcon name="telegram" />
-              </a>
-              <a href="#контакты" aria-label="MAX">
-                <SocialIcon name="max" />
-              </a>
-              <a href="#контакты" aria-label="ВКонтакте">
-                <SocialIcon name="vk" />
-              </a>
-            </div>
-            <a className="header-cta" href="tel:+74951234567">
+            <SocialLinks className="header-socials" />
+            <a className="header-cta" href={primaryPhoneHref}>
               Позвонить
               <span className="button-arrow">
                 <ArrowIcon />
@@ -1174,7 +1175,7 @@ export default function App() {
         </div>
 
         <button
-          className="menu-toggle"
+          className={`menu-toggle${menuOpen ? " is-open" : ""}`}
           type="button"
           aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
           aria-expanded={menuOpen}
@@ -1184,8 +1185,7 @@ export default function App() {
           <span />
         </button>
 
-        {menuOpen && (
-          <nav className="mobile-nav" aria-label="Мобильная навигация">
+        <nav className={`mobile-nav${menuOpen ? " is-open" : ""}`} aria-label="Мобильная навигация" aria-hidden={!menuOpen}>
             {navigation.map((item) => (
               <a
                 key={item.label}
@@ -1195,24 +1195,17 @@ export default function App() {
                 {item.label}
               </a>
             ))}
-            <a className="mobile-nav-phone" href="tel:+74951234567">
-              <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" /> +7 (495) 123-45-67
-            </a>
+            <MobilePhoneLinks />
             <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
-            <div className="about-contact-socials mobile-menu-socials" aria-label="Социальные сети">
-              <a href="#контакты" aria-label="Telegram"><SocialIcon name="telegram" /></a>
-              <a href="#контакты" aria-label="MAX"><SocialIcon name="max" /></a>
-              <a href="#контакты" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
-            </div>
+            <SocialLinks className="about-contact-socials mobile-menu-socials" />
             <a
               className="mobile-nav-cta"
-              href="tel:+74951234567"
+              href={primaryPhoneHref}
               onClick={() => setMenuOpen(false)}
             >
               Позвонить
             </a>
-          </nav>
-        )}
+        </nav>
         <MobileActionBar />
       </header>
 
@@ -1229,7 +1222,7 @@ export default function App() {
               <br />
               наполнен вниманием, теплом и уважением.
             </p>
-            <a className="primary-button" href="tel:+74951234567">
+            <a className="primary-button" href={primaryPhoneHref}>
               Позвонить
               <span className="button-arrow">
                 <ArrowIcon />
@@ -1274,25 +1267,21 @@ export default function App() {
             <img className="about-summary-branch" src={aboutSummaryBranch} alt="" aria-hidden="true" />
             <p className="eyebrow">Почему выбирают нас</p>
             <h2><span className="summary-title-first">Здесь близкому человеку</span> <span className="keep-together">по‑настоящему<span className="summary-desktop-break"><br /></span> спокойно</span></h2>
-            <p>
-              Мы создаём не просто комфортные условия, а тёплую и уважительную
-              среду, где замечают привычки человека, поддерживают его
-              самостоятельность и всегда остаются на связи с семьёй.
-            </p>
+            <div className="about-summary-copy">
+              <p>Наши специалисты бережно поддерживают привычный ритм жизни, помогают сохранять самостоятельность и уверенность. Важная часть заботы — общение, интерес к жизни и привычные занятия.</p>
+              <p>Мы создаём спокойную и безопасную атмосферу, где внимание, забота и помощь всегда рядом.</p>
+            </div>
             <div className="about-summary-traits">
               Забота без формальностей <span>•</span> Внимательное отношение
               <span>•</span> Домашняя атмосфера
             </div>
             <div className="about-contact-mini">
               <strong>Свяжитесь с нами</strong>
-              <a href="tel:+74951234567">Телефон: +7 (495) 123-45-67</a>
+              <a className="about-contact-phone" href={primaryPhoneHref}>Телефон: {primaryPhone}</a>
+              <a className="about-contact-phone" href={secondaryPhoneHref}>Телефон: {secondaryPhone}</a>
               <span>Ежедневно: с 9:00 до 20:00</span>
               <a className="about-contact-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">Адрес: г. Москва, ул. Добра, д. 15</a>
-              <div className="about-contact-socials" aria-label="Социальные сети">
-                <a href="https://t.me/" target="_blank" rel="noreferrer" aria-label="Telegram"><SocialIcon name="telegram" /></a>
-                <a href="https://max.ru/" target="_blank" rel="noreferrer" aria-label="MAX"><SocialIcon name="max" /></a>
-                <a href="https://vk.com/" target="_blank" rel="noreferrer" aria-label="ВКонтакте"><SocialIcon name="vk" /></a>
-              </div>
+              <SocialLinks className="about-contact-socials" />
             </div>
           </div>
           <div className="about-map contact-visual reveal" aria-label="Карта расположения дома">
@@ -1350,7 +1339,7 @@ export default function App() {
               <h3>Всё необходимое для спокойной жизни</h3>
               <p>Уютная комната, ежедневный уход, питание и внимание персонала включены в стоимость.</p>
               <strong className="pricing-range">от 1 490 до 2 490 <small>₽/день</small></strong>
-              <span className="pricing-note">Уточняйте актуальные цены по телефону</span>
+              <span className="pricing-note">Проконсультируйтесь со специалистом</span>
               <a className="text-link" href="/prices">Смотреть полный прейскурант <ArrowIcon /></a>
             </div>
             <img src={comfortArtwork} alt="Уютная комната и забота" />
@@ -1377,8 +1366,8 @@ export default function App() {
                   className={`staff-card reveal reveal-delay-${index + 1}`}
                   key={`${member.name}-${member.role}`}
                 >
-                  <div className="staff-photo" aria-hidden="true">
-                    <img src={staffPhoto} alt="" />
+                  <div className={`staff-photo${member.photo ? " staff-photo--director" : ""}`} aria-hidden="true">
+                    <img src={member.photo ?? staffPhoto} alt="" />
                   </div>
                   <div className="staff-copy">
                     <h3>{member.name}</h3>
@@ -1524,7 +1513,7 @@ export default function App() {
           <div className="information-grid">
             {informationTiles.map((item, index) => (
               <article
-                className={`information-card reveal reveal-delay-${index + 1}`}
+                className={`information-card${item.id === "документы" ? " information-card--documents" : ""} reveal reveal-delay-${index + 1}`}
                 id={item.id}
                 key={item.title}
               >
@@ -1639,37 +1628,34 @@ export default function App() {
               <p className="eyebrow">Контакты</p>
               <h2>Мы всегда на связи</h2>
               <div className="contact-list">
-                <a href="tel:+74951234567">
+                <a href={primaryPhoneHref}>
                   <span className="contact-icon"><img src={phoneIcon} alt="" aria-hidden="true" /></span>
                   <span>
-                    <strong>+7 (495) 123-45-67</strong>
+                    <strong>{primaryPhone}</strong>
                     <small>Ежедневно с 9:00 до 20:00</small>
                   </span>
                 </a>
-                <a href="mailto:info@positiv-blago.ru">
+                <a href={secondaryPhoneHref}>
+                  <span className="contact-icon"><img src={phoneIcon} alt="" aria-hidden="true" /></span>
+                  <span>
+                    <strong>{secondaryPhone}</strong>
+                    <small>Ежедневно с 9:00 до 20:00</small>
+                  </span>
+                </a>
+                <a href={`mailto:${contactEmail}`}>
                   <span className="contact-icon"><img src={mailIcon} alt="" aria-hidden="true" /></span>
                   <span>
-                    <strong>info@positiv-blago.ru</strong>
+                    <strong>{contactEmail}</strong>
                     <small>Ответим в течение дня</small>
                   </span>
                 </a>
               </div>
-              <div className="social-links" aria-label="Социальные сети">
-                <a href="#контакты" aria-label="Telegram">
-                  <SocialIcon name="telegram" /> Telegram
-                </a>
-                <a href="#контакты" aria-label="MAX">
-                  <SocialIcon name="max" /> MAX
-                </a>
-                <a href="#контакты" aria-label="ВКонтакте">
-                  <SocialIcon name="vk" /> ВКонтакте
-                </a>
-              </div>
+              <SocialLinks className="social-links" showLabels />
             </div>
 
             <div className="contact-visual">
               <iframe
-                title="Карта расположения дома Позитив-Благоденствие"
+                title="Карта расположения дома АНО Позитив"
                 src="https://www.openstreetmap.org/export/embed.html?bbox=37.579%2C55.733%2C37.656%2C55.775&amp;layer=mapnik&amp;marker=55.7558%2C37.6176"
                 loading="lazy"
               />
@@ -1688,8 +1674,8 @@ export default function App() {
       </main>
 
       <footer>
-        <img src={logo} alt="Позитив-Благоденствие" />
-        <p>© 2026 Дом для пожилых людей «Позитив-Благоденствие»</p>
+        <img src={logo} alt="АНО Позитив" />
+        <p>© 2026 АНО «Позитив»</p>
         <a href="/privacy">Политика конфиденциальности</a>
       </footer>
     </div>
