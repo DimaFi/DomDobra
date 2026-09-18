@@ -42,13 +42,17 @@ import questionsTile from "@/assets/illustrations/info-questions.png"
 
 import staffPhoto from "@/assets/staff-caregiver-male.png"
 
-import galleryPhoto1 from "@/assets/gallery/gallery-room.jpg"
+import roomTvCornerPhoto from "@/assets/gallery/room-tv-corner.webp"
 
-import galleryPhoto2 from "@/assets/gallery/gallery-dining-room.jpg"
+import bookshelfPhoto from "@/assets/gallery/bookshelf.webp"
 
-import galleryPhoto3 from "@/assets/gallery/gallery-garden.jpg"
+import twinRoomPhoto from "@/assets/gallery/twin-room.webp"
 
-import galleryPhoto4 from "@/assets/gallery/gallery-library.jpg"
+import singleRoomPhoto from "@/assets/gallery/room-single-bed.webp"
+
+import receptionPhoto from "@/assets/gallery/reception.webp"
+
+import buildingPhoto from "@/assets/gallery/building.webp"
 
 const navigation = [
   { label: "Главная", href: "#главная" },
@@ -338,13 +342,17 @@ const staffMembers = [
 ]
 
 const galleryItems = [
-  { title: "Уютная комната", src: galleryPhoto1 },
+  { title: "Комната с телевизором", src: roomTvCornerPhoto },
 
-  { title: "Обеденная зона", src: galleryPhoto2 },
+  { title: "Книжная полка", src: bookshelfPhoto },
 
-  { title: "Сад пансионата", src: galleryPhoto3 },
+  { title: "Двухместная комната", src: twinRoomPhoto },
 
-  { title: "Светлая библиотека", src: galleryPhoto4 },
+  { title: "Одноместная комната", src: singleRoomPhoto },
+
+  { title: "Стойка администратора", src: receptionPhoto },
+
+  { title: "Здание пансионата", src: buildingPhoto },
 ]
 
 function getGalleryPosition(itemIndex: number, activeIndex: number) {
