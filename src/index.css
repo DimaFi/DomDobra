@@ -3519,10 +3519,10 @@ footer a {
 
   .mobile-nav-socials .social-logo {
     display: block;
-    width: 36px;
-    height: 36px;
+    width: 48px;
+    height: 48px;
     border-radius: 9px;
-    transform: scale(1.15);
+    transform: none;
   }
 
   .mobile-nav-socials a[aria-label="MAX"] .social-logo {
