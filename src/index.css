@@ -1848,6 +1848,7 @@ footer.documents-dialog-footer {
   .about-contact-socials .social-logo{width:34px;height:34px;border-radius:9px;transform:none}
   .about-contact-socials a[aria-label="MAX"] .social-logo{transform:scale(1.24)}
   .mobile-menu-socials .social-logo{transform:translateY(-4px)}
+  .mobile-menu-socials .social-logo{width:42px;height:42px}
   .mobile-menu-socials a[aria-label="MAX"] .social-logo{transform:translateY(-4px) scale(1.24)}
 }
 
