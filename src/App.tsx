@@ -219,28 +219,46 @@ const informationTiles = [
 
 const documentItems = [
   {
-    title: "Лицензия",
-    description: "Документ, подтверждающий право на осуществление деятельности",
-    fileName: "license.pdf",
-    src: "/documents/license.pdf",
+    title: "Свидетельство о постановке на учёт",
+    description: "Федеральная налоговая служба · 13 августа 2024 года",
+    pages: [
+      {
+        fileName: "svidetelstvo-o-postanovke-na-uchet.pdf",
+        src: "/documents/registration/tax-registration-certificate.pdf",
+      },
+    ],
   },
   {
-    title: "Договор аренды",
-    description: "Документы на помещение пансионата",
-    fileName: "lease-agreement.pdf",
-    src: "/documents/lease-agreement.pdf",
+    title: "Лист записи ЕГРЮЛ",
+    description: "Создание ООО «Позитив-Благоденствие» · 13 августа 2024 года",
+    pages: [1, 2, 3, 4, 5].map((page) => ({
+      fileName: `list-zapisi-egryul-stranica-${String(page).padStart(2, "0")}.pdf`,
+      src: `/documents/registration/egrul/page-${String(page).padStart(2, "0")}.pdf`,
+    })),
   },
   {
-    title: "Прейскурант",
-    description: "Стоимость проживания и дополнительных услуг",
-    fileName: "price-list.pdf",
-    src: "/documents/price-list.pdf",
+    title: "Устав ООО «Позитив-Благоденствие»",
+    description: "Утверждён протоколом общего собрания учредителей от 8 августа 2024 года",
+    pages: ["01-cover", "02", "03", "04", "05", "06", "07", "08", "09", "10"].map((page, index) => ({
+      fileName: `ustav-stranica-${String(index + 1).padStart(2, "0")}.pdf`,
+      src: `/documents/registration/charter/page-${page}.pdf`,
+    })),
   },
   {
-    title: "Правила проживания",
-    description: "Общие условия и распорядок дома",
-    fileName: "house-rules.pdf",
-    src: "/documents/house-rules.pdf",
+    title: "Комплексное меню на неделю",
+    description: "Меню на 1–6 день",
+    pages: [1, 2, 3].map((page) => ({
+      fileName: `kompleksnoe-menyu-stranica-${String(page).padStart(2, "0")}.pdf`,
+      src: `/documents/care/weekly-menu/page-${String(page).padStart(2, "0")}.pdf`,
+    })),
+  },
+  {
+    title: "Перечень социальных услуг",
+    description: "Приложение к договору",
+    pages: [6, 7, 8].map((page) => ({
+      fileName: `perechen-socialnyh-uslug-stranica-${String(page).padStart(2, "0")}.pdf`,
+      src: `/documents/services/social-services-list/page-${String(page).padStart(2, "0")}.pdf`,
+    })),
   },
 ]
 
@@ -717,6 +735,7 @@ export default function App() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
   const [documentIndex, setDocumentIndex] = useState<number | null>(null)
+  const [documentPageIndex, setDocumentPageIndex] = useState(0)
 
   useEffect(() => {
     if (!menuOpen) return
@@ -829,11 +848,13 @@ export default function App() {
           (current) =>
             ((current ?? 0) - 1 + documentItems.length) % documentItems.length,
         )
+        setDocumentPageIndex(0)
       }
       if (event.key === "ArrowRight") {
         setDocumentIndex(
           (current) => ((current ?? 0) + 1) % documentItems.length,
         )
+        setDocumentPageIndex(0)
       }
     }
 
@@ -852,10 +873,18 @@ export default function App() {
         ((current ?? 0) + direction + documentItems.length) %
         documentItems.length,
     )
+    setDocumentPageIndex(0)
+  }
+
+  const moveDocumentPage = (direction: number) => {
+    if (documentIndex === null) return
+    const lastPageIndex = documentItems[documentIndex].pages.length - 1
+    setDocumentPageIndex((current) => Math.min(lastPageIndex, Math.max(0, current + direction)))
   }
 
   const openDocuments = () => {
     setDocumentIndex(0)
+    setDocumentPageIndex(0)
   }
 
   if (isPrivacyPage) return <PrivacyPage />
@@ -1591,22 +1620,46 @@ export default function App() {
 
               <div className="document-preview">
                 <iframe
-                  key={documentItems[documentIndex].src}
+                  key={documentItems[documentIndex].pages[documentPageIndex].src}
                   src={
-                    documentItems[documentIndex].src +
+                    documentItems[documentIndex].pages[documentPageIndex].src +
                     "#toolbar=1&navpanes=0&view=FitH"
                   }
                   title={
-                    "Просмотр документа: " + documentItems[documentIndex].title
+                    "Просмотр документа: " + documentItems[documentIndex].title + ", страница " + (documentPageIndex + 1)
                   }
                 />
               </div>
 
+              <div className="document-pages-toolbar" aria-label="Страницы документа">
+                <button
+                  type="button"
+                  aria-label="Предыдущая страница документа"
+                  disabled={documentPageIndex === 0}
+                  onClick={() => moveDocumentPage(-1)}
+                >
+                  <span aria-hidden="true">←</span>
+                  Страница
+                </button>
+                <span>
+                  Страница {documentPageIndex + 1} из {documentItems[documentIndex].pages.length}
+                </span>
+                <button
+                  type="button"
+                  aria-label="Следующая страница документа"
+                  disabled={documentPageIndex === documentItems[documentIndex].pages.length - 1}
+                  onClick={() => moveDocumentPage(1)}
+                >
+                  Страница
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+
               <footer className="documents-dialog-footer">
-                <span>PDF · демонстрационный документ</span>
+                <span>PDF · официальная информация</span>
                 <a
-                  href={documentItems[documentIndex].src}
-                  download={documentItems[documentIndex].fileName}
+                  href={documentItems[documentIndex].pages[documentPageIndex].src}
+                  download={documentItems[documentIndex].pages[documentPageIndex].fileName}
                 >
                   Скачать PDF
                   <span aria-hidden="true">↓</span>
