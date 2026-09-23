@@ -52,6 +52,15 @@ import singleRoomPhoto from "@/assets/gallery/room-single-bed.webp"
 import receptionPhoto from "@/assets/gallery/reception.webp"
 
 import mainGalleryPhoto from "@/assets/gallery/dom-prestarelyh-main.webp"
+import articleChooseHomeCover from "@/assets/article-choose-home-cover-ai.webp"
+import articleChooseHomeConversation from "@/assets/article-choose-home-conversation-ai.webp"
+import articleChooseHomeSource from "@/content/article-choose-home.md?raw"
+import articleStrokeUdarGuide from "@/assets/article-stroke-udar-guide-optimized.webp"
+import articleStrokeRecoveryExercise from "@/assets/article-stroke-recovery-exercise-ai.webp"
+import articleStrokeCareSource from "@/content/article-stroke-care.md?raw"
+import articleFallsCaregiverCane from "@/assets/article-falls-caregiver-cane-optimized.webp"
+import articleFallsSafeBathroom from "@/assets/article-falls-safe-bathroom-optimized.webp"
+import articleFallsPreventionSource from "@/content/article-falls-prevention.md?raw"
 
 const primaryPhone = "8 (8512) 48-19-18"
 const primaryPhoneHref = "tel:+78512481918"
@@ -62,15 +71,28 @@ const telegramUrl = "https://t.me/+79170811327"
 const maxUrl = "https://max.ru/+79170811327"
 const contactEmail = "nko.pozitiv@bk.ru"
 const organizationName = "АНО «Позитив»"
+const locationAddress = "улица Бехтерева, 20Бк1, Астрахань, 414014"
+const mapUrl = "https://yandex.ru/maps/?ll=47.999932%2C46.330031&z=16&pt=47.999932%2C46.330031%2Cpm2rdm"
+const openStreetMapEmbedUrl = "https://www.openstreetmap.org/export/embed.html?bbox=47.974932%2C46.305031%2C48.024932%2C46.355031&layer=mapnik&marker=46.330031%2C47.999932"
+const siteUrl = "https://hseecon.ru"
+const chooseHomeArticlePath = "/articles/kak-vybrat-dom-dlya-pozhilogo/"
+const chooseHomeArticleTitle = "Как выбрать дом для пожилого человека: подробное руководство | АНО «Позитив»"
+const chooseHomeArticleDescription = "Как выбрать дом или пансионат для пожилого человека: условия проживания, безопасность, питание, общение, бытовая помощь и вопросы, которые стоит задать перед заселением."
+const strokeCareArticlePath = "/articles/uhod-posle-insulta/"
+const strokeCareArticleTitle = "Уход за пожилым человеком после инсульта: что важно знать родственникам | АНО «Позитив»"
+const strokeCareArticleDescription = "Понятная памятка для родственников: безопасный быт, повседневная помощь, общение, питание, восстановление после инсульта и признаки, при которых нужна экстренная помощь."
+const fallsArticlePath = "/articles/pochemu-pozhiloy-chelovek-padaet/"
+const fallsArticleTitle = "Почему пожилой человек начинает падать: 12 причин, которые семья часто не замечает | АНО «Позитив»"
+const fallsArticleDescription = "12 распространённых причин падений у пожилых людей: освещение, коврики, обувь, лекарства, зрение, ванная комната, безопасный дом и ситуации, когда нужна медицинская оценка."
 
 const navigation = [
   { label: "Главная", href: "#главная" },
 
   { label: "О нас", href: "#о-нас" },
 
-  { label: "Цены", href: "/prices" },
+  { label: "Статьи", href: "/articles/" },
 
-  { label: "Отзывы", href: "/reviews" },
+  { label: "Отзывы", href: "/reviews/" },
 
   { label: "Контакты", href: "#контакты" },
 ]
@@ -197,7 +219,7 @@ const informationTiles = [
 
     link: "Читать",
 
-    href: "/reviews",
+    href: "/reviews/",
 
     artwork: reviewsTile,
   },
@@ -263,6 +285,22 @@ const documentItems = [
 ]
 
 const familyReviews = [
+  {
+    name: "Марина Свердлова",
+
+    relation: "Знаток города · 6 уровень",
+
+    date: "22 октября 2022",
+
+    order: 7,
+
+    rating: 5,
+
+    text: "Очень хороший пансионат. Работают очень добрые люди, хороший уход. Чистота и уют. Пятиразовое питание, на кухне работают профессионалы, обеды вкусные и полезные. В комнатах все с удобствами, живут по два человека. Я очень рада, что узнала и познакомилась с хозяйкой пансионата Позитив. Персонал весь приветливый, заботливый, отзывчивый. Спасибо, что есть такие люди, которые не оставят стариков в беде.",
+
+    traits: ["Уход", "Чистота и уют"],
+  },
+
   {
     name: "Елена",
 
@@ -368,6 +406,10 @@ const staffMembers = [
   { name: "Иван Иванов", role: "Координатор заботы" },
 ]
 
+// Полный список сохранён для будущего расширения раздела. На главной пока
+// показываем только руководителя, чтобы блок оставался лаконичным.
+const visibleStaffMembers = staffMembers.slice(0, 1)
+
 const galleryItems = [
   { title: "Здание пансионата", src: mainGalleryPhoto },
 
@@ -438,7 +480,7 @@ function ArrowIcon() {
   )
 }
 
-function SocialIcon({ name }: { name: "telegram" | "max" | "vk" }) {
+function SocialIcon({ name }: { name: "telegram" | "max" }) {
   return <img className="social-logo" src={`/social/${name}.png`} alt="" />
 }
 
@@ -451,7 +493,6 @@ function SocialLinks({ className, showLabels = false }: SocialLinksProps) {
   const networks = [
     { name: "telegram" as const, label: "Telegram", href: telegramUrl, ariaLabel: `Telegram: ${messengerPhone}` },
     { name: "max" as const, label: "MAX", href: maxUrl, ariaLabel: `MAX: ${messengerPhone}` },
-    { name: "vk" as const, label: "ВКонтакте", href: "https://vk.com/", ariaLabel: "ВКонтакте" },
   ]
 
   return (
@@ -476,7 +517,7 @@ function HeaderPhoneBlock() {
       <img className="phone-icon" src={phoneIcon} alt="" aria-hidden="true" />
       {secondaryPhone}
     </a>
-    <a className="header-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
+    <a className="header-address" href={mapUrl} target="_blank" rel="noreferrer">{locationAddress}</a>
   </div>
 }
 
@@ -530,7 +571,6 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 
 function MobileActionBar() {
   const [mapPromptOpen, setMapPromptOpen] = useState(false)
-  const mapUrl = "https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015"
   return createPortal(<>
     <nav className="mobile-action-bar" aria-label="Быстрые действия">
       <a href={primaryPhoneHref}>Позвонить</a>
@@ -546,7 +586,39 @@ function MobileActionBar() {
   </>, document.body)
 }
 
-function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" }) {
+function LocationMap({ title }: { title: string }) {
+  const [isInteractive, setIsInteractive] = useState(false)
+  const [mapInstance, setMapInstance] = useState(0)
+
+  const resetMap = () => {
+    setIsInteractive(false)
+    setMapInstance((current) => current + 1)
+  }
+
+  return (
+    <>
+      <iframe
+        key={mapInstance}
+        className={`location-map-frame${isInteractive ? " is-interactive" : ""}`}
+        title={title}
+        src={openStreetMapEmbedUrl}
+        loading="lazy"
+      />
+      <div className="map-controls" aria-label="Управление картой">
+        <button
+          type="button"
+          aria-pressed={isInteractive}
+          onClick={() => setIsInteractive((current) => !current)}
+        >
+          {isInteractive ? "Зафиксировать" : "Управлять"}
+        </button>
+        <button type="button" onClick={resetMap}>Центрировать</button>
+      </div>
+    </>
+  )
+}
+
+function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" | "articles" }) {
   const isInnerPage = page !== "home"
   const [menuOpen, setMenuOpen] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
@@ -584,7 +656,7 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" 
       <nav className="desktop-nav" aria-label="Основная навигация">
         {navigation.map((item) => (
           <a
-            className={item.href === `/${page}` ? "is-current" : ""}
+            className={item.href === `/${page}/` ? "is-current" : ""}
             key={item.label}
             href={isInnerPage && item.href.startsWith("#") ? "/" + item.href : item.href}
           >
@@ -622,12 +694,631 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" 
             </a>
           ))}
           <MobilePhoneLinks />
-          <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
+          <a className="mobile-nav-address" href={mapUrl} target="_blank" rel="noreferrer">{locationAddress}</a>
           <SocialLinks className="about-contact-socials mobile-menu-socials" />
           <a className="mobile-nav-cta" href={primaryPhoneHref} onClick={() => setMenuOpen(false)}>Позвонить</a>
       </nav>
       <MobileActionBar />
     </header>
+  )
+}
+
+function SiteFooter() {
+  return (
+    <footer>
+      <img src={logo} alt="АНО Позитив" />
+      <div className="footer-details">
+        <p>© 2026 АНО «Позитив»</p>
+        <dl className="footer-requisites" aria-label="Реквизиты организации">
+          <div><dt>ИНН</dt><dd>3000014577</dd></div>
+          <div><dt>КПП</dt><dd>300001001</dd></div>
+          <div><dt>ОГРН</dt><dd>1243000003641</dd></div>
+        </dl>
+      </div>
+      <a href="/privacy/">Политика конфиденциальности</a>
+    </footer>
+  )
+}
+
+const articleDrafts = [
+  {
+    title: "Уход за пожилым человеком после инсульта",
+    description: "Что важно знать родственникам после возвращения близкого домой: безопасный быт, повседневная помощь и признаки, требующие срочной медицинской оценки.",
+    href: strokeCareArticlePath,
+  },
+  {
+    title: "Как выбрать дом для пожилого человека",
+    description: "Подробное руководство для семьи: условия проживания, безопасность, общение и важные вопросы перед заселением.",
+    href: chooseHomeArticlePath,
+  },
+  {
+    title: "Почему пожилой человек начинает падать",
+    description: "12 причин, которые семья часто не замечает: от освещения и ковриков до самочувствия, лекарств и безопасного передвижения дома.",
+    href: fallsArticlePath,
+  },
+]
+
+function ArticlesPage() {
+  return (
+    <div className="site-shell articles-page">
+      <SiteHeader page="articles" />
+      <main className="articles-main">
+        <section className="articles-hero reveal">
+          <p className="eyebrow">Полезные материалы</p>
+          <h1>Статьи о заботе и проживании</h1>
+          <p>
+            Здесь будут собраны понятные материалы для семей, которые выбирают
+            дом для пожилого человека в Астрахани или готовятся к переезду близкого.
+          </p>
+        </section>
+
+        <section className="articles-list-section" aria-label="Список статей">
+          <p className="articles-disclaimer reveal">
+            Материалы носят ознакомительный характер и не являются медицинскими рекомендациями. Вопросы лечения, реабилитации и назначения лекарств следует обсуждать с врачом.
+          </p>
+
+          <div className="articles-grid">
+            {articleDrafts.map((article, index) => (
+              <article className={`article-card${article.href ? " article-card--available" : ""} reveal reveal-delay-${(index % 3) + 1}`} key={article.title}>
+                {article.href ? (
+                  <a className="article-card-main" href={article.href}>
+                    <span className="article-card-number">0{index + 1}</span>
+                    <h3>{article.title}</h3>
+                    <p>{article.description}</p>
+                    <span className="article-card-status article-card-read">Читать статью <span aria-hidden="true">→</span></span>
+                  </a>
+                ) : (
+                  <>
+                    <span className="article-card-number">0{index + 1}</span>
+                    <h3>{article.title}</h3>
+                    <p>{article.description}</p>
+                    <span className="article-card-status">Материал готовится</span>
+                  </>
+                )}
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <a className="reviews-back" href="/#главная">
+          <span aria-hidden="true">←</span> Вернуться на главную
+        </a>
+      </main>
+      <SiteFooter />
+    </div>
+  )
+}
+
+type ArticleBlock =
+  | { type: "heading"; value: string }
+  | { type: "subheading"; value: string }
+  | { type: "paragraph"; value: string }
+  | { type: "unordered-list"; items: string[] }
+  | { type: "checklist"; items: string[] }
+  | { type: "ordered-list"; items: string[] }
+
+const chooseHomeArticleMarkdown = articleChooseHomeSource
+  .split("Используй следующий текст:")
+  .at(-1)
+  ?.trim()
+  .replace(/^# .+[\s\S]*?(?=## Сначала определите, какая помощь действительно необходима)/, "") ?? ""
+
+const parseArticleBlocks = (source: string): ArticleBlock[] => {
+  const lines = source.split(/\r?\n/)
+  const blocks: ArticleBlock[] = []
+
+  for (let index = 0; index < lines.length;) {
+    const line = lines[index].trim()
+    if (!line) { index += 1; continue }
+    if (line.startsWith("### ")) {
+      blocks.push({ type: "subheading", value: line.slice(4) })
+      index += 1
+      continue
+    }
+    if (line.startsWith("## ")) {
+      blocks.push({ type: "heading", value: line.slice(3) })
+      index += 1
+      continue
+    }
+    if (line.startsWith("— ")) {
+      const items: string[] = []
+      while (index < lines.length) {
+        const item = lines[index]?.trim() ?? ""
+        if (item.startsWith("— ")) {
+          items.push(item.slice(2))
+          index += 1
+          continue
+        }
+        if (!item) {
+          const nextIndex = lines.findIndex((nextLine, next) => next >= index && nextLine.trim() !== "")
+          if (nextIndex !== -1 && lines[nextIndex].trim().startsWith("— ")) {
+            index = nextIndex
+            continue
+          }
+        }
+        break
+      }
+      blocks.push({ type: "unordered-list", items })
+      continue
+    }
+    if (line.startsWith("□ ")) {
+      const items: string[] = []
+      while (index < lines.length) {
+        const item = lines[index]?.trim() ?? ""
+        if (item.startsWith("□ ")) {
+          items.push(item.slice(2))
+          index += 1
+          continue
+        }
+        if (!item) {
+          const nextIndex = lines.findIndex((nextLine, next) => next >= index && nextLine.trim() !== "")
+          if (nextIndex !== -1 && lines[nextIndex].trim().startsWith("□ ")) {
+            index = nextIndex
+            continue
+          }
+        }
+        break
+      }
+      blocks.push({ type: "checklist", items })
+      continue
+    }
+    if (/^\d+\. /.test(line)) {
+      const items: string[] = []
+      while (/^\d+\. /.test(lines[index]?.trim() ?? "")) {
+        items.push(lines[index].trim().replace(/^\d+\. /, ""))
+        index += 1
+      }
+      blocks.push({ type: "ordered-list", items })
+      continue
+    }
+    const paragraph: string[] = []
+    while (index < lines.length && lines[index].trim() && !lines[index].trim().startsWith("## ") && !lines[index].trim().startsWith("### ") && !lines[index].trim().startsWith("— ") && !lines[index].trim().startsWith("□ ") && !/^\d+\. /.test(lines[index].trim())) {
+      paragraph.push(lines[index].trim())
+      index += 1
+    }
+    blocks.push({ type: "paragraph", value: paragraph.join(" ") })
+  }
+  return blocks
+}
+
+const chooseHomeArticleBlocks = parseArticleBlocks(chooseHomeArticleMarkdown)
+
+const strokeCareArticleMarkdown = articleStrokeCareSource
+  .split("Используй следующий текст:")
+  .at(-1)
+  ?.trim()
+  .replace(/^# .+[\s\S]*?(?=## Первое время после возвращения домой)/, "") ?? ""
+
+const strokeCareArticleBlocks = parseArticleBlocks(strokeCareArticleMarkdown)
+
+const fallsArticleMarkdown = articleFallsPreventionSource
+  .replace(/^[\s\S]*?(?=# Почему пожилой человек начинает падать)/, "")
+  .replace(/^# Почему пожилой человек начинает падать[^\n]*[\s\S]*?(?=## 1\. Человек стал хуже видеть)/, "")
+  .replace(/\n# /g, "\n## ")
+
+const fallsArticleBlocks = parseArticleBlocks(fallsArticleMarkdown)
+
+const fallsArticleAnchors: Record<string, string> = {
+  "1. Человек стал хуже видеть": "vision",
+  "2. Обычный коврик может стать препятствием": "rugs",
+  "3. Ночью путь до туалета становится сложнее": "night-route",
+  "4. Слишком быстрое вставание": "standing",
+  "5. Некоторые лекарства могут влиять на устойчивость": "medicines",
+  "6. Слабость ног развивается незаметно": "strength",
+  "7. Неподходящая обувь": "shoes",
+  "8. Ванная комната — особая зона риска": "bathroom",
+  "12. Иногда падение — не бытовая случайность": "not-accident",
+  "Проверьте квартиру за 10 минут": "home-check",
+  "Что делать, если пожилой человек уже упал": "after-fall",
+  "Когда стоит поговорить с врачом": "doctor",
+  "Главное": "summary",
+}
+
+const fallsContents = [
+  ["12 причин падений", "vision"],
+  ["Коврики и ночной маршрут", "rugs"],
+  ["Самочувствие и лекарства", "standing"],
+  ["Обувь и ванная", "shoes"],
+  ["Проверка квартиры", "home-check"],
+  ["Если падение уже произошло", "after-fall"],
+  ["Когда нужен врач", "doctor"],
+  ["Главное", "summary"],
+]
+
+const strokeCareArticleAnchors: Record<string, string> = {
+  "Первое время после возвращения домой": "first-days",
+  "Какая помощь может понадобиться после инсульта": "everyday-help",
+  "Сделайте пространство безопаснее": "safety",
+  "Не торопите человека при передвижении": "mobility",
+  "Физическая активность и восстановление": "recovery",
+  "Если человеку стало сложно говорить": "communication",
+  "Проблемы с памятью и вниманием": "memory",
+  "Питание после инсульта": "nutrition",
+  "Личная гигиена и повседневные действия": "hygiene",
+  "Когда необходимо срочно обращаться за медицинской помощью": "emergency",
+  "Коротко: памятка родственникам": "checklist",
+}
+
+const strokeCareContents = [
+  ["Первые дни дома", "first-days"],
+  ["Какая помощь нужна", "everyday-help"],
+  ["Безопасное пространство", "safety"],
+  ["Передвижение", "mobility"],
+  ["Восстановление", "recovery"],
+  ["Общение и память", "communication"],
+  ["Питание", "nutrition"],
+  ["Экстренная помощь", "emergency"],
+  ["Памятка семье", "checklist"],
+]
+
+const chooseHomeArticleAnchors: Record<string, string> = {
+  "Сначала определите, какая помощь действительно необходима": "help",
+  "Обязательно посмотрите условия проживания лично": "conditions",
+  "Обратите внимание на безопасность": "safety",
+  "Узнайте, как проходит обычный день": "routine",
+  "Общение имеет не меньшее значение, чем бытовые условия": "communication",
+  "Узнайте, как организовано питание": "food",
+  "Спросите, какая помощь оказывается в быту": "household-support",
+  "Что учитывать при хронических заболеваниях": "health",
+  "Какие вопросы задать перед заселением": "questions",
+  "Как подготовиться к переезду": "moving",
+}
+
+const chooseHomeContents = [
+  ["Какая помощь необходима", "help"],
+  ["Условия проживания", "conditions"],
+  ["Безопасность", "safety"],
+  ["Распорядок дня", "routine"],
+  ["Общение", "communication"],
+  ["Питание", "food"],
+  ["Бытовая помощь", "household-support"],
+  ["Состояние здоровья", "health"],
+  ["Вопросы перед заселением", "questions"],
+  ["Подготовка к переезду", "moving"],
+]
+
+function ChooseHomeArticlePage() {
+  const [contentsOpen, setContentsOpen] = useState(() => window.innerWidth >= 761)
+
+  useEffect(() => {
+    const setMeta = (attribute: "name" | "property", value: string, content: string) => {
+      let element = document.head.querySelector(`meta[${attribute}="${value}"]`) as HTMLMetaElement | null
+      if (!element) {
+        element = document.createElement("meta")
+        element.setAttribute(attribute, value)
+        document.head.append(element)
+      }
+      element.content = content
+    }
+
+    document.title = chooseHomeArticleTitle
+    setMeta("name", "description", chooseHomeArticleDescription)
+    setMeta("name", "robots", "index, follow")
+    setMeta("property", "og:type", "article")
+    setMeta("property", "og:title", chooseHomeArticleTitle)
+    setMeta("property", "og:description", chooseHomeArticleDescription)
+    setMeta("property", "og:url", siteUrl + chooseHomeArticlePath)
+    setMeta("property", "og:image", siteUrl + articleChooseHomeCover)
+    setMeta("name", "twitter:card", "summary_large_image")
+
+    let canonical = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null
+    if (!canonical) {
+      canonical = document.createElement("link")
+      canonical.rel = "canonical"
+      document.head.append(canonical)
+    }
+    canonical.href = siteUrl + chooseHomeArticlePath
+
+    const previousSchema = document.getElementById("choose-home-article-jsonld")
+    previousSchema?.remove()
+    const schema = document.createElement("script")
+    schema.id = "choose-home-article-jsonld"
+    schema.type = "application/ld+json"
+    schema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: "Как выбрать дом для пожилого человека: на что обратить внимание семье",
+      description: chooseHomeArticleDescription,
+      image: [siteUrl + articleChooseHomeCover, siteUrl + articleChooseHomeConversation],
+      mainEntityOfPage: siteUrl + chooseHomeArticlePath,
+      author: { "@type": "Organization", name: organizationName },
+      publisher: { "@type": "Organization", name: organizationName },
+    })
+    document.head.append(schema)
+  }, [])
+
+  return (
+    <div className="site-shell article-page">
+      <SiteHeader page="articles" />
+      <main className="article-main">
+        <nav className="breadcrumbs" aria-label="Хлебные крошки">
+          <a href="/#главная">Главная</a><span aria-hidden="true">→</span><a href="/articles/">Статьи</a><span aria-hidden="true">→</span><span>Как выбрать дом для пожилого человека</span>
+        </nav>
+
+        <article className="article-document">
+          <header className="article-hero reveal">
+            <p className="eyebrow">Полезные материалы</p>
+            <h1>Как выбрать дом для пожилого человека: на что обратить внимание семье</h1>
+            <p className="article-lead">Решение о переезде пожилого родственника в специализированный дом или пансионат редко бывает простым. Семье приходится одновременно учитывать состояние здоровья близкого человека, его привычки, характер, степень самостоятельности, условия проживания и множество бытовых вопросов.</p>
+            <p>При этом красивых фотографий комнат и информации о стоимости недостаточно. Важно понять, насколько конкретное место подходит именно вашему родственнику: сможет ли он чувствовать себя там спокойно, безопасно и комфортно, получать необходимую помощь в повседневной жизни и при этом сохранять максимально возможную самостоятельность.</p>
+            <p>Разберём основные вопросы, которые стоит изучить перед выбором дома для пожилого человека.</p>
+          </header>
+
+          <figure className="article-cover reveal">
+            <img src={articleChooseHomeCover} width="1400" height="788" alt="Пожилая пара общается в комфортной домашней обстановке" fetchPriority="high" />
+          </figure>
+
+          <details className="article-contents reveal" open={contentsOpen} onToggle={(event) => setContentsOpen(event.currentTarget.open)}>
+            <summary><span>Содержание</span><small>10 разделов</small></summary>
+            <nav aria-label="Содержание статьи">
+              <ol>{chooseHomeContents.map(([label, anchor]) => <li key={anchor}><a href={`#${anchor}`}>{label}</a></li>)}</ol>
+            </nav>
+          </details>
+
+          <div className="article-body">
+            {chooseHomeArticleBlocks.map((block, index) => {
+              if (block.type === "heading") {
+                const anchor = chooseHomeArticleAnchors[block.value] ?? `article-section-${index}`
+                return (
+                  <div key={block.value}>
+                    {block.value === "Изучите условия проживания в комнате" && <figure className="article-inline-image"><img src={articleChooseHomeConversation} width="1400" height="788" alt="Пожилые женщины общаются в спокойной домашней обстановке" loading="lazy" /></figure>}
+                    <h2 id={anchor}>{block.value}</h2>
+                  </div>
+                )
+              }
+              if (block.type === "unordered-list") return <ul key={index}>{block.items.map((item) => <li key={item}>{item}</li>)}</ul>
+              if (block.type === "checklist") return <ul className="article-checklist" key={index}>{block.items.map((item) => <li key={item}>{item}</li>)}</ul>
+              if (block.type === "ordered-list") return <ol key={index}>{block.items.map((item) => <li key={item}>{item}</li>)}</ol>
+              return <p key={index}>{block.value}</p>
+            })}
+          </div>
+
+          <section className="article-faq" aria-labelledby="article-faq-title">
+            <p className="eyebrow">Ответы для семьи</p>
+            <h2 id="article-faq-title">Частые вопросы</h2>
+            <details><summary>На что в первую очередь обратить внимание при выборе дома для пожилого человека?</summary><p>Сначала оцените, какая помощь нужна именно вашему родственнику, а затем лично посмотрите условия проживания. Важно сопоставить безопасность, бытовые условия, распорядок дня и отношение к людям с потребностями конкретного человека.</p></details>
+            <details><summary>Стоит ли посещать дом для пожилых перед заселением?</summary><p>Да, личное знакомство помогает увидеть помещения, санузлы, территорию и обычную обстановку. Во время визита можно спокойно задать вопросы и составить собственное впечатление.</p></details>
+            <details><summary>Что спросить об уходе перед заселением?</summary><p>Лучше уточнять конкретные бытовые действия: помощь с гигиеной, одеванием, уборкой, передвижением и организацией дня. Также полезно заранее узнать, что входит в стоимость и какие услуги оплачиваются отдельно.</p></details>
+            <details><summary>Что учитывать, если пожилой человек перенёс инсульт?</summary><p>Потребности после инсульта различаются, поэтому следует учитывать фактическое состояние человека и рекомендации лечащего врача и специалистов по реабилитации. Медицинские вопросы, включая нарушения глотания, речи или движения, необходимо обсуждать со специалистами.</p></details>
+            <details><summary>Как помочь пожилому человеку адаптироваться после переезда?</summary><p>Возьмите знакомые вещи, заранее объясните, когда близкие смогут приехать, и по возможности планируйте первые посещения. Адаптация требует разного времени, поэтому важно сохранять спокойствие и связь с семьёй.</p></details>
+          </section>
+
+          <aside className="article-cta reveal">
+            <p className="eyebrow">Условия проживания</p>
+            <h2>Ищете дом для пожилого человека в Астрахани?</h2>
+            <p>Можно спокойно познакомиться с условиями лично, посмотреть помещения и задать вопросы об индивидуальной ситуации близкого человека.</p>
+            <a className="primary-button" href="/#цены">Посмотреть условия проживания <span className="button-arrow"><ArrowIcon /></span></a>
+          </aside>
+        </article>
+      </main>
+      <SiteFooter />
+    </div>
+  )
+}
+
+function StrokeCareArticlePage() {
+  const [contentsOpen, setContentsOpen] = useState(() => window.innerWidth >= 761)
+
+  useEffect(() => {
+    const setMeta = (attribute: "name" | "property", value: string, content: string) => {
+      let element = document.head.querySelector(`meta[${attribute}="${value}"]`) as HTMLMetaElement | null
+      if (!element) {
+        element = document.createElement("meta")
+        element.setAttribute(attribute, value)
+        document.head.append(element)
+      }
+      element.content = content
+    }
+
+    document.title = strokeCareArticleTitle
+    setMeta("name", "description", strokeCareArticleDescription)
+    setMeta("name", "robots", "index, follow")
+    setMeta("property", "og:type", "article")
+    setMeta("property", "og:title", strokeCareArticleTitle)
+    setMeta("property", "og:description", strokeCareArticleDescription)
+    setMeta("property", "og:url", siteUrl + strokeCareArticlePath)
+    setMeta("property", "og:image", siteUrl + articleStrokeUdarGuide)
+    setMeta("name", "twitter:card", "summary_large_image")
+
+    let canonical = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null
+    if (!canonical) {
+      canonical = document.createElement("link")
+      canonical.rel = "canonical"
+      document.head.append(canonical)
+    }
+    canonical.href = siteUrl + strokeCareArticlePath
+
+    document.getElementById("stroke-care-article-jsonld")?.remove()
+    const schema = document.createElement("script")
+    schema.id = "stroke-care-article-jsonld"
+    schema.type = "application/ld+json"
+    schema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: "Уход за пожилым человеком после инсульта: что важно знать родственникам",
+      description: strokeCareArticleDescription,
+      image: [siteUrl + articleStrokeUdarGuide, siteUrl + articleStrokeRecoveryExercise],
+      mainEntityOfPage: siteUrl + strokeCareArticlePath,
+      author: { "@type": "Organization", name: organizationName },
+      publisher: { "@type": "Organization", name: organizationName },
+    })
+    document.head.append(schema)
+  }, [])
+
+  return (
+    <div className="site-shell article-page stroke-article-page">
+      <SiteHeader page="articles" />
+      <main className="article-main">
+        <nav className="breadcrumbs" aria-label="Хлебные крошки">
+          <a href="/#главная">Главная</a><span aria-hidden="true">→</span><a href="/articles/">Статьи</a><span aria-hidden="true">→</span><span>Уход после инсульта</span>
+        </nav>
+
+        <article className="article-document">
+          <header className="article-hero reveal">
+            <p className="eyebrow">Памятка для семьи</p>
+            <h1>Уход после инсульта: что важно знать родственникам</h1>
+            <p className="article-lead">Инсульт может серьёзно изменить привычную жизнь пожилого человека и всей его семьи. После возвращения домой одним людям требуется лишь небольшая помощь, другим — поддержка при передвижении, питании, личной гигиене, общении и выполнении обычных повседневных действий.</p>
+            <p>Последствия инсульта у каждого человека различаются. Они зависят от типа и тяжести инсульта, поражённой области мозга, общего состояния здоровья и других факторов. Поэтому универсальной схемы восстановления, подходящей абсолютно всем, не существует.</p>
+            <p>Основой остаются рекомендации лечащего врача и специалистов, которые занимаются восстановлением конкретного человека. Эта статья поможет родственникам организовать более безопасный и понятный быт, но не заменяет медицинскую консультацию.</p>
+          </header>
+
+          <section className="stroke-udar-card stroke-udar-card--priority reveal" aria-labelledby="udar-title">
+            <div className="stroke-udar-copy">
+              <p className="eyebrow">Действуйте быстро</p>
+              <h2 id="udar-title">Как распознать возможный инсульт: правило «УДАР»</h2>
+              <p>Симптомы инсульта часто возникают внезапно. Если они появились, запомните время начала признаков и вызовите экстренную помощь по номеру 112 или 103 — не ждите, что состояние улучшится само.</p>
+            </div>
+            <img src={articleStrokeUdarGuide} width="1600" height="900" alt="Иллюстрация признаков возможного инсульта: асимметрия лица, слабость руки, нарушение речи и вызов экстренной помощи" fetchPriority="high" />
+            <ol className="stroke-udar-steps">
+              <li><strong>У — Улыбка.</strong> Попросите улыбнуться: настораживает асимметрия лица.</li>
+              <li><strong>Д — Движение.</strong> Попросите поднять обе руки: настораживает слабость или опускание одной руки.</li>
+              <li><strong>А — Артикуляция.</strong> Попросите произнести простую фразу: настораживает внезапно нарушенная речь.</li>
+              <li><strong>Р — Решение.</strong> При появлении таких симптомов нужна срочная медицинская помощь.</li>
+            </ol>
+          </section>
+
+          <p className="article-transition reveal">Дальше разберём подробнее, как организовать возвращение домой, безопасный быт и повседневную поддержку после инсульта.</p>
+
+          <details className="article-contents reveal" open={contentsOpen} onToggle={(event) => setContentsOpen(event.currentTarget.open)}>
+            <summary><span>Содержание</span><small>9 ключевых тем</small></summary>
+            <nav aria-label="Содержание статьи"><ol>{strokeCareContents.map(([label, anchor]) => <li key={anchor}><a href={`#${anchor}`}>{label}</a></li>)}</ol></nav>
+          </details>
+
+          <div className="article-body">
+            {strokeCareArticleBlocks.map((block, index) => {
+              if (block.type === "heading") {
+                const anchor = strokeCareArticleAnchors[block.value] ?? `stroke-section-${index}`
+                return (
+                  <div key={block.value}>
+                    {block.value === "Физическая активность и восстановление" && (
+                      <section className="stroke-transfer-note" aria-labelledby="stroke-transfer-title">
+                        <div>
+                          <p className="eyebrow">Безопасное перемещение</p>
+                          <h3 id="stroke-transfer-title">Как правильно помогать при вставании и передвижении</h3>
+                          <p>После инсульта человеку может требоваться помощь при вставании с кровати, пересаживании в кресло или во время ходьбы. Безопасный способ помощи лучше сначала отработать с врачом, физическим терапевтом или другим специалистом по реабилитации — возможности людей после инсульта сильно различаются.</p>
+                          <p>Перед перемещением освободите путь, подготовьте место для посадки и заранее объясните, что будет происходить. Не тяните человека за руку и не торопите. При пересаживании в кресло-коляску убедитесь, что она устойчива и тормоза зафиксированы.</p>
+                          <p>Не пытайтесь самостоятельно поднять человека, если он не может безопасно участвовать в перемещении или вы не знаете правильную технику. В такой ситуации необходимы индивидуальные рекомендации специалиста.</p>
+                        </div>
+                        <figure>
+                          <img src={articleStrokeRecoveryExercise} width="1400" height="788" alt="Пожилой мужчина выполняет упражнение с эластичной лентой рядом со специалистом" loading="lazy" />
+                          <figcaption>Физические упражнения после инсульта подбираются индивидуально специалистом по реабилитации.</figcaption>
+                        </figure>
+                      </section>
+                    )}
+                    <h2 id={anchor}>{block.value}</h2>
+                  </div>
+                )
+              }
+              if (block.type === "unordered-list") return <ul key={index}>{block.items.map((item) => <li key={item}>{item}</li>)}</ul>
+              if (block.type === "checklist") return <ul className="article-checklist" key={index}>{block.items.map((item) => <li key={item}>{item}</li>)}</ul>
+              if (block.type === "ordered-list") return <ol key={index}>{block.items.map((item) => <li key={item}>{item}</li>)}</ol>
+              return <p key={index}>{block.value}</p>
+            })}
+          </div>
+
+        </article>
+      </main>
+      <SiteFooter />
+    </div>
+  )
+}
+
+function FallsArticlePage() {
+  const [contentsOpen, setContentsOpen] = useState(() => window.innerWidth >= 761)
+
+  useEffect(() => {
+    const setMeta = (attribute: "name" | "property", value: string, content: string) => {
+      let element = document.head.querySelector(`meta[${attribute}="${value}"]`) as HTMLMetaElement | null
+      if (!element) {
+        element = document.createElement("meta")
+        element.setAttribute(attribute, value)
+        document.head.append(element)
+      }
+      element.content = content
+    }
+
+    document.title = fallsArticleTitle
+    setMeta("name", "description", fallsArticleDescription)
+    setMeta("name", "robots", "index, follow")
+    setMeta("property", "og:type", "article")
+    setMeta("property", "og:title", fallsArticleTitle)
+    setMeta("property", "og:description", fallsArticleDescription)
+    setMeta("property", "og:url", siteUrl + fallsArticlePath)
+    setMeta("property", "og:image", siteUrl + articleFallsCaregiverCane)
+    setMeta("name", "twitter:card", "summary_large_image")
+
+    let canonical = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null
+    if (!canonical) {
+      canonical = document.createElement("link")
+      canonical.rel = "canonical"
+      document.head.append(canonical)
+    }
+    canonical.href = siteUrl + fallsArticlePath
+
+    document.getElementById("falls-article-jsonld")?.remove()
+    const schema = document.createElement("script")
+    schema.id = "falls-article-jsonld"
+    schema.type = "application/ld+json"
+    schema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: "Почему пожилой человек начинает падать: 12 причин, которые семья часто не замечает",
+      description: fallsArticleDescription,
+      image: [siteUrl + articleFallsCaregiverCane, siteUrl + articleFallsSafeBathroom],
+      mainEntityOfPage: siteUrl + fallsArticlePath,
+      author: { "@type": "Organization", name: organizationName },
+      publisher: { "@type": "Organization", name: organizationName },
+    })
+    document.head.append(schema)
+  }, [])
+
+  return (
+    <div className="site-shell article-page falls-article-page">
+      <SiteHeader page="articles" />
+      <main className="article-main">
+        <nav className="breadcrumbs" aria-label="Хлебные крошки">
+          <a href="/#главная">Главная</a><span aria-hidden="true">→</span><a href="/articles/">Статьи</a><span aria-hidden="true">→</span><span>Почему пожилой человек начинает падать</span>
+        </nav>
+        <article className="article-document">
+          <header className="article-hero reveal">
+            <p className="eyebrow">Безопасность дома</p>
+            <h1>Почему пожилой человек начинает падать: 12 причин, которые семья часто не замечает</h1>
+            <p className="article-lead">«Просто споткнулся». Именно так родственники нередко объясняют первое падение пожилого человека. Иногда это действительно случайность. Но если падения повторяются, человек стал чаще хвататься за мебель, неуверенно вставать или бояться ходить один, оставлять это без внимания не стоит.</p>
+            <p>С возрастом падение может закончиться значительно серьёзнее, чем в молодости. Кроме самой травмы появляется ещё одна проблема — страх упасть снова. Из-за него человек может начать меньше ходить и реже выходить из дома.</p>
+            <p>Причиной может оказаться небольшой коврик возле кровати, слишком тёмный коридор, неподходящая обувь или головокружение при вставании. Разберём 12 вещей, которые стоит проверить семье.</p>
+          </header>
+
+          <figure className="article-cover reveal falls-article-cover">
+            <img src={articleFallsCaregiverCane} width="1680" height="945" alt="Пожилой мужчина идёт с тростью по домашнему коридору рядом с близким человеком" fetchPriority="high" />
+          </figure>
+
+          <details className="article-contents reveal" open={contentsOpen} onToggle={(event) => setContentsOpen(event.currentTarget.open)}>
+            <summary><span>Содержание</span><small>Проверка дома и самочувствия</small></summary>
+            <nav aria-label="Содержание статьи"><ol>{fallsContents.map(([label, anchor]) => <li key={anchor}><a href={`#${anchor}`}>{label}</a></li>)}</ol></nav>
+          </details>
+
+          <div className="article-body">
+            {fallsArticleBlocks.map((block, index) => {
+              if (block.type === "heading") {
+                const anchor = fallsArticleAnchors[block.value] ?? `falls-section-${index}`
+                return (
+                  <div key={block.value}>
+                    {block.value === "8. Ванная комната — особая зона риска" && <figure className="article-inline-image falls-bathroom-image"><img src={articleFallsSafeBathroom} width="1680" height="945" alt="Безопасная ванная комната с поручнями, сиденьем для душа и нескользким полом" loading="lazy" /></figure>}
+                    <h2 id={anchor}>{block.value}</h2>
+                  </div>
+                )
+              }
+              if (block.type === "subheading") return <h3 key={block.value}>{block.value}</h3>
+              if (block.type === "unordered-list") return <ul key={index}>{block.items.map((item) => <li key={item}>{item}</li>)}</ul>
+              if (block.type === "checklist") return <ul className="article-checklist" key={index}>{block.items.map((item) => <li key={item}>{item}</li>)}</ul>
+              if (block.type === "ordered-list") return <ol key={index}>{block.items.map((item) => <li key={item}>{item}</li>)}</ol>
+              return <p key={index}>{block.value}</p>
+            })}
+          </div>
+        </article>
+      </main>
+      <SiteFooter />
+    </div>
   )
 }
 
@@ -684,7 +1375,7 @@ function PrivacyPage() {
           <section className="privacy-section reveal">
             <h2>6. Cookie и сторонние ресурсы</h2>
             <p>Сайт может использовать технические cookie, необходимые для корректного отображения, сохранения технических настроек и безопасности. На дату этой редакции на Сайте не подключены рекламные cookie, рекламные пиксели и системы поведенческого профилирования.</p>
-            <p>На Сайте размещены ссылки на Telegram, MAX и ВКонтакте, а также встроенная интерактивная карта OpenStreetMap. При переходе по ссылке или отображении встроенного элемента соответствующий сторонний сервис может обрабатывать техническую информацию в соответствии со своими правилами. Оператор не определяет порядок обработки данных такими сервисами.</p>
+            <p>На Сайте размещены ссылки на Telegram и MAX, а также встроенная интерактивная карта OpenStreetMap. При переходе по ссылке или отображении встроенного элемента соответствующий сторонний сервис может обрабатывать техническую информацию в соответствии со своими правилами. Оператор не определяет порядок обработки данных такими сервисами.</p>
             <p>Посетитель может ограничить cookie в настройках браузера; это может повлиять на работу отдельных функций сайта. При подключении аналитики, рекламных технологий или других сервисов этот раздел будет обновлён до начала их использования.</p>
           </section>
 
@@ -709,15 +1400,11 @@ function PrivacyPage() {
           <section className="privacy-section reveal">
             <h2>10. Изменение политики</h2>
             <p>Оператор вправе изменять Политику при изменении законодательства, функциональности Сайта, технических решений или порядка обработки информации. Новая редакция вступает в силу с момента публикации на Сайте, если в ней не указан иной срок.</p>
-            <p>Актуальная редакция доступна по адресу <strong>domprestarelyh24.ru/privacy</strong>. Продолжение использования Сайта означает ознакомление пользователя с настоящей Политикой. Политика не заменяет договоры, правила проживания и иные документы АНО «Позитив».</p>
+            <p>Актуальная редакция доступна по адресу <strong>/privacy/</strong>. Продолжение использования Сайта означает ознакомление пользователя с настоящей Политикой. Политика не заменяет договоры, правила проживания и иные документы АНО «Позитив».</p>
           </section>
         </article>
       </main>
-      <footer>
-        <img src={logo} alt="АНО Позитив" />
-        <p>© 2026 АНО «Позитив»</p>
-        <a href="/privacy">Политика конфиденциальности</a>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }
@@ -759,6 +1446,14 @@ export default function App() {
     window.location.pathname.replace(/\/+$/, "") === "/prices"
   const isPrivacyPage =
     window.location.pathname.replace(/\/+$/, "") === "/privacy"
+  const isArticlesPage =
+    window.location.pathname.replace(/\/+$/, "") === "/articles"
+  const isChooseHomeArticlePage =
+    window.location.pathname.replace(/\/+$/, "") === "/articles/kak-vybrat-dom-dlya-pozhilogo"
+  const isStrokeCareArticlePage =
+    window.location.pathname.replace(/\/+$/, "") === "/articles/uhod-posle-insulta"
+  const isFallsArticlePage =
+    window.location.pathname.replace(/\/+$/, "") === "/articles/pochemu-pozhiloy-chelovek-padaet"
 
   const sortedReviews = [...familyReviews].sort((first, second) =>
     reviewSort === "rating"
@@ -771,13 +1466,13 @@ export default function App() {
   useReveal()
 
   useEffect(() => {
-    if (isReviewsPage || isPricesPage || isPrivacyPage || !window.location.hash) return
+    if (isReviewsPage || isPricesPage || isPrivacyPage || isArticlesPage || isChooseHomeArticlePage || isStrokeCareArticlePage || isFallsArticlePage || !window.location.hash) return
     const targetId = decodeURIComponent(window.location.hash.slice(1))
     const timer = window.setTimeout(() => {
       document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" })
     }, 80)
     return () => window.clearTimeout(timer)
-  }, [isReviewsPage, isPricesPage, isPrivacyPage])
+  }, [isReviewsPage, isPricesPage, isPrivacyPage, isArticlesPage, isChooseHomeArticlePage, isStrokeCareArticlePage, isFallsArticlePage])
 
   useEffect(() => {
     document.title = isPrivacyPage
@@ -786,8 +1481,16 @@ export default function App() {
         ? "Отзывы семей — АНО Позитив"
         : isPricesPage
         ? "Цены — АНО Позитив"
-        : "АНО Позитив — дом для пожилых людей"
-  }, [isPricesPage, isPrivacyPage, isReviewsPage])
+        : isArticlesPage
+        ? "Статьи — Дом для пожилых людей в Астрахани"
+        : isChooseHomeArticlePage
+        ? chooseHomeArticleTitle
+        : isStrokeCareArticlePage
+        ? strokeCareArticleTitle
+        : isFallsArticlePage
+        ? fallsArticleTitle
+        : "Дом для пожилых людей в Астрахани"
+  }, [isPricesPage, isPrivacyPage, isReviewsPage, isArticlesPage, isChooseHomeArticlePage, isStrokeCareArticlePage, isFallsArticlePage])
 
   const moveGallery = (direction: number) => {
     setGalleryIndex(
@@ -889,6 +1592,14 @@ export default function App() {
 
   if (isPrivacyPage) return <PrivacyPage />
 
+  if (isArticlesPage) return <ArticlesPage />
+
+  if (isChooseHomeArticlePage) return <ChooseHomeArticlePage />
+
+  if (isStrokeCareArticlePage) return <StrokeCareArticlePage />
+
+  if (isFallsArticlePage) return <FallsArticlePage />
+
   if (isReviewsPage) {
     return (
       <div className="site-shell reviews-page">
@@ -915,7 +1626,7 @@ export default function App() {
           <nav className="desktop-nav" aria-label="Основная навигация">
             {navigation.map((item) => (
               <a
-                className={item.href === "/reviews" ? "is-current" : ""}
+                className={item.href === "/reviews/" ? "is-current" : ""}
                 key={item.label}
                 href={item.href.startsWith("#") ? "/" + item.href : item.href}
               >
@@ -959,7 +1670,7 @@ export default function App() {
                 </a>
               ))}
               <MobilePhoneLinks />
-              <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
+              <a className="mobile-nav-address" href={mapUrl} target="_blank" rel="noreferrer">{locationAddress}</a>
               <SocialLinks className="about-contact-socials mobile-menu-socials" />
               <a
                 className="mobile-nav-cta"
@@ -1056,11 +1767,7 @@ export default function App() {
           </a>
         </main>
 
-        <footer>
-          <img src={logo} alt="АНО Позитив" />
-          <p>© 2026 АНО «Позитив»</p>
-          <a href="/privacy">Политика конфиденциальности</a>
-        </footer>
+        <SiteFooter />
       </div>
     )
   }
@@ -1151,11 +1858,7 @@ export default function App() {
             <span aria-hidden="true">←</span> Вернуться на главную
           </a>
         </main>
-        <footer>
-          <img src={logo} alt="АНО Позитив" />
-          <p>© 2026 АНО «Позитив»</p>
-          <a href="/privacy">Политика конфиденциальности</a>
-        </footer>
+        <SiteFooter />
       </div>
     )
   }
@@ -1177,7 +1880,7 @@ export default function App() {
           <img
             className="brand-name"
             src={brandNameArtwork}
-            alt="Позитив-Благоденствие — дом для пожилых людей АНО Позитив"
+              alt="Позитив-Благоденствие — дом для пожилых людей АНО Позитив"
           />
           <img className="brand-mobile-logo" src={logo} alt="" aria-hidden="true" />
         </a>
@@ -1225,7 +1928,7 @@ export default function App() {
               </a>
             ))}
             <MobilePhoneLinks />
-            <a className="mobile-nav-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">г. Москва, ул. Добра, д. 15</a>
+            <a className="mobile-nav-address" href={mapUrl} target="_blank" rel="noreferrer">{locationAddress}</a>
             <SocialLinks className="about-contact-socials mobile-menu-socials" />
             <a
               className="mobile-nav-cta"
@@ -1241,7 +1944,7 @@ export default function App() {
       <main>
         <section className="hero" id="главная">
           <div className="hero-copy reveal">
-            <p className="eyebrow">Дом для пожилых людей</p>
+            <p className="eyebrow">Дом для пожилых людей в Астрахани</p>
             <h1 className="hero-title">
               <span>Забота, рядом с которой</span>
               <span>становится спокойнее</span>
@@ -1297,7 +2000,7 @@ export default function App() {
             <p className="eyebrow">Почему выбирают нас</p>
             <h2><span className="summary-title-first">Здесь близкому человеку</span> <span className="keep-together">по‑настоящему<span className="summary-desktop-break"><br /></span> спокойно</span></h2>
             <div className="about-summary-copy">
-              <p>Наши специалисты бережно поддерживают привычный ритм жизни, помогают сохранять самостоятельность и уверенность. Важная часть заботы — общение, интерес к жизни и привычные занятия.</p>
+              <p>Наши специалисты бережно поддерживают привычный ритм жизни, помогают сохранять самостоятельность и уверенность. <span className="summary-care-sentence">Важная часть заботы — общение, интерес к жизни и привычные занятия.</span></p>
               <p>Мы создаём спокойную и безопасную атмосферу, где внимание, забота и помощь всегда рядом.</p>
             </div>
             <div className="about-summary-traits">
@@ -1309,7 +2012,7 @@ export default function App() {
               <a className="about-contact-phone" href={primaryPhoneHref}>Телефон: {primaryPhone}</a>
               <a className="about-contact-phone" href={secondaryPhoneHref}>Телефон: {secondaryPhone}</a>
               <span>Ежедневно: с 9:00 до 20:00</span>
-              <a className="about-contact-address" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">Адрес: г. Москва, ул. Добра, д. 15</a>
+              <a className="about-contact-address" href={mapUrl} target="_blank" rel="noreferrer">Адрес: {locationAddress}</a>
               <SocialLinks className="about-contact-socials" />
             </div>
           </div>
@@ -1318,18 +2021,14 @@ export default function App() {
               <p className="eyebrow">Как нас найти</p>
               <h2>Мы рядом</h2>
               <p>Приезжайте познакомиться с домом, обсудить уход и задать все важные вопросы.</p>
-              <a href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Добра%2C%20д.%2015" target="_blank" rel="noreferrer">Открыть маршрут <span aria-hidden="true">→</span></a>
+              <a href={mapUrl} target="_blank" rel="noreferrer">Открыть маршрут <span aria-hidden="true">→</span></a>
             </div>
             <div className="about-map-visual">
-              <iframe
-                title="Карта расположения дома рядом с разделом о нас"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=37.579%2C55.733%2C37.656%2C55.775&amp;layer=mapnik&amp;marker=55.7558%2C37.6176"
-                loading="lazy"
-              />
+              <LocationMap title="Карта расположения дома рядом с разделом о нас" />
               <div className="address-card">
                 <span className="address-pin" aria-hidden="true">⌖</span>
                 <span>
-                  <strong>г. Москва, ул. Добра, д. 15</strong>
+                  <strong>{locationAddress}</strong>
                   <small>Позвоните — уточним удобное время</small>
                 </span>
               </div>
@@ -1369,11 +2068,9 @@ export default function App() {
               <p>Уютная комната, ежедневный уход, питание и внимание персонала включены в стоимость.</p>
               <strong className="pricing-range">от 1 490 до 2 490 <small>₽/день</small></strong>
               <span className="pricing-note">Проконсультируйтесь со специалистом</span>
-              <a className="text-link" href="/prices">Смотреть полный прейскурант <ArrowIcon /></a>
             </div>
             <img src={comfortArtwork} alt="Уютная комната и забота" />
           </article>
-          <a className="pricing-mobile-link" href="/prices">Смотреть полный прейскурант <ArrowIcon /></a>
         </section>
 
         <section className="section staff-section" id="персонал">
@@ -1384,13 +2081,13 @@ export default function App() {
               alt=""
               aria-hidden="true"
             />
-            <h2>Наш персонал</h2>
+            <h2>Генеральный директор</h2>
             <p className="staff-intro">
-              Заботливые специалисты, которые рядом каждый день
+              Тамара Анатольевна координирует работу дома и команды специалистов. Она помогает находить спокойные решения в важных вопросах, поддерживает порядок в процессах и следит, чтобы забота о каждом проживающем оставалась внимательной и уважительной.
             </p>
 
             <div className="staff-list">
-              {staffMembers.map((member, index) => (
+              {visibleStaffMembers.map((member, index) => (
                 <article
                   className={`staff-card reveal reveal-delay-${index + 1}`}
                   key={`${member.name}-${member.role}`}
@@ -1406,10 +2103,6 @@ export default function App() {
                 </article>
               ))}
             </div>
-
-            <a className="staff-button" href="#персонал">
-              Смотреть весь персонал <ArrowIcon />
-            </a>
           </div>
         </section>
 
@@ -1418,8 +2111,11 @@ export default function App() {
             <div className="gallery-heading">
               <p className="eyebrow">Наш дом</p>
               <h2>Фотогалерея пансионата</h2>
-              <p>
+              <p className="gallery-intro">
                 Посмотрите атмосферу уюта, заботы и спокойной жизни в нашем доме
+              </p>
+              <p className="gallery-description">
+                У нас современный и удобный дом, созданный для спокойной жизни: мы уделяем внимание чистоте, безопасности, уважительному отношению и привычному ритму дня. Здесь легко чувствовать себя дома, общаться и получать необходимую поддержку рядом с внимательной командой.
               </p>
             </div>
 
@@ -1707,17 +2403,13 @@ export default function App() {
             </div>
 
             <div className="contact-visual">
-              <iframe
-                title="Карта расположения дома АНО Позитив"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=37.579%2C55.733%2C37.656%2C55.775&amp;layer=mapnik&amp;marker=55.7558%2C37.6176"
-                loading="lazy"
-              />
+              <LocationMap title="Карта расположения дома АНО Позитив" />
               <div className="address-card">
                 <span className="address-pin" aria-hidden="true">
                   ⌖
                 </span>
                 <span>
-                  <strong>г. Москва, ул. Добра, д. 15</strong>
+                  <strong>{locationAddress}</strong>
                   <small>Позвоните — уточним удобное время</small>
                 </span>
               </div>
@@ -1726,11 +2418,7 @@ export default function App() {
         </section>
       </main>
 
-      <footer>
-        <img src={logo} alt="АНО Позитив" />
-        <p>© 2026 АНО «Позитив»</p>
-        <a href="/privacy">Политика конфиденциальности</a>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }
