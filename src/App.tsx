@@ -70,19 +70,20 @@ const messengerPhone = "+7 (917) 081-13-27"
 const telegramUrl = "https://t.me/+79170811327"
 const maxUrl = "https://max.ru/+79170811327"
 const contactEmail = "nko.pozitiv@bk.ru"
-const organizationName = "АНО «Позитив»"
-const locationAddress = "улица Бехтерева, 20Бк1, Астрахань, 414014"
+const organizationName = "ООО «Позитив-Благоденствие»"
+const organizationLegalName = "ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ \"ПОЗИТИВ-БЛАГОДЕНСТВИЕ\""
+const locationAddress = "улица Бехтерева, стр. 20Б, Астрахань, 414014"
 const mapUrl = "https://yandex.ru/maps/?ll=47.999932%2C46.330031&z=16&pt=47.999932%2C46.330031%2Cpm2rdm"
 const openStreetMapEmbedUrl = "https://www.openstreetmap.org/export/embed.html?bbox=47.974932%2C46.305031%2C48.024932%2C46.355031&layer=mapnik&marker=46.330031%2C47.999932"
-const siteUrl = "https://hseecon.ru"
+const siteUrl = "https://domprestarelyh24.ru"
 const chooseHomeArticlePath = "/articles/kak-vybrat-dom-dlya-pozhilogo/"
-const chooseHomeArticleTitle = "Как выбрать дом для пожилого человека: подробное руководство | АНО «Позитив»"
+const chooseHomeArticleTitle = "Как выбрать дом для пожилого человека: подробное руководство | ООО «Позитив-Благоденствие»"
 const chooseHomeArticleDescription = "Как выбрать дом или пансионат для пожилого человека: условия проживания, безопасность, питание, общение, бытовая помощь и вопросы, которые стоит задать перед заселением."
 const strokeCareArticlePath = "/articles/uhod-posle-insulta/"
-const strokeCareArticleTitle = "Уход за пожилым человеком после инсульта: что важно знать родственникам | АНО «Позитив»"
+const strokeCareArticleTitle = "Уход за пожилым человеком после инсульта: что важно знать родственникам | ООО «Позитив-Благоденствие»"
 const strokeCareArticleDescription = "Понятная памятка для родственников: безопасный быт, повседневная помощь, общение, питание, восстановление после инсульта и признаки, при которых нужна экстренная помощь."
 const fallsArticlePath = "/articles/pochemu-pozhiloy-chelovek-padaet/"
-const fallsArticleTitle = "Почему пожилой человек начинает падать: 12 причин, которые семья часто не замечает | АНО «Позитив»"
+const fallsArticleTitle = "Почему пожилой человек начинает падать: 12 причин, которые семья часто не замечает | ООО «Позитив-Благоденствие»"
 const fallsArticleDescription = "12 распространённых причин падений у пожилых людей: освещение, коврики, обувь, лекарства, зрение, ванная комната, безопасный дом и ситуации, когда нужна медицинская оценка."
 
 const navigation = [
@@ -645,10 +646,10 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" 
         <a
           className="brand"
           href={isInnerPage ? "/#главная" : "#главная"}
-          aria-label="АНО Позитив — на главную"
+          aria-label="ООО Позитив-Благоденствие — на главную"
         >
           <img className="brand-mark" src={logo} alt="" aria-hidden="true" />
-          <img className="brand-name" src={brandNameArtwork} alt="Позитив-Благоденствие — дом для пожилых людей АНО Позитив" />
+          <img className="brand-name" src={brandNameArtwork} alt="Позитив-Благоденствие — дом для пожилых людей" />
           <img className="brand-mobile-logo" src={logo} alt="" aria-hidden="true" />
         </a>
       </div>
@@ -706,9 +707,9 @@ function SiteHeader({ page }: { page: "home" | "reviews" | "prices" | "privacy" 
 function SiteFooter() {
   return (
     <footer>
-      <img src={logo} alt="АНО Позитив" />
+      <img src={logo} alt="ООО Позитив-Благоденствие" />
       <div className="footer-details">
-        <p>© 2026 АНО «Позитив»</p>
+        <p>© 2026 ООО «Позитив-Благоденствие»</p>
         <dl className="footer-requisites" aria-label="Реквизиты организации">
           <div><dt>ИНН</dt><dd>3000014577</dd></div>
           <div><dt>КПП</dt><dd>300001001</dd></div>
@@ -1331,25 +1332,26 @@ function PrivacyPage() {
           <h1>Политика в отношении обработки персональных данных</h1>
           <p>
             Редакция от <strong>20.09.2026</strong>. Документ описывает,
-            как сайт «АНО Позитив» обрабатывает информацию посетителей.
+            как сайт «Позитив-Благоденствие» обрабатывает информацию посетителей.
           </p>
         </section>
 
         <article className="privacy-document">
           <section className="privacy-section reveal">
             <h2>1. Общие положения и сведения об операторе</h2>
-            <p>Настоящая Политика определяет порядок обработки и защиты информации при использовании сайта <strong>domprestarelyh24.ru</strong> (далее — Сайт). Владельцем Сайта и оператором персональных данных является автономная некоммерческая организация «Позитив» (далее — Оператор).</p>
+            <p>Настоящая Политика определяет порядок обработки и защиты информации при использовании сайта <strong>domprestarelyh24.ru</strong> (далее — Сайт). Владельцем Сайта и оператором персональных данных является {organizationLegalName} (далее — Оператор).</p>
             <p>Политика разработана с учётом Конституции Российской Федерации, Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных» и иных применимых нормативных правовых актов Российской Федерации.</p>
             <dl className="privacy-details">
-              <div><dt>Полное наименование</dt><dd>Автономная некоммерческая организация «Позитив»</dd></div>
-              <div><dt>Сокращённое наименование</dt><dd>АНО «Позитив»</dd></div>
+              <div><dt>Полное наименование</dt><dd>{organizationLegalName}</dd></div>
+              <div><dt>Сокращённое наименование</dt><dd>{organizationName}</dd></div>
+              <div><dt>Юридический адрес</dt><dd>414014, Россия, Астраханская область, город Астрахань, улица Бехтерева, строение 20Б</dd></div>
               <div><dt>Контакт для обращений</dt><dd>{contactEmail}, {primaryPhone}, {secondaryPhone}</dd></div>
             </dl>
           </section>
 
           <section className="privacy-section reveal">
             <h2>2. Назначение сайта и отсутствие форм сбора данных</h2>
-            <p>Сайт носит информационный характер: он знакомит посетителей с деятельностью АНО «Позитив», условиями проживания, услугами, сотрудниками, фотографиями, отзывами, документами и контактами.</p>
+            <p>Сайт носит информационный характер: он знакомит посетителей с деятельностью {organizationName}, условиями проживания, услугами, сотрудниками, фотографиями, отзывами, документами и контактами.</p>
             <p>На Сайте отсутствуют регистрация, личные кабинеты, онлайн-заказы, онлайн-оплата, формы обратной связи, заявки, подписки и поля для ввода имени, телефона, e-mail, документов, сведений о здоровье или иных персональных данных. Посетитель обращается в организацию самостоятельно по указанным телефонам либо через выбранный им сторонний мессенджер.</p>
           </section>
 
@@ -1399,7 +1401,7 @@ function PrivacyPage() {
           <section className="privacy-section reveal">
             <h2>10. Изменение политики</h2>
             <p>Оператор вправе изменять Политику при изменении законодательства, функциональности Сайта, технических решений или порядка обработки информации. Новая редакция вступает в силу с момента публикации на Сайте, если в ней не указан иной срок.</p>
-            <p>Актуальная редакция доступна по адресу <strong>/privacy/</strong>. Продолжение использования Сайта означает ознакомление пользователя с настоящей Политикой. Политика не заменяет договоры, правила проживания и иные документы АНО «Позитив».</p>
+            <p>Актуальная редакция доступна по адресу <strong>/privacy/</strong>. Продолжение использования Сайта означает ознакомление пользователя с настоящей Политикой. Политика не заменяет договоры, правила проживания и иные документы {organizationName}.</p>
           </section>
         </article>
       </main>
@@ -1475,11 +1477,11 @@ export default function App() {
 
   useEffect(() => {
     document.title = isPrivacyPage
-      ? "Политика конфиденциальности — АНО Позитив"
+      ? "Политика конфиденциальности — ООО Позитив-Благоденствие"
       : isReviewsPage
-        ? "Отзывы семей — АНО Позитив"
+        ? "Отзывы семей — ООО Позитив-Благоденствие"
         : isPricesPage
-        ? "Цены — АНО Позитив"
+        ? "Цены — ООО Позитив-Благоденствие"
         : isArticlesPage
         ? "Статьи — Дом для пожилых людей в Астрахани"
         : isChooseHomeArticlePage
@@ -1606,7 +1608,7 @@ export default function App() {
           <a
             className="brand"
             href="/#главная"
-            aria-label="АНО Позитив — на главную"
+            aria-label="ООО Позитив-Благоденствие — на главную"
           >
             <img
               className="brand-mark"
@@ -1617,7 +1619,7 @@ export default function App() {
             <img
               className="brand-name"
               src={brandNameArtwork}
-              alt="Позитив-Благоденствие — дом для пожилых людей АНО Позитив"
+              alt="Позитив-Благоденствие — дом для пожилых людей"
             />
             <img className="brand-mobile-logo" src={logo} alt="" aria-hidden="true" />
           </a>
@@ -1868,7 +1870,7 @@ export default function App() {
         <a
           className="brand"
           href="#главная"
-          aria-label="АНО Позитив — на главную"
+          aria-label="ООО Позитив-Благоденствие — на главную"
         >
           <img
             className="brand-mark"
@@ -1879,7 +1881,7 @@ export default function App() {
           <img
             className="brand-name"
             src={brandNameArtwork}
-              alt="Позитив-Благоденствие — дом для пожилых людей АНО Позитив"
+              alt="Позитив-Благоденствие — дом для пожилых людей"
           />
           <img className="brand-mobile-logo" src={logo} alt="" aria-hidden="true" />
         </a>
@@ -2402,7 +2404,7 @@ export default function App() {
             </div>
 
             <div className="contact-visual">
-              <LocationMap title="Карта расположения дома АНО Позитив" />
+              <LocationMap title="Карта расположения дома ООО Позитив-Благоденствие" />
               <div className="address-card">
                 <span className="address-pin" aria-hidden="true">
                   ⌖
